@@ -1,0 +1,34 @@
+<div class="form-group">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label>photo</label>
+            <input type="text" class="form-control input-sm" formControlName="employeePhoto" />
+            <span>Some note</span>
+        </div>
+        <div>
+            <label>Name</label>
+            <input type="text" class="form-control input-sm" formControlName="employeeName" />
+            <span>Some note</span>
+        </div>
+        <div>
+            <label>email</label>
+            <input type="text" class="form-control input-sm" formControlName="email" />
+            <span>Some note</span>
+        </div>
+        <div>
+            <label>password</label>
+            <input type="text" class="form-control input-sm" formControlName="passwordHash" />
+            <span>Some note</span>
+        </div>
+        <div>
+            <label>isAdmin</label>
+            <div>
+                <input type="radio" id="yes" value='true' formControlName="isAdmin" />
+                <label for="yes">Yes</label>
+                <input type="radio" id="no" value=false formControlName="isAdmin" />
+                <label for="no">No</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary p-4 w-100">Register</button>
+    </form>
+</div>

@@ -34,7 +34,9 @@ export class RegisterEmployeeComponent {
         } else {
             this.registrationForm.value['isAdmin'] = true;
         }
-        this.service.setNewEmployee(this.registrationForm.value).subscribe((res) => console.log(res));
+        this.service.setNewEmployee(this.registrationForm.value).subscribe({
+          next: (data)=>{},
+          error:(e)=>{console.log(e)}});
         this.router.navigate(['/pulseSurvey/login']);
     }
 }

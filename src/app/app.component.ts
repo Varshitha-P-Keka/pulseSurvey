@@ -13,6 +13,4 @@ import { VerificationComponent } from './verification/verification.component';
 })
 export class AppComponent {
   title = 'pulseSurvey';
-  
-  
 }

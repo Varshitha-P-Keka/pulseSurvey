@@ -19,12 +19,10 @@ export class HomeComponent {
 
   ngOnInit(){
     this.udService.getCredentials().subscribe((next:any)=>{
-      console.log("next",JSON.stringify(next)=='{}');
       if(JSON.stringify(next)!='{}'){
         this.userDetails = next;
         localStorage.setItem('currentUser',JSON.stringify(this.userDetails));
       }
     })
   }
-
 }

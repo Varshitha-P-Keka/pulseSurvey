@@ -1,0 +1,8 @@
+<div *ngIf="userDetails != {}">
+    <div>
+        <app-top-nav [userDetails]="userDetails"></app-top-nav>
+    </div>
+    <div class="left-nav">
+        <app-left-nav [userDetails]="userDetails"></app-left-nav>
+    </div>
+</div>

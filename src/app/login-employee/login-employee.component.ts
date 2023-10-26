@@ -10,11 +10,11 @@ import jwt_decode from 'jwt-decode';
 import { loggeduser } from '../modals/modal';
 
 @Component({
-  selector: 'app-login-employee',
-  standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
-  templateUrl: './login-employee.component.html',
-  styleUrls: ['./login-employee.component.scss']
+    selector: 'app-login-employee',
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: './login-employee.component.html',
+    styleUrls: ['./login-employee.component.scss'],
 })
 export class LoginEmployeeComponent {
   currentUser:loggeduser={EmployeeId:'',role:'',emailaddress:'',name:''}
@@ -50,5 +50,3 @@ export class LoginEmployeeComponent {
       console.log('Error',error);
     });
   }
-
-}

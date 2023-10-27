@@ -31,24 +31,25 @@ export class LoginEmployeeComponent {
   }
 
   onSubmit(){
-    this.service.getVerifyEmployee(this.loginForm.value).subscribe({
-      next:(data)=>{
-        this.data = data;
-        const decodedToken = <any>jwt_decode(this.data.token);
-        for( let each in decodedToken){
-          let key = each.split('/').pop();
-          switch(key){
-            case 'EmployeeId': this.currentUser.EmployeeId=decodedToken[each];break;
-            case 'role': this.currentUser.role=decodedToken[each];break;
-            case 'emailaddress': this.currentUser.emailaddress=decodedToken[each];break;
-            case 'name': this.currentUser.name=decodedToken[each];break;
-          }
-        }
-        this.udService.setCredentials(this.currentUser);
-        this.router.navigate(['/pulseSurvey/home']);
-      },
-      error:(e)=>{
-        console.log('Error',e);
-      }})
+    // this.service.getVerifyEmployee(this.loginForm.value).subscribe({
+    //   next:(data)=>{
+    //     this.data = data;
+    //     const decodedToken = <any>jwt_decode(this.data.token);
+    //     for( let each in decodedToken){
+    //       let key = each.split('/').pop();
+    //       switch(key){
+    //         case 'EmployeeId': this.currentUser.EmployeeId=decodedToken[each];break;
+    //         case 'role': this.currentUser.role=decodedToken[each];break;
+    //         case 'emailaddress': this.currentUser.emailaddress=decodedToken[each];break;
+    //         case 'name': this.currentUser.name=decodedToken[each];break;
+    //       }
+    //     }
+    //     this.udService.setCredentials(this.currentUser);
+    //     this.router.navigate(['/pulseSurvey/home']);
+    //   },
+    //   error:(e)=>{
+    //     console.log('Error',e);
+    //   }})
+    this.router.navigate(['/pulseSurvey/home/Me/openSurveys']);
   }
 }

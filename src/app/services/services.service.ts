@@ -9,11 +9,21 @@ export class ServicesService {
 
   constructor( private http:HttpClient) { }
 
+
+
   setNewEmployee(empData:employee){
     return this.http.post('https://localhost:7015/api/Employee/register',empData);
   }
 
   getVerifyEmployee(empData:verifyEmployee){
     return this.http.post('https://localhost:7015/api/Employee/login',empData);
+  }
+
+  getOpenSurveysData(id:any){
+    return this.http.get('https://localhost:7015/api/Survey/getopensurveys/'+id);
+  }
+
+  getSurveyDetailsById(id:any){
+    return this.http.get('https://localhost:7015/api/Survey/details/'+id);
   }
 }

@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { LeftNavComponent } from '../navbar/left-nav/left-nav.component';
 import { TopNavComponent } from '../navbar/top-nav/top-nav.component';
 import { UserDataService } from '../services/user-data.service';
+import { OpenSurveysComponent } from '../me-profile/open-surveys/open-surveys.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,LeftNavComponent,TopNavComponent],
+  imports: [CommonModule,LeftNavComponent,TopNavComponent,OpenSurveysComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

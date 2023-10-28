@@ -27,12 +27,12 @@ export class verifyEmployee {
 }
 
 export class loggeduser {
-    EmployeeId: string;
+    employeeId: string;
     role: string;
     emailaddress: string;
     name: string;
-    constructor(EmployeeId: string, role: string, emailaddress: string, name: string) {
-        this.EmployeeId = EmployeeId;
+    constructor(employeeId: string, role: string, emailaddress: string, name: string) {
+        this.employeeId = employeeId;
         this.role = role;
         this.emailaddress = emailaddress;
         this.name = name;

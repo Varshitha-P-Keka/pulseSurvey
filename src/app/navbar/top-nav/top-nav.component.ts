@@ -13,7 +13,7 @@ import { loggeduser } from 'src/app/modals/modal';
   styleUrls: ['./top-nav.component.scss']
 })
 export class TopNavComponent {
-  @Input() userDetails:loggeduser={name:'',emailaddress:'',EmployeeId:'',role:''};
+  @Input() userDetails:loggeduser={name:'',emailaddress:'',employeeId:'',role:''};
   today:any;
 
   constructor(private date:DatePipe){}

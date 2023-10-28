@@ -11,7 +11,7 @@ import { loggeduser } from 'src/app/modals/modal';
   styleUrls: ['./left-nav.component.scss']
 })
 export class LeftNavComponent {
-  @Input() userDetails:loggeduser={name:'',emailaddress:'',EmployeeId:'',role:''};
+  @Input() userDetails:loggeduser={name:'',emailaddress:'',employeeId:'',role:''};
 
   ngOnInit(){
     this.userDetails=JSON.parse(<string>localStorage.getItem('currentUser'));

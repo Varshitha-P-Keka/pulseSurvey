@@ -1,0 +1,34 @@
+<div class="ml-16">
+    <h2 class="mt-16">Open Pulse Surveys</h2>
+    <p class="mb-16">Here you can see the active pulse surveys that you are yet to submit.</p>
+
+    <table class="table standard-table two-line-table">
+        <thead>
+            <tr>
+                <th>SURVEY TITLE</th>
+                <th>EXPIRES ON</th>
+                <th>LAUNCHED ON</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let eachSurvey of surveyDetails">
+                <td>
+                    <p class="fw-bold">{{ eachSurvey.surveyTitle }}</p>
+                    <p>{{ eachSurvey.surveyDescription }}</p>
+                </td>
+                <td>
+                    <p class="fw-bold">{{ eachSurvey.expiresOn | date: 'mediumDate' }}</p>
+                    <p>Expires in {{eachSurvey.expiresAfter}} days</p>
+                </td>
+                <td>
+                    <p class="fw-bold">{{ eachSurvey.launchesOn | date: 'mediumDate' }}</p>
+                    <p>by {{ eachSurvey.launchedBy }}</p>
+                </td>
+                <td>
+                    <a class="take-survey-link" (click)="openFullModal(eachSurvey.surveyId)">Take Survey</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

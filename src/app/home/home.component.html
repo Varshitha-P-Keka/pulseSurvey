@@ -2,6 +2,13 @@
     <div>
         <app-top-nav [userDetails]="userDetails"></app-top-nav>
     </div>
+    <div class="content-wrapper">
+        <ul class="nav topnav">
+            <li class="active"><a>OPEN SURVEYS</a></li>
+            <li><a>COMPLETED SURVEYS</a></li>
+        </ul>
+        <app-open-surveys [userDetails]="userDetails"></app-open-surveys>
+    </div>
     <div class="left-nav">
         <app-left-nav [userDetails]="userDetails"></app-left-nav>
     </div>

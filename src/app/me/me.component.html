@@ -26,11 +26,27 @@
                     <p *ngFor="let value of survey.column3">{{ value }}</p>
                 </td>
                 <td>
-                    <a>Take Survey</a>
+                    <a (click)="openFullModal(fullTemplate)">Take Survey</a>
                 </td>
             </tr>
         </tbody>
     </table>
+    <ng-template #fullTemplate>
+        <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <span class="icon ic-close" (click)="modalRef.hide()"></span>
+        </div>
+        <div class="modal-sub-header">
+            <p>Sub header</p>
+            <div>
+                <button class="btn btn-primary">Update</button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <p>Modal body(you can add input fields,checkboxes,etc.)</p>
+        </div>
+    </ng-template>
+    <!-- <button class="btn btn-primary" (click)="openFullModal(fullTemplate)">Full modal</button> -->
 </div>
 <div *ngIf="showCompletedSurveys" class="completed-surveys">
     <p class="pulse-survey-title">Completed Pulse Surveys</p>

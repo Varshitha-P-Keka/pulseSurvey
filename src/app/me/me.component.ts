@@ -22,7 +22,6 @@ export class MeComponent {
       }
     ];
     
-
     toOpenSurveys() {
       this.router.navigate(['/pulseSurvey/home/Me/openSurveys']);
       this.showOpenSurveys = true;

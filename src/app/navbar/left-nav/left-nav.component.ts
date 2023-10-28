@@ -20,10 +20,10 @@ export class LeftNavComponent {
     this.userDetails=JSON.parse(<string>localStorage.getItem('currentUser'));
   }
   toMe() {
-    this.router.navigate(['/pulseSurvey/home/Me'])
+    this.router.navigate(['/pulseSurvey/home/Me/openSurveys'])
   }
   toAdmin(){
-    this.router.navigate(['/pulseSurvey/home/Admin'])
+    this.router.navigate(['/pulseSurvey/home/Admin/surveys/active'])
 
   }
 }

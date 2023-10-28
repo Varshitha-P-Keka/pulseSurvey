@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { MainContentComponent } from './main-content/main-content.component';
 import { CompletedSurveysComponent } from './completed-surveys/completed-surveys.component';
 import { MeComponent } from './me/me.component';
+import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'pulseSurvey', pathMatch: 'full' },
@@ -29,7 +30,22 @@ export const routes: Routes = [
 
                         ]
                     },
-                    {path: 'Admin', component: HomeComponent}
+                    {path: 'Admin', component: AdminComponent},
+                    {
+                        path: 'Admin',
+                        children: [
+                            {path: 'surveys', component: AdminComponent},
+                            {
+                                path:'surveys',
+                                children:[
+                                    {path:'active',component:AdminComponent},
+                                    {path:'closed',component:AdminComponent}
+
+                                ]
+                            },
+                            {path: 'settings', component: AdminComponent}
+                        ]
+                    }
                    
                 ]
             }            

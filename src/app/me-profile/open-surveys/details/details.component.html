@@ -1,0 +1,19 @@
+<div class="modal-body" *ngIf="surveyDetails">
+    <h2 class="modal-body-header">{{surveyDetails.surveyTitle}}</h2>
+    <p class="mt-8 mb-16">{{surveyDetails.surveyDescription}}</p>
+    <p class="mb-8 fw-bold">Other Details</p>
+    <div class="d-flex w-25 justify-content-between">
+        <div>
+            <p class="other-details-subHeading">EXPIRES ON</p>
+            <p>{{surveyDetails.expiresOn | date: 'mediumDate'}}</p>
+        </div>
+        <div>
+            <p class="other-details-subHeading">QUESTIONS</p>
+            <p>{{surveyDetails.numberOfQuestions}}</p>
+        </div>
+        <div>
+            <p class="other-details-subHeading">SURVEY TYPE</p>
+            <p>Anonymous</p>
+        </div>
+    </div>
+</div>

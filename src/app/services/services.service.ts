@@ -9,8 +9,6 @@ export class ServicesService {
 
   constructor( private http:HttpClient) { }
 
-
-
   setNewEmployee(empData:employee){
     return this.http.post('https://localhost:7015/api/Employee/register',empData);
   }
@@ -26,4 +24,17 @@ export class ServicesService {
   getSurveyDetailsById(id:any){
     return this.http.get('https://localhost:7015/api/Survey/details/'+id);
   }
+
+  getSurveyQuestionsById(id:any){
+    return this.http.get('https://localhost:7015/api/SurveyQuestion/getsurveyquestions/'+id);
+  }
+
+  postQuestionResponses(body:any){
+    return this.http.post('https://localhost:7015/api/QuestionResponse/responses',body);
+  }
+
+  getCompletdSurveys(id:number){
+    return this.http.get('https://localhost:7015/api/Survey/getcompletedsurveys/'+id);
+  }
+
 }

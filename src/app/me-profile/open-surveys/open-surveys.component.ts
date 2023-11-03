@@ -1,16 +1,19 @@
 import { Component,Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { loggeduser } from 'src/app/modals/modal';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ServicesService } from 'src/app/services/services.service';
 import { UserDataService } from 'src/app/services/user-data.service';
+// import { DetailsComponent } from './details/details.component';
 import { FullModalTakeSurveyDetailsComponent } from 'src/app/modal-components/full-modal-take-survey-details/full-modal-take-survey-details.component';
 
 @Component({
   selector: 'app-open-surveys',
   standalone: true,
-  imports: [CommonModule,FullModalTakeSurveyDetailsComponent],
+  imports: [CommonModule,RouterOutlet,FullModalTakeSurveyDetailsComponent],
   templateUrl: './open-surveys.component.html',
   styleUrls: ['./open-surveys.component.scss']
 })
@@ -20,16 +23,17 @@ export class OpenSurveysComponent {
   currentDate:any;
   bsModalRef: BsModalRef | undefined;
 
-  constructor(private service:ServicesService,private modalService: BsModalService,private udService:UserDataService){}
+  constructor(private router: Router, private service:ServicesService,private modalService: BsModalService,private udService:UserDataService){}
 
   ngOnInit(){
-    // this.openFullModal(10);
+    // Development check point for details component
+    // this.openFullModal(5);
     this.currentDate = new Date();
-    // console.log(this.currentDate);
     this.userDetails=JSON.parse(<string>localStorage.getItem('currentUser'));
     this.service.getOpenSurveysData(this.userDetails.employeeId).subscribe({
       next: (data)=>{
         this.surveyDetails= data ;
+        // console.log(data)
       },
       error: (e)=>{console.log(e)}
     })

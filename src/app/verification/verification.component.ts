@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./verification.component.scss']
 })
 export class VerificationComponent {
+
   constructor( private router:Router){
 
   }

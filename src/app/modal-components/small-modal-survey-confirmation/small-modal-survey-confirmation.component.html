@@ -1,0 +1,13 @@
+<div class="survey-confirmation-modal">
+    <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <i class="ki ki-close" (click)="modalRef.hide()"></i>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure, you want to submit this survey?</p>
+    </div>
+    <div class="modal-footer p-20">
+        <button class="btn btn-secondary confirm-no-btn" (click)="modalRef.hide()">No</button>
+        <button class="ml-10 btn btn-primary confirm-yes-btn" (click)="submitSurevyQuestions()">Yes</button>
+    </div>
+</div>

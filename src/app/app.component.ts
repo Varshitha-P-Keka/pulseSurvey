@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 import { VerificationComponent } from './verification/verification.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, VerificationComponent],
+  imports: [CommonModule, RouterModule, VerificationComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

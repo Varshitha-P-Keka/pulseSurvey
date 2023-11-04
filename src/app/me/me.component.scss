@@ -1,0 +1,31 @@
+.pulse-survey-title {
+    font-weight: 300;
+    color: #252525;
+    font-size: 26px;
+    font-family:'Segoe UI';
+    padding-bottom: 10px;
+}
+
+.open-surveys, .completed-surveys {
+    margin-top: 40px;
+    margin-left: 25px;
+}
+
+.active a::after {
+    border-bottom-color: #e3e5e8;
+}
+
+.survey-table {
+    width: 97%;
+    margin-top: 20px;
+}
+
+.survey-table td:first-child {
+    width: 55%;
+}
+
+.pulse-survey-description {
+    font-size: 13px;
+    font-weight: 400;
+    color: #686868;
+}

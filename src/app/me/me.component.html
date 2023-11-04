@@ -1,0 +1,39 @@
+<!-- <ul class="nav topnav navbar d-flex justify-content-start">
+    <li class="active" ><a (click)="toOpenSurveys()">OPEN SURVEYS</a></li>
+    <li><a (click)="toCompletedSurveys()">COMPLETED SURVEYS</a></li>
+</ul>
+<div *ngIf="showOpenSurveys" class="open-surveys">
+    <p class="pulse-survey-title">Open Pulse Surveys</p>
+    <p class="pulse-survey-description">Here you can see the active pulse surveys that you are yet to submit</p>
+    <table class="table standard-table two-line-table survey-table">
+        <thead>
+            <tr>
+                <th>SURVEY TITLE</th>
+                <th>EXPIRES ON</th>
+                <th>LAUNCHED ON</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let survey of surveys; let i = index">
+                <td>
+                    <p *ngFor="let value of survey.column1">{{ value }}</p>
+                </td>
+                <td>
+                    <p *ngFor="let value of survey.column2">{{ value }}</p>
+                </td>
+                <td>
+                    <p *ngFor="let value of survey.column3">{{ value }}</p>
+                </td>
+                <td>
+                    <a>Take Survey</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
+<div *ngIf="showCompletedSurveys" class="completed-surveys">
+    <p class="pulse-survey-title">Completed Pulse Surveys</p>
+    <p class="pulse-survey-description">Here you can see the pulse surveys that you have completed</p>
+</div> -->

@@ -2,12 +2,15 @@ import { Routes } from '@angular/router';
 import { VerificationComponent } from './verification/verification.component';
 import { RegisterEmployeeComponent } from './register-employee/register-employee.component';
 import { LoginEmployeeComponent } from './login-employee/login-employee.component';
-import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { MainContentComponent } from './main-content/main-content.component';
-import { CompletedSurveysComponent } from './completed-surveys/completed-surveys.component';
 import { MeComponent } from './me/me.component';
 import { AdminComponent } from './admin/admin.component';
+import { SurveysComponent } from './admin/surveys/surveys.component';
+import { SettingsComponent } from './admin/settings/settings.component';
+import { ActiveSurveysComponent } from './admin/surveys/active-surveys/active-surveys.component';
+import { ClosedSurveysComponent } from './admin/surveys/closed-surveys/closed-surveys.component';
+import { SmallModalsComponent } from './admin-modals/small-modals/small-modals.component';
+import { LaunchSurveyComponent } from './admin-modals/launch-survey/launch-survey.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'pulseSurvey', pathMatch: 'full' },
@@ -17,38 +20,32 @@ export const routes: Routes = [
         children: [
             { path: 'register', component: RegisterEmployeeComponent },
             { path: 'login', component: LoginEmployeeComponent },
-            { path: 'home', component:HomeComponent},
-            {
-                path:'home',
+            { path: 'home', component:HomeComponent,
                 children: [
                     {path: 'Me', component: MeComponent},
-                    {
-                        path: 'Me',
+                    {path: 'Admin', component: AdminComponent,                    
                         children: [
-                            {path: 'openSurveys',component:MeComponent},
-                            {path: 'completedSurveys', component:MeComponent}
-
-                        ]
-                    },
-                    {path: 'Admin', component: AdminComponent},
-                    {
-                        path: 'Admin',
-                        children: [
-                            {path: 'surveys', component: AdminComponent},
-                            {
-                                path:'surveys',
+                            {path: 'surveys', component: SurveysComponent,                            
                                 children:[
-                                    {path:'active',component:AdminComponent},
-                                    {path:'closed',component:AdminComponent}
-
+                                    {path:'active',component:ActiveSurveysComponent,
+                                        children: [
+                                            {path:'updateSurvey',component:SmallModalsComponent},
+                                            {path: 'closeSurveys',component:SmallModalsComponent},
+                                            {path:'LaunchNewSurvey',component:LaunchSurveyComponent},
+                                        ],                               
+                                
+                                    },
+                                    
+                                    {path:'closed',component:ClosedSurveysComponent},
                                 ]
                             },
-                            {path: 'settings', component: AdminComponent}
+                            {path: 'settings', component: SettingsComponent}
                         ]
                     }
                    
                 ]
-            }            
+            }
+                       
         ],
     },
 ];

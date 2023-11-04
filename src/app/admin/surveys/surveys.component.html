@@ -1,15 +1,9 @@
-<ul class="nav topnav navbar d-flex justify-content-start">
-    <li [class.active]="isSurveysActive()"><a (click)="toSurveys()">SURVEYS</a></li>
-    <li [class.active]="isSettingsActive()"><a (click)="toSettings()">SETTINGS</a></li>
+<ul class="nav sub-topnav sub-topnav-align sub-navbar">
+    <li [class.active]="isActive()"><a (click)="toActiveTab()">Active</a></li>
+    <li [class.active]="isClosed()"><a (click)="toClosedTab()">Closed</a></li>
 </ul>
-<!-- <app-surveys></app-surveys> -->
 <router-outlet></router-outlet>
-<!-- <div *ngIf="showSurveys">
-    <ul class="nav sub-topnav sub-topnav-align sub-navbar">
-        <li [class.active]="isActive()"><a (click)="toActiveTab()">Active</a></li>
-        <li [class.active]="isClosed()"><a (click)="toClosedTab()">Closed</a></li>
-    </ul>
-    <div *ngIf = "showActiveTab" class="open-surveys">
+    <!-- <div *ngIf = "showActiveTab" class="open-surveys">
         <div class="active-surveys d-flex justify-content-between">
             <div>
                 <p class="pulse-survey-title">Active Pulse Surveys</p>
@@ -45,7 +39,7 @@
                     <p>{{ survey.launchedBy }}</p>
                 </td>
                 <td>
-                    <!-- <div class="dropdown" dropdown>
+                    <div class="dropdown" dropdown>
                         <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true" aria-expanded="false">
                             <span class="ic-more icon"></span>
                         </a>
@@ -60,23 +54,14 @@
                                 <a class="dropdown-item">Action3</a>
                             </li>
                         </ul>
-                    </div> -->
+                    </div>
                                         
-                <!-- </td>
+                </td>
             </tr>
         </tbody>
     </table>
     </div> -->
-    <div *ngIf = "showClosedTab" class="open-surveys">
-        <p class="pulse-survey-title">Closed Pulse Surveys</p>
-        <p class="pulse-survey-description">Here you can view and manage the pulse surveys that are closed.</p>
-    </div>
-<!-- </div> -->
-
-<!-- <div *ngIf="showSettings" class="settings-tab d-flex justify-content-between">
-    <div>
-        <p class="pulse-survey-title">Survey Templates</p>
-        <p class="pulse-survey-description">Here you can configure survey templates that you can use while creating surveys</p>
-    </div>
-    <button class="btn btn-primary bb">Create New Survey Template</button> 
-</div> -->
+    <!-- <div class="open-surveys">
+        <!-- <p class="pulse-survey-title">Closed Pulse Surveys</p>
+        <p class="pulse-survey-description">Here you can view and manage the pulse surveys that are closed.</p> -->
+    <!-- </div> --> 

@@ -1,3 +1,4 @@
+// @import '~ngx-bootstrap/dropdown/bs-dropdown.css';
 .pulse-survey-title {
     font-weight: 300;
     color: #252525;
@@ -43,4 +44,8 @@
     font-size: 13px;
     font-weight: 400;
     color: #686868;
+}
+
+.active-surveys {
+    width: 97%;
 }

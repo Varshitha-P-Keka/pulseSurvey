@@ -23,7 +23,7 @@ export class MeComponent {
     ];
     
     toOpenSurveys() {
-      this.router.navigate(['/pulseSurvey/home/Me/openSurveys']);
+      // this.router.navigate(['/pulseSurvey/home/Me/openSurveys']);
       this.showOpenSurveys = true;
       this.showCompletedSurveys = false;
     }
@@ -31,6 +31,6 @@ export class MeComponent {
     toCompletedSurveys() {
       this.showOpenSurveys = false;
       this.showCompletedSurveys = true;
-      this.router.navigate(['/pulseSurvey/home/Me/completedSurveys']);
+      // this.router.navigate(['/pulseSurvey/home/Me/completedSurveys']);
     }
 }

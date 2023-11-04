@@ -1,0 +1,40 @@
+.add-question {
+    padding-top: 20px;
+}
+
+.question-area {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.question-group {
+    margin-top: -24px;
+}
+
+
+.label-question {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.radio-button-labels {
+margin-right: 10px;
+}
+
+.radio-buttons {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    input,label {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 5px;
+    }
+}
+
+.errorMessage {
+    color: red;
+}
+
+a:not([href]):not([tabindex]) {
+    color: #76618B;
+}

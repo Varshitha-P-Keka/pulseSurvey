@@ -26,7 +26,6 @@ export class FullModalTakeSurveyDetailsComponent {
   constructor( public bsModalRef: BsModalRef, private udService:UserDataService, private service:ServicesService,private router:Router,private modalService: BsModalService){}
 
   ngOnInit(){
-    // this.openSurveyQuestions();
     this.udService.getSurveyId().subscribe({
       next: (data)=>{
         this.surveyId=data;

@@ -12,14 +12,13 @@
                 <div class="mt-20 p-20 survey-input-container">
                     <div [id]="question.surveyQuestionId" class=" d-flex rating-container">
                         <p class="rating-label-circle">Provide your rating:</p>
-                        <!-- <span *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" class="ml-10 rating-circle" [ngClass]= "{'rating-circle-fill': selectedRating >= i}" (click)="colorRating(i)"></span> -->
-                        <span *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" class="ml-10 rating-circle" [ngClass]= "{'rating-circle-fill': selectedRating >= i}" (click)="updateRating(question.surveyQuestionId,i)"></span>
+                        <span *ngFor="let j of [1,2,3,4,5,6,7,8,9,10]" class="ml-10 rating-circle" [ngClass]= "{'rating-circle-fill': updateSelectAndRatingArray[i].selectedRating >= j}" (click)="updateRating(question.surveyQuestionId,j,i)"></span>
                     </div>
                 </div>
             </ng-container>
             <ng-container *ngIf="question.responseType=='Select one from list'">
                 <div class="mt-20 p-20 survey-input-container">
-                    <ng-select [id]="question.surveyQuestionId" [(ngModel)]="selectedOption" (change)="optionSelected(question.surveyQuestionId,selectedOption)" placeHolder="hii">
+                    <ng-select [id]="question.surveyQuestionId" [(ngModel)]="updateSelectAndRatingArray[i].selectedOption" (change)="optionSelected(question.surveyQuestionId,selectedOption)" >
                         <ng-option [id]="option.optionId" *ngFor="let option of question.options" [value]="option.optionId">{{option.optionText}}</ng-option>
                     </ng-select>
                 </div>

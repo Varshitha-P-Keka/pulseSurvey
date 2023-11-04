@@ -16,7 +16,6 @@ export class SmallModalSurveyConfirmationComponent {
     constructor(public modalRef: BsModalRef, private udService: UserDataService){}
 
     submitSurevyQuestions(){
-      console.log("submiting");
       this.udService.setSurveyQuestionsConfirmation(true);
       this.modalRef.hide();
     }

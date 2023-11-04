@@ -1,4 +1,4 @@
-<div class="ml-16">
+<div class="m-16">
     <h2 class="mt-16">Completed Pulse Surveys</h2>
     <p class="mb-16">Here you can see the pulse surveys that you have completed.</p>
 
@@ -12,29 +12,6 @@
             </tr>
         </thead>
         <tbody>
-
-            <!-- closedOn
-: 
-"2023-11-30T00:00:00"
-completedOn
-: 
-"2023-11-02T00:00:00"
-launchedBy
-: 
-"admin"
-launchedOn
-: 
-"2023-11-01T00:00:00"
-surveyDescription
-: 
-"To know your knowledge"
-surveyId
-: 
-5
-surveyTitle
-: 
-"To upload a movie on iPhone" -->
-
             <tr *ngFor="let survey of completedSurveys">
                 <td>
                     <p class="fw-bold">{{survey.surveyTitle}}</p>

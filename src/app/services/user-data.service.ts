@@ -22,12 +22,10 @@ export class UserDataService {
   }
 
   setSurveyId(id:number){
-    console.log("setSurveyId func");
     this.userSurveyId.next(id);
   }
 
   getSurveyId(){
-    console.log("getSurveyId func");
     return this.userSurveyId;
   }
 

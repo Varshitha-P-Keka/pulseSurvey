@@ -17,7 +17,7 @@ import { loggeduser } from '../modals/modal';
     styleUrls: ['./login-employee.component.scss'],
 })
 export class LoginEmployeeComponent {
-  currentUser:loggeduser={EmployeeId:'',role:'',emailaddress:'',name:''}
+  currentUser:loggeduser={employeeId:'',role:'',emailaddress:'',name:''}
   loginForm!:FormGroup;
   data:any;
 
@@ -35,17 +35,21 @@ export class LoginEmployeeComponent {
       next:(data)=>{
         this.data = data;
         const decodedToken = <any>jwt_decode(this.data.token);
-        console.log(decodedToken);
-        for( let each in decodedToken){
-          let key = each.split('/').pop();
-          switch(key){
-            case 'EmployeeId': this.currentUser.EmployeeId=decodedToken[each];break;
-            case 'role': this.currentUser.role=decodedToken[each];break;
-            case 'emailaddress': this.currentUser.emailaddress=decodedToken[each];break;
-            case 'name': this.currentUser.name=decodedToken[each];break;
-          }
-        }
-        console.log(this.currentUser)
+// <<<<<<< master
+//         console.log(decodedToken);
+//         for( let each in decodedToken){
+//           let key = each.split('/').pop();
+//           switch(key){
+//             case 'EmployeeId': this.currentUser.EmployeeId=decodedToken[each];break;
+//             case 'role': this.currentUser.role=decodedToken[each];break;
+//             case 'emailaddress': this.currentUser.emailaddress=decodedToken[each];break;
+//             case 'name': this.currentUser.name=decodedToken[each];break;
+//           }
+//         }
+//         console.log(this.currentUser)
+// =======
+//         this.setCurrentUser(decodedToken);
+// >>>>>>> master
         this.udService.setCredentials(this.currentUser);
          this.router.navigate(['/pulseSurvey/home']);
       },
@@ -53,5 +57,12 @@ export class LoginEmployeeComponent {
         console.log('Error',e);
       }})
     this.router.navigate(['/pulseSurvey/home']);
+  }
+
+  setCurrentUser(decodedToken:any){
+    this.currentUser.employeeId=decodedToken['EmployeeId'];
+    this.currentUser.role=decodedToken['Role'];
+    this.currentUser.emailaddress=decodedToken['Email'];
+    this.currentUser.name=decodedToken['Name'];
   }
 }

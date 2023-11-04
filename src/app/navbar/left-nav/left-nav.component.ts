@@ -13,8 +13,10 @@ import { loggeduser } from 'src/app/modals/modal';
   styleUrls: ['./left-nav.component.scss']
 })
 export class LeftNavComponent {
+
   @Input() userDetails:loggeduser={name:'',emailaddress:'',EmployeeId:'',role:''};
   constructor(private router:Router){}
+
 
   ngOnInit(){
     this.userDetails=JSON.parse(<string>localStorage.getItem('currentUser'));

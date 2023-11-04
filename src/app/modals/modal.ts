@@ -27,14 +27,27 @@ export class verifyEmployee {
 }
 
 export class loggeduser {
-    EmployeeId: string;
+    employeeId: string;
     role: string;
     emailaddress: string;
     name: string;
-    constructor(EmployeeId: string, role: string, emailaddress: string, name: string) {
-        this.EmployeeId = EmployeeId;
+    constructor(employeeId: string, role: string, emailaddress: string, name: string) {
+        this.employeeId = employeeId;
         this.role = role;
         this.emailaddress = emailaddress;
         this.name = name;
+    }
+}
+
+export class surveyQuestionAddResponse {
+    questionResponseId: number;
+    surveyQuestionId: number;
+    comment: string;
+    selectedOption: number;
+    constructor(questionResponseId: number, surveyQuestionId: number, comment: string, selectedOption: number) {
+        this.questionResponseId = questionResponseId;
+        this.surveyQuestionId = surveyQuestionId;
+        this.comment = comment;
+        this.selectedOption = selectedOption;
     }
 }

@@ -1,0 +1,34 @@
+<div class="m-16">
+    <h2 class="mt-16">Completed Pulse Surveys</h2>
+    <p class="mb-16">Here you can see the pulse surveys that you have completed.</p>
+
+    <table class="table standard-table two-line-table">
+        <thead>
+            <tr>
+                <th>SURVEY TITLE</th>
+                <th>LAUNCHED ON</th>
+                <th>CLOSED ON</th>
+                <th>COMPLETED ON</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let survey of completedSurveys">
+                <td>
+                    <p class="fw-bold">{{survey.surveyTitle}}</p>
+                    <p>{{survey.surveyDescription}}</p>
+                </td>
+                <td>
+                    <p class="fw-bold">{{survey.launchedOn | date: 'mediumDate'}}</p>
+                    <p>by {{survey.launchedBy}}</p>
+                </td>
+                <td>
+                    <p class="fw-bold">{{survey.closedOn | date: 'mediumDate'}}</p>
+                    <p>by {{survey.launchedBy}}</p>
+                </td>
+                <td>
+                    <p class="fw-bold">{{survey.completedOn | date: 'mediumDate'}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

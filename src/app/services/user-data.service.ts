@@ -10,6 +10,8 @@ export class UserDataService {
   constructor() { }
 
   private userCredentials = new BehaviorSubject<{}>({});
+  private userSurveyId =new BehaviorSubject<number>(0);
+  private userSurveyQuestions = new BehaviorSubject<boolean>(false);
 
   setCredentials(userData:loggeduser){
     this.userCredentials.next(userData);
@@ -17,5 +19,21 @@ export class UserDataService {
 
   getCredentials(){
     return this.userCredentials;
+  }
+
+  setSurveyId(id:number){
+    this.userSurveyId.next(id);
+  }
+
+  getSurveyId(){
+    return this.userSurveyId;
+  }
+
+  setSurveyQuestionsConfirmation(flag:boolean){
+    this.userSurveyQuestions.next(flag);
+  }
+
+  getSurveyQuestionsConfirmation(){
+    return this.userSurveyQuestions;
   }
 }

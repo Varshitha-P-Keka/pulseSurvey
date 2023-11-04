@@ -1,29 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { employee,verifyEmployee } from '../modals/modal';
+import { employee, verifyEmployee } from '../modals/modal';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class ServicesService {
+    constructor(private http: HttpClient) {}
 
-  constructor( private http:HttpClient) { }
+    setNewEmployee(empData: employee) {
+        return this.http.post('https://localhost:7015/api/employee/register', empData);
+    }
 
+    getVerifyEmployee(empData: verifyEmployee) {
+        return this.http.post('https://localhost:7015/api/employee/login', empData);
+    }
 
+    getOpenSurveysData(id: any) {
+        return this.http.get(`https://localhost:7015/api/survey/opensurveys/${id}`);
+    }
 
-  setNewEmployee(empData:employee){
-    return this.http.post('https://localhost:7015/api/Employee/register',empData);
-  }
+    getSurveyDetailsById(id: any) {
+        return this.http.get(`https://localhost:7015/api/survey/details/${id}`);
+    }
 
-  getVerifyEmployee(empData:verifyEmployee){
-    return this.http.post('https://localhost:7015/api/Employee/login',empData);
-  }
+    getSurveyQuestionsById(id: any) {
+        return this.http.get(`https://localhost:7015/api/surveyquestion/${id}`);
+    }
 
-  getOpenSurveysData(id:any){
-    return this.http.get('https://localhost:7015/api/Survey/getopensurveys/'+id);
-  }
+    postQuestionResponses(body: any) {
+        return this.http.post('https://localhost:7015/api/questionresponse/', body);
+    }
 
-  getSurveyDetailsById(id:any){
-    return this.http.get('https://localhost:7015/api/Survey/details/'+id);
-  }
+    getCompletedSurveys(id: any) {
+        return this.http.get(`https://localhost:7015/api/survey/completedsurveys/${id}`);
+    }
 }

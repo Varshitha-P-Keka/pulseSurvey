@@ -38,3 +38,16 @@ export class loggeduser {
         this.name = name;
     }
 }
+
+export class surveyQuestionAddResponse {
+    questionResponseId: number;
+    surveyQuestionId: number;
+    comment: string;
+    selectedOption: number;
+    constructor(questionResponseId: number, surveyQuestionId: number, comment: string, selectedOption: number) {
+        this.questionResponseId = questionResponseId;
+        this.surveyQuestionId = surveyQuestionId;
+        this.comment = comment;
+        this.selectedOption = selectedOption;
+    }
+}

@@ -1,4 +1,4 @@
-<div class="ml-16">
+<div class="m-16">
     <h2 class="mt-16">Open Pulse Surveys</h2>
     <p class="mb-16">Here you can see the active pulse surveys that you are yet to submit.</p>
 
@@ -22,7 +22,7 @@
                     <p>Expires in {{eachSurvey.expiresAfter}} days</p>
                 </td>
                 <td>
-                    <p class="fw-bold">{{ eachSurvey.launchesOn | date: 'mediumDate' }}</p>
+                    <p class="fw-bold">{{ eachSurvey.launchedOn | date: 'mediumDate' }}</p>
                     <p>by {{ eachSurvey.launchedBy }}</p>
                 </td>
                 <td>

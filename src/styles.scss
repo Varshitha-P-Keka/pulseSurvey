@@ -1,12 +1,31 @@
 
-*{
+* {
     margin:0;
     padding:0;
     box-sizing: border-box;
 }
 
-body{
+body {
     height:100vh;
     margin-top: 0;
 }
 
+.bottom  {
+    position: absolute;
+    z-index: 999999;
+  }
+
+.step-label span {
+    width: 300px;
+    display: flex;
+}
+
+ .btn-primary,.stepper-wizard .step.active .step-number{
+    background-color: #76618B!important;
+    border-color: #76618B !important;
+}
+
+.btn.btn-link, .stepper-wizard .step .step-number {
+    color: #76618B !important;
+    border-color: #76618B !important;
+}

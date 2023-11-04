@@ -4,6 +4,7 @@ import { provideRouter } from '@angular/router';
 import {provideHttpClient} from '@angular/common/http';
 import { routes } from './app/app.routes';
 import { DatePipe } from '@angular/common';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
-bootstrapApplication(AppComponent, {providers:[provideHttpClient(),provideRouter(routes),DatePipe]})
+bootstrapApplication(AppComponent, {providers:[provideHttpClient(), provideAnimations(),provideRouter(routes),DatePipe]})
   .catch((err) => console.error(err));

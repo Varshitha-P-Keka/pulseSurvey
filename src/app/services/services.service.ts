@@ -26,11 +26,11 @@ export class ServicesService {
   }
 
   getTemplates(){
-    return this.http.get('https://localhost:7015/api/Template/gettemplates')
+    return this.http.get('https://localhost:7015/api/template/templates')
   }
   
   closeSurvey(surveyId:any){
-    this.http.put(`https://localhost:7015/api/Survey/closesurvey/${surveyId}`, null)
+    this.http.put(`https://localhost:7015/api/survey/closesurvey?surveyId=${surveyId}`, null)
     .subscribe(
       (response) => {
         console.log('PUT request successful', response);
@@ -59,7 +59,7 @@ updateSurvey(newSurveyData:any){
 }
 
 sendSurveyQuestions(data:any,id:any){  
-  this.http.post('https://localhost:7015/api/SurveyQuestion/addsurveyquestions',data )
+  this.http.post('https://localhost:7015/api/surveyquestion',data )
   .subscribe(
     (response) => {
       console.log('POST request successful for add survey questions', response);
@@ -71,8 +71,7 @@ sendSurveyQuestions(data:any,id:any){
 }
  
 launchNewSurvey(surveyData:any){
-  console.log(surveyData);
-  this.http.post('https://localhost:7015/api/Survey/addsurvey',surveyData )
+  this.http.post('https://localhost:7015/api/survey',surveyData )
   .subscribe(
     (response) => {
       console.log('POST request successful for add survey', response);
@@ -94,6 +93,6 @@ launchNewSurvey(surveyData:any){
   }
 
   getactiveSurveys() {
-    return this.http.get(`https://localhost:7015/api/Survey/getactivesurveys`);
+    return this.http.get(`https://localhost:7015/api/survey/activesurveys`);
   }  
 }

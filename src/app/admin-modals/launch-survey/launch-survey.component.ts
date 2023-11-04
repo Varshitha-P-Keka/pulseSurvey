@@ -29,6 +29,7 @@ export class LaunchSurveyComponent implements OnInit {
   surveys: any;
   errorMessage: any;
   surveyNames: any;
+  templateNames:any;
   bsConfig: Partial<BsDatepickerConfig> = {
     showWeekNumbers: false,
   };
@@ -70,7 +71,7 @@ export class LaunchSurveyComponent implements OnInit {
 
     this.ModalService.launchNewSurvey$.subscribe((data) => {
       this.launchSurvey();
-    });
+    });  
   }
 
   constructor(private router: Router,private modalService: BsModalService,private ModalService: ModalServiceService,private service: ServicesService,private fb: FormBuilder,private datePipe: DatePipe) {}
@@ -78,7 +79,7 @@ export class LaunchSurveyComponent implements OnInit {
   hideModal(modalRef: BsModalRef) {
     modalRef.hide();
   }
-
+ 
   launchSurveyQuestions() {
     const surveyQuestionFormsArray = this.responses.map(
       (response) => response.surveyQuestionForm.value
@@ -94,6 +95,9 @@ export class LaunchSurveyComponent implements OnInit {
       })
     );
     this.service.sendSurveyQuestions(customSurveyQuestionFormsArray,this.service.getSurveyId());
+    this.launchSurveyModalRef.hide();
+    this.fullModalRef.hide()
+    this.router.navigate(['/pulseSurvey/home/Admin/surveys/active']);    
   }
 
   addInputField(index: number) {
@@ -177,8 +181,8 @@ export class LaunchSurveyComponent implements OnInit {
       surveyId: 0,
       surveyTitle: this.basicFieldsForm.value.surveyName,
       surveyDescription: this.basicFieldsForm.value.surveyDescription,
-      startsOn: this.formatDate(new Date()),
-      endsOn: this.formatDate(this.basicFieldsForm.value.surveyExpiry),
+      launchedOn: this.formatDate(new Date()),
+      expiresOn: this.formatDate(this.basicFieldsForm.value.surveyExpiry),
       adminId: 19,
     };
     this.service.launchNewSurvey(newSurveyData);
@@ -197,5 +201,8 @@ export class LaunchSurveyComponent implements OnInit {
   launchSurvey() {
     this.launchSurveyModalRef = this.modalService.show(this.launchNewSurvey, {class: 'small-modal',});
     this.selectedItem = 'select';
+    this.service.getTemplates().subscribe((data)=> {
+      console.log(data);
+    })
   }
 }

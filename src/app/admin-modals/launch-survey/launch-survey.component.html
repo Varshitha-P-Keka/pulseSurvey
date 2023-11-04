@@ -1,40 +1,43 @@
 <ng-template #launchNewSurvey>
-    <div class="modal-header">
-        <h5 class="modal-title">Launch a new survey</h5>
-        <i class="ki ki-close" (click)="hideModal(launchSurveyModalRef)"></i>
-    </div>
-    <div class="modal-body">
-
-        <div class="dropdown dropdown-custom dropdown-custom-md" dropdown #dropdown>
-            <button class="d-flex align-items-center w-350 justify-content-between" dropdownToggle>
-              <span class="text-primary">{{selectedItem}}</span>
-              <i class="ki ki-arrow-dropdown"></i>
-            </button>
-            <ul class="dropdown-menu w-350" aria-labelledby="menu" *dropdownMenu>
-              <li (click)="onItemSelect('Create a new survey')">
-                <a class="dropdown-item">
-                  <p class="text-large">Create a new survey</p>
-                </a>
-              </li>
-              <li (click)="$event.stopPropagation(); toggleAdditionalItems()">
-                <a class="dropdown-item">
-                  <p class="text-large">Create using existing template</p>
-                </a>
-              </li>
-              <ng-container *ngIf="showAdditionalItems">
-                <li *ngFor="let surveyName of surveyNames" (click)="onAdditionalItemSelect(surveyName)">
-                  <a class="dropdown-item">
-                    <p class="text-large">{{ surveyName }}</p>
-                  </a>
-                </li>
-              </ng-container>
-            </ul>
-          </div>
+    <div class="m">
+        <div class="modal-header">
+            <h5 class="modal-title">Launch a new survey</h5>
+            <i class="ki ki-close" (click)="hideModal(launchSurveyModalRef)"></i>
         </div>
-    <div class="modal-footer p-20">
-        <button class="btn btn-secondary" (click)="hideModal(launchSurveyModalRef)" >Cancel</button>
-        <button class="btn btn-primary" (click)="openFullModal(fullTemplate)">Launch</button>
+        <div class="modal-body">
+    
+            <div class="dropdown dropdown-custom dropdown-custom-md" dropdown #dropdown>
+                <button class="d-flex align-items-center w-350 justify-content-between" dropdownToggle>
+                  <span class="text-primary">{{selectedItem}}</span>
+                  <i class="ki ki-arrow-dropdown"></i>
+                </button>
+                <ul class="dropdown-menu w-350" aria-labelledby="menu" *dropdownMenu>
+                  <li (click)="onItemSelect('Create a new survey')">
+                    <a class="dropdown-item">
+                      <p class="text-large">Create a new survey</p>
+                    </a>
+                  </li>
+                  <li (click)="$event.stopPropagation(); toggleAdditionalItems()">
+                    <a class="dropdown-item">
+                      <p class="text-large">Create using existing template</p>
+                    </a>
+                  </li>
+                  <ng-container *ngIf="showAdditionalItems">
+                    <li *ngFor="let surveyName of surveyNames" (click)="onAdditionalItemSelect(surveyName)">
+                      <a class="dropdown-item">
+                        <p class="text-large">{{ surveyName }}</p>
+                      </a>
+                    </li>
+                  </ng-container>
+                </ul>
+              </div>
+            </div>
+        <div class="modal-footer p-20">
+            <button class="btn cancel-button" (click)="hideModal(launchSurveyModalRef)" >Cancel</button>
+            <button class="btn launch-button" (click)="openFullModal(fullTemplate)">Launch</button>
+        </div>
     </div>
+  
 </ng-template>
 
 <ng-template #fullTemplate>
@@ -43,9 +46,9 @@
         <i class="ki ki-close" (click)="hideModal(fullModalRef)"></i>
     </div>
     <div class="modal-sub-header">
-        <div class="stepper-wizard">
+        <div class="stepper-wizard w-480px justify-content-between">
             <div class="step" [ngClass]="{ 'active': activeStep === 1 }" (click)="updateActiveStep(1)">
-                <div class="step-number ">
+                <div class="step-number">
                     <span>1</span>
                 </div>
                 <label class="step-label">
@@ -72,29 +75,27 @@
 
     <div class="modal-body">
         <div *ngIf="activeStep === 1">
-            Step 1 div works
             <div class="form-group">
                 <form [formGroup]="basicFieldsForm" (ngSubmit)="onSave()">
     
                     <div>
-                        <label>Name</label>
-                        <input type="text" class="form-control input-sm" formControlName="surveyName"/>
+                        <label> Survey Title </label>
+                        <input type="text" class="form-control input-sm w-33" formControlName="surveyName"/>
                     </div>
                     <div>
                         <label>Description</label>
-                        <input type="text" class="form-control input-sm" formControlName="surveyDescription"/>
+                        <input type="text" class="form-control input-sm w-33" formControlName="surveyDescription"/>
                     </div>
                     <div>
                         <label>The survey expires on</label>
-                        
                         <div class="row clear-margin-x">
                             <div class="col-sm-12 clear-padding-x">
                                 <div class="form-group">
+                                    <label for="DateAssigned">Calendar</label>
                                     <div class="input-calendar col-sm-12 clear-padding-x">
-                                        <input type="text" class="form-control" id="DateAssigned" bsDatepicker [bsConfig]="{ showWeekNumbers: false }" readonly formControlName="surveyExpiry">
-                                        <span class="ic-calendar"><i class="ki ki-calendar"></i></span>
+                                        <input type="text" class="form-control w-16pc" id="DateAssigned" bsDatepicker [bsConfig]="{ showWeekNumbers: false }" readonly formControlName="surveyExpiry">
+                                        <span><i class="ki ki-calendar"></i></span>
                                     </div>
-                                    <span>Some note</span>
                                 </div>
                             </div>
                         </div>

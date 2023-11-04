@@ -9,8 +9,9 @@ import { SurveysComponent } from './admin/surveys/surveys.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { ActiveSurveysComponent } from './admin/surveys/active-surveys/active-surveys.component';
 import { ClosedSurveysComponent } from './admin/surveys/closed-surveys/closed-surveys.component';
-import { SmallModalsComponent } from './admin-modals/small-modals/small-modals.component';
 import { LaunchSurveyComponent } from './admin-modals/launch-survey/launch-survey.component';
+import { CloseSurveyComponent } from './admin-modals/close-survey/close-survey.component';
+import { UpdateSurveyComponent } from './admin-modals/update-survey/update-survey.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'pulseSurvey', pathMatch: 'full' },
@@ -29,8 +30,8 @@ export const routes: Routes = [
                                 children:[
                                     {path:'active',component:ActiveSurveysComponent,
                                         children: [
-                                            {path:'updateSurvey',component:SmallModalsComponent},
-                                            {path: 'closeSurveys',component:SmallModalsComponent},
+                                            {path:'updateSurvey',component:UpdateSurveyComponent},
+                                            {path: 'closeSurveys',component:CloseSurveyComponent},
                                             {path:'LaunchNewSurvey',component:LaunchSurveyComponent},
                                         ],                               
                                 

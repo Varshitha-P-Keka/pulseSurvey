@@ -1,9 +1,10 @@
-<<<<<<< HEAD
-.container {
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
+.completed-surveys-container {
     overflow-y: scroll;
     max-height: 626px;
-=======
-@import "~@ng-select/ng-select/themes/material.theme.css";
+}
+
 .select-filter-picker{
     width:350px;
 
@@ -39,5 +40,4 @@
         left:7px;
         cursor:pointer;
     }
->>>>>>> upstream/master
 }

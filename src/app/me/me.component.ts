@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-me',
@@ -11,6 +10,9 @@ import { Router } from '@angular/router';
 })
 export class MeComponent {
   
+<<<<<<< HEAD
   constructor(private router:Router){}
   
+=======
+>>>>>>> upstream/master
 }

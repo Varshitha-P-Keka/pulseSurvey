@@ -13,10 +13,7 @@ import { NgxDatesPickerModule } from 'ngx-dates-picker';
 import { importProvidersFrom } from '@angular/core';
 
 
-bootstrapApplication(AppComponent, {providers:[provideHttpClient(), provideAnimations(),provideRouter(routes),DatePipe,BsModalService,importProvidersFrom(NgxDatesPickerModule)]})  .catch((err) => console.error(err));
-// =======
+// bootstrapApplication(AppComponent, {providers:[provideHttpClient(), provideAnimations(),provideRouter(routes),DatePipe,BsModalService,importProvidersFrom(NgxDatesPickerModule)]})  .catch((err) => console.error(err));
 
 
-// bootstrapApplication(AppComponent, {providers:[provideHttpClient(),provideRouter(routes),DatePipe,BsModalService]})
-// >>>>>>> master
-
+bootstrapApplication(AppComponent, { providers: [provideHttpClient(), provideAnimations(), provideRouter(routes), DatePipe, BsModalService] }).catch((err) => console.error(err));

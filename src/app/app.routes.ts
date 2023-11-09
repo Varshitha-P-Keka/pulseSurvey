@@ -11,6 +11,9 @@ import { ClosedSurveysComponent } from './admin/surveys/closed-surveys/closed-su
 import { LaunchSurveyComponent } from './admin-modals/launch-survey/launch-survey.component';
 import { OpenSurveysComponent } from './me-profile/open-surveys/open-surveys.component';
 import { CompletedSurveysComponent } from './me-profile/completed-surveys/completed-surveys.component';
+import { ViewSurveyComponent } from './admin/surveys/closed-surveys/view-survey/view-survey.component';
+import { ClosedSurveysPageComponent } from './closed-surveys-page/closed-surveys-page.component';
+import { Component } from '@angular/core';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'pulseSurvey', pathMatch: 'full' },
@@ -19,7 +22,9 @@ export const routes: Routes = [
         children: [
             { path: 'register', component: RegisterEmployeeComponent },
             { path: 'login', component: LoginEmployeeComponent },
-            { path: 'home', component:HomeComponent,
+            {
+                path: 'home',
+                component: HomeComponent,
                 children: [
                     { path: 'openSurveys', component:OpenSurveysComponent},
                     { path: 'completedSurveys',component:CompletedSurveysComponent},

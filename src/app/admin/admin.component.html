@@ -1,9 +1,5 @@
 <ul class="nav topnav navbar d-flex justify-content-start">
-    <li [class.active]="isSurveysActive()"><a (click)="toSurveys()">SURVEYS</a></li>
-    <li [class.active]="isSettingsActive()"><a (click)="toSettings()">SETTINGS</a></li>
+    <li [class.active]="isActive('surveys/active')"><a (click)="navigateTo('surveys/active')"> SURVEYS</a></li>
+    <li [class.active]="isActive('settings')"><a (click)="navigateTo('settings')"> SETTINGS </a></li>
 </ul>
 <router-outlet></router-outlet>
-<div *ngIf="showClosedTab" class="open-surveys">
-    <p class="pulse-survey-title">Closed Pulse Surveys</p>
-    <p class="pulse-survey-description">Here you can view and manage the pulse surveys that are closed.</p>
-</div>

@@ -4,6 +4,10 @@
     padding-top: 20px;
 }
 
+.questions-form {
+    padding-top: 5px;
+}
+
 .modal.show .modal-dialog {
     transform: none;
     display: flex;
@@ -12,8 +16,12 @@
     height: 686px;
 }
 
+.input-calendar .ki-calendar {
+    left: 166px;
+}
+
 .question-area {
-    margin-bottom: 10px;
+    margin-bottom: 17px;
     margin-top: 10px;
 }
 
@@ -31,30 +39,57 @@
     margin-top: -24px;
 }
 
-
 .label-question {
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .radio-button-labels {
-margin-right: 10px;
+    margin-right: 10px;
+}
+
+.radio-button-labels label:first-child {
+    margin-left: 0;
+}
+
+.radio-buttons p {
+    font-weight: 700;
+    font-size: 13px;
+    padding-bottom: 10px;
+
 }
 
 .radio-buttons {
     margin-top: 10px;
     margin-bottom: 10px;
     input,label {
-        margin-left: 10px;
-        margin-right: 10px;
         margin-top: 5px;
     }
 }
 
-.errorMessage {
+.close-icon {
+    margin-top: 21px;
+}
+
+.w-430 {
+    width: 430px;
+}
+
+.more-options-link {
+    margin-bottom: 10px;
+}
+
+.radio-buttons label:first-child {
+    margin-left: 0;
+}
+
+.error-message {
     color: red;
 }
 
 a:not([href]):not([tabindex]) {
     color: #76618B;
 }
+
+
+

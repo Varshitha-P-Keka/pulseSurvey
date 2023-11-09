@@ -29,6 +29,7 @@ export class OpenSurveysComponent {
         this.userDetails = JSON.parse(<string>localStorage.getItem('currentUser'));
         this.service.getOpenSurveysData(this.userDetails.employeeId).subscribe({
             next: (data) => {
+                console.log("Survey ts",data);
                 this.surveyDetails = data;
             },
             error: (e) => {

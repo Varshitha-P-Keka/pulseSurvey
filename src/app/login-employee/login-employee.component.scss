@@ -1,20 +1,20 @@
 .login-page-wrap{
     background:linear-gradient(to bottom, #9796f0,#fbc7d4);
 
-    .form-group{
-        outline:1px dashed rgb(32,106,163);
-        outline-offset: 60px;
-    }
+.form-group{
+    outline:1px dashed rgb(32,106,163);
+    outline-offset: 60px;
+}
 
-    label{
-        font-size: 15px;
-    }
+label{
+    font-size: 15px;
+}
 
-    input{
-        border:2px solid white;
-    }
+input{
+    border:2px solid white;
+}
 
-    input:hover{
-        background-color: white;
-    }
+input:hover{
+    background-color: white;
+}
 }

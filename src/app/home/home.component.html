@@ -3,20 +3,17 @@
         <app-top-nav [userDetails]="userDetails"></app-top-nav>
     </div>
     <div class="content-wrapper">
-        <div *ngIf="renderComponent">
-            <ul class="nav topnav">
-                <li [ngClass]="{'active': router.url=='/pulseSurvey/home/openSurveys'}" [routerLink]="['openSurveys']"><a>OPEN SURVEYS</a></li>
-                <li [ngClass]="{'active':router.url == '/pulseSurvey/home/completedSurveys'}" [routerLink]="['completedSurveys']"><a>COMPLETED SURVEYS</a></li>
-            </ul>
-            <div class="content">
-                <router-outlet></router-outlet>
-            </div>
+        <div *ngIf="showNav">
+          <ul class="nav topnav">
+            <li [ngClass]="{ 'active': router.url=='/pulseSurvey/home/openSurveys' }" [routerLink]="['openSurveys']"><a>OPEN SURVEYS</a></li>
+            <li [ngClass]="{ 'active': router.url == '/pulseSurvey/home/completedSurveys' }" [routerLink]="['completedSurveys']"><a>COMPLETED SURVEYS</a></li>
+          </ul>
         </div>
-      <div *ngIf="!renderComponent">
-        <router-outlet></router-outlet>
-      </div>
+        <div class="content">
+          <router-outlet></router-outlet>
+        </div>
     </div>
     <div class="left-nav">
-        <app-left-nav [userDetails]="userDetails" (navigateToProfile)="switchToProfile($event)"></app-left-nav>
+        <app-left-nav [userDetails]="userDetails" (showNavChange)="handleShowNavChange($event)"></app-left-nav>
     </div>
 </div>

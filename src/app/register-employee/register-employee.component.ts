@@ -20,10 +20,10 @@ export class RegisterEmployeeComponent {
 
     ngOnInit() {
         this.registrationForm = this.fb.group({
-            employeeName: [''],
-            passwordHash: [''],
-            email: [''],
-            employeePhoto: [''],
+            EmployeeName: [''],
+            PasswordHash: [''],
+            Email: [''],
+            ProfilePicture: [''],
             isAdmin: [false],
         });
     }
@@ -35,7 +35,7 @@ export class RegisterEmployeeComponent {
             this.registrationForm.value['isAdmin'] = true;
         }
         this.service.setNewEmployee(this.registrationForm.value).subscribe({
-          next: (data)=>{},
+          next: (data)=>{console.log(data)},
           error:(e)=>{console.log(e)}});
         this.router.navigate(['/pulseSurvey/login']);
     }

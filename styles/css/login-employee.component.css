@@ -1,0 +1,16 @@
+.login-page-wrap {
+  background: linear-gradient(to bottom, #9796f0, #fbc7d4);
+}
+.login-page-wrap .form-group {
+  outline: 1px dashed rgb(32, 106, 163);
+  outline-offset: 60px;
+}
+.login-page-wrap label {
+  font-size: 15px;
+}
+.login-page-wrap input {
+  border: 2px solid white;
+}
+.login-page-wrap input:hover {
+  background-color: white;
+}/*# sourceMappingURL=login-employee.component.css.map */

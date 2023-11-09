@@ -1,0 +1,16 @@
+.top-nav {
+  background-color: rgb(118, 97, 139);
+  color: white;
+  height: 60px;
+}
+.top-nav .navbar-brand {
+  width: 100px;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.top-nav .top-right-nav {
+  width: 20%;
+}
+.top-nav .ki-sun {
+  color: white;
+}/*# sourceMappingURL=top-nav.component.css.map */

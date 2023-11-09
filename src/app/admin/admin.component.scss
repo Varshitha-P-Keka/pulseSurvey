@@ -1,50 +1,7 @@
-.pulse-survey-title {
-    font-weight: 300;
-    color: #252525;
-    font-size: 26px;
-    font-family:'Segoe UI';
-    padding-bottom: 10px;
-}
-
-.open-surveys, .settings-tab {
-    margin-top: 40px;
-    margin-left: 25px;
-}
-
-.btn-primary {
-    background-color: rgb(118, 97, 139)!important;
-}
-
-.settings-tab {
-    width: 97%;
-}
-
-.sub-navbar {
-    padding-left: 20px;
-}
-.sub-topnav.nav .active a::after {
-     border-color: #222222!important; 
-}
-
 .active a::after {
     border-bottom-color: #e3e5e8;
 }
 
-.survey-table {
-    width: 97%;
-    margin-top: 20px;
-}
-
-.survey-table td:first-child {
-    width: 55%;
-}
-
-.pulse-survey-description {
-    font-size: 13px;
-    font-weight: 400;
-    color: #686868;
-}
-
-.active-surveys {
-    width: 97%;
+.active a {
+    font-weight: 700;
 }

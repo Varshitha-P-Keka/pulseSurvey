@@ -11,9 +11,7 @@ import { Router } from '@angular/router';
 })
 export class VerificationComponent {
 
-  constructor( private router:Router){
-
-  }
+  constructor( private router:Router){}
 
   loginForm(){
     this.router.navigate(['/pulseSurvey/login']);

@@ -1,5 +1,5 @@
 <ul class="nav sub-topnav sub-topnav-align sub-navbar">
-    <li [class.active]="isActive()"><a (click)="toActiveTab()">Active</a></li>
-    <li [class.active]="isClosed()"><a (click)="toClosedTab()">Closed</a></li>
-</ul>
-<router-outlet></router-outlet>
+    <li [class.active]="showActiveTab"><a (click)="setTab(true)"> Active </a></li>
+    <li [class.active]="!showActiveTab"><a (click)="setTab(false)"> Closed </a></li>
+  </ul>
+  <router-outlet></router-outlet>  

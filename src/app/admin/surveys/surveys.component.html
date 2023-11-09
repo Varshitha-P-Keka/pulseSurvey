@@ -2,4 +2,6 @@
     <li [class.active]="showActiveTab"><a (click)="setTab(true)"> Active </a></li>
     <li [class.active]="!showActiveTab"><a (click)="setTab(false)"> Closed </a></li>
   </ul>
-  <router-outlet></router-outlet>  
+  <div class="admin-container">
+    <router-outlet></router-outlet>  
+  </div>

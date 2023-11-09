@@ -17,8 +17,9 @@ import { Component } from '@angular/core';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'pulseSurvey', pathMatch: 'full' },
-    { path: 'pulseSurvey', component: VerificationComponent},
-    { path: 'pulseSurvey',
+    { path: 'pulseSurvey', component: VerificationComponent },
+    {
+        path: 'pulseSurvey',
         children: [
             { path: 'register', component: RegisterEmployeeComponent },
             { path: 'login', component: LoginEmployeeComponent },
@@ -26,26 +27,31 @@ export const routes: Routes = [
                 path: 'home',
                 component: HomeComponent,
                 children: [
-                    { path: 'openSurveys', component:OpenSurveysComponent},
-                    { path: 'completedSurveys',component:CompletedSurveysComponent},
-                    { path: 'Admin', component: AdminComponent,                    
+                    { path: 'openSurveys', component: OpenSurveysComponent },
+                    { path: 'completedSurveys', component: CompletedSurveysComponent },
+                    {
+                        path: 'Admin',
+                        component: AdminComponent,
                         children: [
-                            { path: 'surveys', component: SurveysComponent,                            
-                                children:[
-                                    { path:'active',component: ActiveSurveysComponent,
+                            {
+                                path: 'surveys',
+                                component: SurveysComponent,
+                                children: [
+                                    { path: 'active', component: ActiveSurveysComponent, children: [{ path: 'LaunchNewSurvey', component: LaunchSurveyComponent }] },
+                                    {
+                                        path: 'closed',
                                         children: [
-                                            { path:'LaunchNewSurvey',component:LaunchSurveyComponent},
+                                            { path: '', component: ClosedSurveysComponent },
+                                            { path: 'view', component: ViewSurveyComponent },
                                         ],
-                                    },                                    
-                                    { path:'closed',component:ClosedSurveysComponent},
-                                ]
+                                    },
+                                ],
                             },
-                            { path: 'settings', component: SettingsComponent},
-                        ]
-                    }
-                   
-                ]
-            }
+                            { path: 'settings', component: SettingsComponent },
+                        ],
+                    },
+                ],
+            },
         ],
     },
 ];

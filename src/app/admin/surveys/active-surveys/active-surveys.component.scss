@@ -6,24 +6,12 @@
     padding-bottom: 10px;
 }
 
-.container {
-    margin-top: 40px;
-    margin-left: 25px;
-    overflow-y: scroll;
-    max-height: 562px;
-}
-
 .btn-primary {
     background-color: rgb(118, 97, 139)!important;
 }
 
 .active a::after {
     border-bottom-color: #e3e5e8;
-}
-
-.survey-table {
-    width: 97%;
-    margin-top: 20px;
 }
 
 .survey-table td:first-child {
@@ -34,10 +22,6 @@
     font-size: 13px;
     font-weight: 400;
     color: #686868;
-}
-
-.active-surveys {
-    width: 97%;
 }
 
 .dropdown {
@@ -74,7 +58,6 @@
 
 .survey-field {
     color: #9da0a3;
-    // font-size: 11px;
 }
 
 .dropdown-menu.show {

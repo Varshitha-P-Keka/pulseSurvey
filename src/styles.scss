@@ -4,8 +4,11 @@
     box-sizing: border-box;
 }
 :root {
-    --primary-color: white;
     --primary-color-light:rgb(118, 97, 139);
+}
+
+.btn-group.btn-group-secondary .btn-link.btn.active, .btn-link {
+    color: white !important;
 }
 
 

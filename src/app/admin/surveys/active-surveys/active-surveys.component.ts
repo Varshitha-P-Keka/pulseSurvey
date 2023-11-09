@@ -6,12 +6,14 @@ import{ BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import { ServicesService } from 'src/app/services/services.service';
 import { RouterLink } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
+import { CloseSurveyComponent } from 'src/app/admin-modals/close-survey/close-survey.component';
 import { ModalServiceService } from 'src/app/services/modal-service.service';
+import { UpdateSurveyComponent } from 'src/app/admin-modals/update-survey/update-survey.component';
 
 @Component({
   selector: 'app-active-surveys',
   standalone: true,
-  imports: [CommonModule,RouterLink,RouterOutlet],
+  imports: [CommonModule,RouterLink,RouterOutlet,UpdateSurveyComponent,CloseSurveyComponent],
   providers: [BsModalService],
   templateUrl: './active-surveys.component.html',
   styleUrls: ['./active-surveys.component.scss']
@@ -19,7 +21,7 @@ import { ModalServiceService } from 'src/app/services/modal-service.service';
 
 export class ActiveSurveysComponent {
   activeSurveys:any = null;
-  modalRef!: BsModalRef;
+  bsModalRef!: BsModalRef;
   surveys:any;
   expiresOn:any;
   launchedOn:any;
@@ -27,7 +29,7 @@ export class ActiveSurveysComponent {
   formattedLaunchedOn:any;
   dropdownOpen!: boolean;
 
-  constructor(private router:Router,private service:ServicesService,private modalService: BsModalService,private ModalService:ModalServiceService){}
+  constructor(private router:Router,private service:ServicesService,public modalService: BsModalService,private ModalService:ModalServiceService){}
   ngOnInit(): void {
     this.service.surveyUpdated$.subscribe((updated) => {
       if (updated) {
@@ -51,9 +53,9 @@ export class ActiveSurveysComponent {
     survey.dropdownOpen = !survey.dropdownOpen;
   }
 
-  toClosedSurveys(survey:any) {  
-    this.ModalService.triggerOpenSmallModal(survey,'closeSurvey');
-    this.router.navigate(['/pulseSurvey/home/Admin/surveys/active/closeSurveys']);
+  toClosedSurveys(survey:any) { 
+    this.bsModalRef = this.modalService.show(CloseSurveyComponent, { class: 'small-modal' });
+    this.ModalService.setupdateSurvey(survey);
     survey.dropdownOpen = false; 
   }
 
@@ -64,7 +66,7 @@ export class ActiveSurveysComponent {
     this.router.navigate(['/pulseSurvey/home/Admin/surveys/active/LaunchNewSurvey']);
   }
 
-  showActiveSurveys(){
+  showActiveSurveys() {
     this.service.getactiveSurveys().subscribe((data) => {
       this.activeSurveys = data;
       this.surveys = this.activeSurveys;
@@ -73,12 +75,15 @@ export class ActiveSurveysComponent {
         survey.launchedOn = new DatePipe('en-US').transform(survey.launchedOn, 'MMM dd, yyyy');
         survey.expiresOn = new DatePipe('en-US').transform(survey.expiresOn, 'MMM dd, yyyy');        
       }
+      this.service.getTemplates().subscribe((data)=> {
+        this.ModalService.setTemplates(data);
+      })
     });  
   }
 
-  toUpdateSurvey(survey:any){
-    this.ModalService.triggerOpenSmallModal(survey,'updateSurvey');
-    this.router.navigate(['/pulseSurvey/home/Admin/surveys/active/updateSurvey']);
+  toUpdateSurvey(survey:any) {
+    this.bsModalRef = this.modalService.show(UpdateSurveyComponent, { class: 'small-modal' });
+    this.ModalService.setupdateSurvey(survey);
     survey.dropdownOpen = false; 
   }
 

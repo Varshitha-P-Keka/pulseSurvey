@@ -12,25 +12,5 @@ import { Router } from '@angular/router';
 export class MeComponent {
   
   constructor(private router:Router){}
-  showOpenSurveys: boolean = true;
-    showCompletedSurveys: boolean = false;
-    surveys: any[] = [
-      {
-        column1: ["Survey Name", "Survey details"],
-        column2: ["Survey date", "Expiration"],
-        column3: ["launch date", "Person Launched"]
-      }
-    ];
-    
-    toOpenSurveys() {
-      // this.router.navigate(['/pulseSurvey/home/Me/openSurveys']);
-      this.showOpenSurveys = true;
-      this.showCompletedSurveys = false;
-    }
-
-    toCompletedSurveys() {
-      this.showOpenSurveys = false;
-      this.showCompletedSurveys = true;
-      // this.router.navigate(['/pulseSurvey/home/Me/completedSurveys']);
-    }
+  
 }

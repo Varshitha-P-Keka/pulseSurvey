@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './closed-surveys.component.html',
   styleUrls: ['./closed-surveys.component.scss']
 })
+
 export class ClosedSurveysComponent {
 
 }

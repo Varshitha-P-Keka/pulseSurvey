@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-// <<<<<<< master
 import { employee,verifyEmployee } from '../modals/modal';
 import { BehaviorSubject } from 'rxjs';
-// =======
-// import { employee, verifyEmployee } from '../modals/modal';
-// >>>>>>> master
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class ServicesService {
-// <<<<<<< master
+  constructor(private http: HttpClient) {}
   originalToken: any = null;
+  surveyIdResponse: any;
+
   private surveyUpdatedSource = new BehaviorSubject<any>(null);
   surveyUpdated$ = this.surveyUpdatedSource.asObservable();
 
@@ -22,78 +20,50 @@ export class ServicesService {
   private surveyAdded = new BehaviorSubject<any>(null);
   surveyAdded$ = this.surveyAdded.asObservable();
 
-  surveyIdResponse: any;
-// =======
-    constructor(private http: HttpClient) {}
-// >>>>>>> master
+  private templateAdded = new BehaviorSubject<any>(null);
+  templateAdded$ = this.templateAdded.asObservable();
 
-    setNewEmployee(empData: employee) {
-        return this.http.post('https://localhost:7015/api/employee/register', empData);
-    }
+  private templateUpdated = new BehaviorSubject<any>(null);
+  templateUpdated$ = this.templateUpdated.asObservable();
 
-    getVerifyEmployee(empData: verifyEmployee) {
-        return this.http.post('https://localhost:7015/api/employee/login', empData);
-    }
+  private templateDeleted = new BehaviorSubject<any>(null);
+  templateDeleted$ = this.templateDeleted.asObservable();
+    
+  setNewEmployee(empData: employee) {
+    return this.http.post('https://localhost:7015/api/employee/register', empData);
+  }
 
-// <<<<<<< master
-  getTemplates(){
-    return this.http.get('https://localhost:7015/api/template/templates')
+  getTemplates() {
+    return this.http.get(' https://localhost:7015/api/template');
+  }
+
+  deleteTemplate(templateId:any) {
+    return this.http.delete(`https://localhost:7015/api/template/${templateId}`).subscribe((response) => {this.templateDeleted.next(true)});
+  }
+
+  updateTemplate (templateData:any) {
+    return  this.http.put('https://localhost:7015/api/template',templateData ).subscribe((response) => {this.templateUpdated.next(true)});
+  }
+
+  addNewTemplate(template:any) {
+    this.http.post('https://localhost:7015/api/template',template ).subscribe((response) => {this.templateAdded.next(true)});
   }
   
-  closeSurvey(surveyId:any){
-    this.http.put(`https://localhost:7015/api/survey/closesurvey?surveyId=${surveyId}`, null)
-    .subscribe(
-      (response) => {
-        console.log('PUT request successful', response);
-        this.surveyUpdatedSource.next(true); 
-      },
-      (error) => {
-        console.error('Error occurred during PUT request', error);
-      }
-    );
-    this.getactiveSurveys();
+  getTemplateQuestions(id:any) {
+    return this.http.get(`https://localhost:7015/api/templatequestion/${id}`);
   }
 
-updateSurvey(newSurveyData:any){
-  console.log(newSurveyData);
-  this.http.put('https://localhost:7015/api/Survey/updatesurvey',newSurveyData )
-  .subscribe(
-    (response) => {
-      console.log('PUT request successful', response);
-      this.surveyEdited.next(true);
-    },
-    (error) => {
-      console.error('Error occurred during PUT request', error);
-    }
-  );
-  this.getactiveSurveys();
-}
+  closeSurvey(surveyId:any){
+    return this.http.put(`https://localhost:7015/api/survey/closesurvey/${surveyId}`, null).subscribe((response) => {this.surveyUpdatedSource.next(true)});
+  }
 
-sendSurveyQuestions(data:any,id:any){  
-  this.http.post('https://localhost:7015/api/surveyquestion',data )
-  .subscribe(
-    (response) => {
-      console.log('POST request successful for add survey questions', response);
-    },
-    (error) => {
-      console.error('Error occurred during PUT request', error);
-    }
-  );
-}
- 
-launchNewSurvey(surveyData:any){
-  this.http.post('https://localhost:7015/api/survey',surveyData )
-  .subscribe(
-    (response) => {
-      console.log('POST request successful for add survey', response);
-      this.surveyIdResponse = response;
-      this.surveyAdded.next(true);
-    },
-    (error) => {
-      console.error('Error occurred during PUT request', error);
-    }
-  );
-}
+  updateSurvey(newSurveyData:any){
+    return this.http.put('https://localhost:7015/api/Survey/updatesurvey',newSurveyData ).subscribe((response) => {this.surveyEdited.next(true)});
+  }
+
+  sendSurveyQuestions(data:any){  
+    this.http.post('https://localhost:7015/api/survey',data ).subscribe((response) => {this.surveyAdded.next(true);});
+  }
 
   getSurveyId(){
     return this.surveyIdResponse;
@@ -105,26 +75,24 @@ launchNewSurvey(surveyData:any){
 
   getactiveSurveys() {
     return this.http.get(`https://localhost:7015/api/survey/activesurveys`);
-  }  
-// =======
-    getOpenSurveysData(id: any) {
-        return this.http.get(`https://localhost:7015/api/survey/opensurveys/${id}`);
-    }
+  } 
+  getOpenSurveysData(id: any) {
+      return this.http.get(`https://localhost:7015/api/survey/opensurveys/${id}`);
+  }
 
-    getSurveyDetailsById(id: any) {
-        return this.http.get(`https://localhost:7015/api/survey/details/${id}`);
-    }
+  getSurveyDetailsById(id: any) {
+      return this.http.get(`https://localhost:7015/api/survey/details/${id}`);
+  }
 
-    getSurveyQuestionsById(id: any) {
-        return this.http.get(`https://localhost:7015/api/surveyquestion/${id}`);
-    }
+  getSurveyQuestionsById(id: any) {
+      return this.http.get(`https://localhost:7015/api/surveyquestion/${id}`);
+  }
 
-    postQuestionResponses(body: any) {
-        return this.http.post('https://localhost:7015/api/questionresponse/', body);
-    }
+  postQuestionResponses(body: any) {
+      return this.http.post('https://localhost:7015/api/questionresponse/', body);
+  }
 
-    getCompletedSurveys(id: any) {
-        return this.http.get(`https://localhost:7015/api/survey/completedsurveys/${id}`);
-    }
-// >>>>>>> master
+  getCompletedSurveys(id: any) {
+      return this.http.get(`https://localhost:7015/api/survey/completedsurveys/${id}`);
+  }
 }

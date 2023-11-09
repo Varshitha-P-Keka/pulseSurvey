@@ -4,22 +4,22 @@
             <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
                 <div>
                     <label class="fw-bold">Photo</label>
-                    <input type="text" class="form-control input-sm" formControlName="employeePhoto" />
+                    <input type="text" class="form-control input-sm" formControlName="ProfilePicture" />
                     <span>Some note</span>
                 </div>
                 <div>
                     <label class="fw-bold">Name</label>
-                    <input type="text" class="form-control input-sm" formControlName="employeeName" />
+                    <input type="text" class="form-control input-sm" formControlName="EmployeeName" />
                     <span>Some note</span>
                 </div>
                 <div>
                     <label class="fw-bold">Email</label>
-                    <input type="text" class="form-control input-sm" formControlName="email" />
+                    <input type="text" class="form-control input-sm" formControlName="Email" />
                     <span>Some note</span>
                 </div>
                 <div>
                     <label class="fw-bold">Password</label>
-                    <input type="password" class="form-control input-sm" formControlName="passwordHash" autocomplete=""/>
+                    <input type="password" class="form-control input-sm" formControlName="PasswordHash" autocomplete=""/>
                     <span>Some note</span>
                 </div>
                 <div>
@@ -34,35 +34,5 @@
                 <button type="submit" class="btn btn-primary p-4 w-100">Register</button>
             </form>
         </div>
-<!-- <<<<<<< master
-        <div>
-            <label>Name</label>
-            <input type="text" class="form-control input-sm" formControlName="employeeName" />
-            <span>Some note</span>
-        </div>
-        <div>
-            <label>email</label>
-            <input type="text" class="form-control input-sm" formControlName="email" />
-            <span>Some note</span>
-        </div>
-        <div>
-            <label>password</label>
-            <input type="text" class="form-control input-sm" formControlName="passwordHash" />
-            <span>Some note</span>
-        </div>
-        <div>
-            <label>isAdmin</label>
-            <div>
-                <input type="radio" id="yes" value='true' formControlName="isAdmin" />
-                <label for="yes">Yes</label>
-                <input type="radio" id="no" value=false formControlName="isAdmin" />
-                <label for="no">No</label>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary p-4 w-100">Register</button>
-    </form>
-</div>
-======= -->
     </div>
 </div>
-<!-- >>>>>>> master -->

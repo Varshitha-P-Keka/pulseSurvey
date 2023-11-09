@@ -1,0 +1,90 @@
+@import 'ngx-bootstrap/datepicker/bs-datepicker.css';
+.add-question {
+  padding-top: 20px;
+}
+
+.questions-form {
+  padding-top: 5px;
+}
+
+.modal.show .modal-dialog {
+  transform: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 686px;
+}
+
+.input-calendar .ki-calendar {
+  left: 166px;
+}
+
+.question-area {
+  margin-bottom: 17px;
+  margin-top: 10px;
+}
+
+.cancel-button {
+  color: white;
+  background-color: #a4aab2;
+}
+
+.launch-button {
+  background-color: #76618B;
+  color: white;
+}
+
+.question-group {
+  margin-top: -24px;
+}
+
+.label-question {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.radio-button-labels {
+  margin-right: 10px;
+}
+
+.radio-button-labels label:first-child {
+  margin-left: 0;
+}
+
+.radio-buttons p {
+  font-weight: 700;
+  font-size: 13px;
+  padding-bottom: 10px;
+}
+
+.radio-buttons {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.radio-buttons input, .radio-buttons label {
+  margin-top: 5px;
+}
+
+.close-icon {
+  margin-top: 21px;
+}
+
+.w-430 {
+  width: 430px;
+}
+
+.more-options-link {
+  margin-bottom: 10px;
+}
+
+.radio-buttons label:first-child {
+  margin-left: 0;
+}
+
+.error-message {
+  color: red;
+}
+
+a:not([href]):not([tabindex]) {
+  color: #76618B;
+}/*# sourceMappingURL=launch-survey.component.css.map */

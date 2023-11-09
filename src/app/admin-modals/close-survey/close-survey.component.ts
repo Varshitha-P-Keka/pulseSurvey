@@ -23,8 +23,7 @@ export class CloseSurveyComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig> = {
     showWeekNumbers: false,
   };
-  @ViewChild('CloseSurveyTemplate', { static: true })
-  CloseSurveyTemplate!: TemplateRef<any>;
+
   modalRef!: BsModalRef;
   survey: any;
   constructor(
@@ -33,7 +32,9 @@ export class CloseSurveyComponent implements OnInit {
     private modalService: BsModalService,
     private ModalService: ModalServiceService,
     private fb: FormBuilder,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    public bsModalRef:BsModalRef
+
   ) {
     this.bsConfig = Object.assign({}, { containerClass: 'theme-default' });
     this.bsConfig = {
@@ -41,25 +42,17 @@ export class CloseSurveyComponent implements OnInit {
     };
   }
   ngOnInit(): void {
-    this.ModalService.openSmallModal$.subscribe((data: any) => {
-      if (data && data.type === 'closeSurvey') {
-        this.openCloseSurveyModal(data.survey);
-      }
-    });
-      
-  }
-  openCloseSurveyModal(data: any) {
-    this.survey = data;
-    this.modalRef = this.modalService.show(this.CloseSurveyTemplate, {
-      class: 'small-modal',
+    this.ModalService.surveyUpdated$.subscribe((survey) => {
+      this.survey = survey;
     });
   }
 
   hideModal() {
-    this.modalRef.hide();
+    this.bsModalRef.hide();
   }
 
   closeSurvey() {
+    console.log(this.survey.surveyId);
     this.service.closeSurvey(this.survey.surveyId);
     this.hideModal();
   }

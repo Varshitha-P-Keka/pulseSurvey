@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input,Output , EventEmitter} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
@@ -14,18 +14,25 @@ import { loggeduser } from 'src/app/modals/modal';
 })
 export class LeftNavComponent {
 
-  @Input() userDetails:loggeduser={name:'',emailaddress:'',EmployeeId:'',role:''};
+  @Input() userDetails:loggeduser={name:'',emailaddress:'',employeeId:'',role:''};
+  @Output() showNavChange = new EventEmitter<boolean>();
+  activeItem: any;
   constructor(private router:Router){}
 
 
   ngOnInit(){
     this.userDetails=JSON.parse(<string>localStorage.getItem('currentUser'));
   }
+  
   toMe() {
-    this.router.navigate(['/pulseSurvey/home/Me/openSurveys'])
+    this.showNavChange.emit(true);
+    this.activeItem = 'me';
+    this.router.navigate(['/pulseSurvey/home/openSurveys']);
   }
-  toAdmin(){
-    this.router.navigate(['/pulseSurvey/home/Admin/surveys/active'])
 
+  toAdmin() {
+    this.showNavChange.emit(false);
+    this.activeItem = 'admin';
+    this.router.navigate(['/pulseSurvey/home/Admin/surveys/active']);
   }
 }

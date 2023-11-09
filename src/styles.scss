@@ -1,4 +1,3 @@
-
 * {
     margin:0;
     padding:0;
@@ -10,13 +9,26 @@ body {
     margin-top: 0;
 }
 
+.sub-topnav.nav .active a::after {
+    border-color: #76618B !important;
+}
+
 .bottom  {
     position: absolute;
     z-index: 999999;
-  }
+}
+
+.bs-datepicker {
+    top:13px;
+    left: 57px;
+}
+
+.bs-datepicker .bs-datepicker-body .selected, .bs-datepicker .bs-datepicker-head {
+    background-color: #76618B !important;
+}
 
 .step-label span {
-    width: 300px;
+    width: 128px;
     display: flex;
 }
 

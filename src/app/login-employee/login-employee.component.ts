@@ -35,21 +35,7 @@ export class LoginEmployeeComponent {
       next:(data)=>{
         this.data = data;
         const decodedToken = <any>jwt_decode(this.data.token);
-// <<<<<<< master
-//         console.log(decodedToken);
-//         for( let each in decodedToken){
-//           let key = each.split('/').pop();
-//           switch(key){
-//             case 'EmployeeId': this.currentUser.EmployeeId=decodedToken[each];break;
-//             case 'role': this.currentUser.role=decodedToken[each];break;
-//             case 'emailaddress': this.currentUser.emailaddress=decodedToken[each];break;
-//             case 'name': this.currentUser.name=decodedToken[each];break;
-//           }
-//         }
-//         console.log(this.currentUser)
-// =======
-//         this.setCurrentUser(decodedToken);
-// >>>>>>> master
+        this.setCurrentUser(decodedToken);
         this.udService.setCredentials(this.currentUser);
          this.router.navigate(['/pulseSurvey/home']);
       },

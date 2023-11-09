@@ -1,8 +1,22 @@
 <div class="m-16">
     <h2 class="mt-16">Completed Pulse Surveys</h2>
     <p class="mb-16">Here you can see the pulse surveys that you have completed.</p>
-
-    <table class="table standard-table two-line-table">
+<div class="d-flex">
+        <div class="select-filter-picker">
+            <ng-select [searchable]="false" placeholder="Launched Between" (change)="filterPicked($event)">
+                <ng-option *ngFor="let selectedOption of filterOptions" [value] ="selectedOption.name" >{{selectedOption.name}}</ng-option>
+            </ng-select>
+        </div>
+        <div class="search-filter-text d-flex">
+            <label class="position-relative"><i class="ki ki-search position-absolute"></i></label>
+            <input class="h-100 pl-32" type="search" placeholder="Search">
+        </div>
+        <div class="filter-reset-btn d-flex">
+            <label class="position-relative"><i class="ki ki-refresh position-absolute"></i></label>
+            <input class="filter-reset-btn" type="reset">
+        </div>
+</div>
+    <table *ngIf="completedSurveys" class="table standard-table two-line-table">
         <thead>
             <tr>
                 <th>SURVEY TITLE</th>

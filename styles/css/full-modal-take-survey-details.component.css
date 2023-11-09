@@ -1,0 +1,32 @@
+.sub-header-navigator-wrapper {
+  margin-left: 40%;
+  width: 17%;
+}
+
+.sub-header-navigator {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(118, 97, 139);
+}
+
+.sub-header-navigator-active {
+  color: white;
+  background-color: rgb(118, 97, 139);
+}
+
+.sub-header-navigator-inActive {
+  color: rgb(118, 97, 139);
+  background-color: white;
+}
+
+.modal-btn-continue {
+  background-color: rgb(118, 97, 139) !important;
+}
+
+.other-details-subHeading {
+  font-size: 10px;
+  color: grey;
+}/*# sourceMappingURL=full-modal-take-survey-details.component.css.map */

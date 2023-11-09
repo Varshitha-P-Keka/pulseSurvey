@@ -1,0 +1,62 @@
+.pulse-survey-title {
+    font-weight: 300;
+    color: #252525;
+    font-size: 26px;
+    font-family:'Segoe UI';
+    padding-bottom: 10px;
+}
+
+.pulse-survey-description {
+    font-size: 13px;
+    font-weight: 400;
+    color: #686868;
+}
+  
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background-color: #eee;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dd-menu {
+    position: absolute;
+    right: 37px;
+    list-style-type: none;
+    z-index: 9999;
+    padding-left: 0px;
+    padding: 20px 0px 10px 0px;
+    width: 145px;
+    background-color: #ffffff;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); 
+    li {
+      padding: 15px 8px 10px 15px;
+    }    
+}
+
+.dd-menu li:hover {
+    background-color: #e0dfdf;
+}
+
+.settings {
+    padding-left: 20px;
+    padding-top: 40px;
+    width: 97%;
+}
+
+.settings div:first-child {
+  padding-bottom: 10px;
+}
+
+.templates-table {
+    padding-top: 20px;
+}

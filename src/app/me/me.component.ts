@@ -10,4 +10,9 @@ import { CommonModule } from '@angular/common';
 })
 export class MeComponent {
   
+<<<<<<< HEAD
+  constructor(private router:Router){}
+  
+=======
+>>>>>>> upstream/master
 }

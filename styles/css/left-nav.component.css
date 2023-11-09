@@ -1,0 +1,11 @@
+.navbar a {
+  color: #a2a9b4;
+}
+
+.left-nav {
+  height: 100%;
+}
+
+.active {
+  background-color: #394253;
+}/*# sourceMappingURL=left-nav.component.css.map */

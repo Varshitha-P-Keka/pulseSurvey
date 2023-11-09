@@ -13,6 +13,7 @@ import { ServicesService } from 'src/app/services/services.service';
   templateUrl: './closed-surveys.component.html',
   styleUrls: ['./closed-surveys.component.scss']
 })
+
 export class ClosedSurveysComponent {
 
   closedSurveys:any;

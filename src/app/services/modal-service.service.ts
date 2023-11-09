@@ -1,10 +1,23 @@
-import { Injectable, TemplateRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ModalServiceService {
+  constructor() { }
+  templates:any;
+  templateToUpdate:any;
+  templateToDelete:any;
+  updateSurvey:any;
+  surveyToClose:any;
+
+  private surveyUpdated = new Subject<any>();
+  surveyUpdated$ = this.surveyUpdated.asObservable();
+
+  private closeSurvey = new Subject<any>();
+  closeSurveyObs$ = this.closeSurvey.asObservable();
   
   private openSmallModalSource = new Subject<{ survey: any; type: string; }>();
   openSmallModal$ = this.openSmallModalSource.asObservable();
@@ -12,14 +25,52 @@ export class ModalServiceService {
   private launchNewSurvey = new Subject<any>();
   launchNewSurvey$ = this.launchNewSurvey.asObservable();
 
+  private updateTemplate = new Subject<any>();
+  updateTemplate$ = this.updateTemplate.asObservable();
+
   triggerOpenSmallModal(survey: any, type: string) {
     this.openSmallModalSource.next({ survey, type });
   }
 
+  setupdateTemplate(template:any){
+    this.templateToUpdate = template;
+  }
+
+  getUpdateTemplate(){
+    return this.templateToUpdate
+  }
+
+  setupdateSurvey(survey:any) {
+    this.updateSurvey = survey;
+    this.surveyUpdated.next(survey);
+  }
+
+  setdeleteTemplate(template:any){
+    this.templateToDelete = template;
+  }
+
+  getDeleteTemplate(){
+    return this.templateToDelete;
+  }
+
   triggerLaunchNewSurvey(data:any){
-    console.log('trigger launch new survey in service works')
     this.launchNewSurvey.next(data);
   }
 
-  constructor() { }
+  triggerUpdateTemplate(data:any){
+    this.updateTemplate.next(data);
+  }
+
+  setCloseSurvey(survey:any) {
+    this.surveyToClose = survey;
+    this.closeSurvey.next(survey);
+  }
+
+  setTemplates(data:any){
+    this.templates =data;
+  }
+
+  getTemplates(){
+    return this.templates;
+  }  
 }

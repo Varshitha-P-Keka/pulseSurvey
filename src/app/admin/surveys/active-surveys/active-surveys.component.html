@@ -1,14 +1,13 @@
 
- <div class="open-surveys">
-        <div class="active-surveys d-flex justify-content-between">
-            <div>
-                <p class="pulse-survey-title">Active Pulse Surveys</p>
-                <p class="pulse-survey-description">Here you can view and manage the pulse surveys that are active.</p>
-            </div>
-            <button class="btn btn-primary bb" (click)="toLaunchNewSurvey()">Launch new survey</button> 
+<div class="container">
+    <div class="active-surveys d-flex justify-content-between">
+        <div>
+            <p class="pulse-survey-title">Active Pulse Surveys</p>
+            <p class="pulse-survey-description">Here you can view and manage the pulse surveys that are active.</p>
         </div>
-
-        <table class="table standard-table two-line-table survey-table">
+        <button class="btn btn-primary bb" (click)="toLaunchNewSurvey()">Launch new survey</button> 
+    </div>
+    <table class="table standard-table two-line-table survey-table">
         <thead>
             <tr>
                 <th>SURVEY TITLE</th>
@@ -21,18 +20,18 @@
         <tbody>
             <tr *ngFor="let survey of surveys; let i = index">
                 <td>
-                    <p>{{survey.surveyTitle}}</p>
-                    <p>{{survey.surveyDescription}}</p>
+                    <p class="survey-fields">{{survey.surveyTitle}}</p>
+                    <p class="survey-field">{{survey.surveyDescription}}</p>
                 </td>
                 <td>
-                    <p>{{ survey.completionPercent + '%'}}</p>
+                    <p class="survey-fields">{{ survey.completionPercent + '%'}}</p>
                 </td>
                 <td>
-                    <p>{{ survey.expiresOn }}</p>
+                    <p class="survey-fields">{{ survey.expiresOn }}</p>
                 </td>
                 <td>
-                    <p>{{ survey.launchedOn }}</p>
-                    <p>{{ survey.launchedBy }}</p>
+                    <p class="survey-fields">{{ survey.launchedOn }}</p>
+                    <p class="survey-field">By {{ survey.launchedBy }}</p>
                 </td>
                 <td>
                     <div class="dropdown" dropdown [class.show]="survey.dropdownOpen">
@@ -52,5 +51,5 @@
             </tr>
         </tbody>
     </table>
-    </div>
-    <router-outlet></router-outlet>
+</div>
+<router-outlet></router-outlet>

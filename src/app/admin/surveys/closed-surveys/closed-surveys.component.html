@@ -1,4 +1,66 @@
- <div class="open-surveys">
-        <p class="pulse-survey-title">Closed Pulse Surveys</p>
-        <p class="pulse-survey-description">Here you can view and manage the pulse surveys that are closed.</p>
- </div> 
+<div class="m-16">
+    <h2 class="mt-16">Closed Pulse Surveys</h2>
+    <p class="mb-16">Here you can view and manage the pulse surveys that are closed.</p>
+    <div class="d-flex">
+        <div class="select-filter-picker">
+            <ng-select [searchable]="false" placeholder="Launched Between" (change)="filterPicked($event)">
+                <ng-option *ngFor="let selectedOption of filterOptions" [value]="selectedOption.name">{{ selectedOption.name }}</ng-option>
+            </ng-select>
+        </div>
+        <div class="search-filter-text d-flex">
+            <label class="position-relative"><i class="ki ki-search position-absolute"></i></label>
+            <input class="h-100 pl-32" type="search" placeholder="Search" />
+        </div>
+        <div class="filter-reset-btn d-flex">
+            <label class="position-relative"><i class="ki ki-refresh position-absolute"></i></label>
+            <input class="filter-reset-btn" type="reset" />
+        </div>
+    </div>
+
+    <table class="table standard-table two-line-table">
+        <thead>
+            <tr>
+                <th>SURVEY TITLE</th>
+                <th>LAUNCHED ON</th>
+                <th>CLOSED ON</th>
+                <th>COMPLETION</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let survey of closedSurveys">
+                <td>
+                    <p class="fw-bold">{{ survey.surveyTitle }}</p>
+                    <p>{{ survey.surveyDescription }}</p>
+                </td>
+                <td>
+                    <p class="fw-bold">{{ survey.launchedOn | date : 'mediumDate' }}</p>
+                    <p>by {{ survey.launchedBy }}</p>
+                </td>
+                <td>
+                    <p class="fw-bold">{{ survey.expiresOn | date : 'mediumDate' }}</p>
+                    <p>by {{ survey.launchedBy }}</p>
+                </td>
+                <td>
+                    <p class="fw-bold">{{ survey.completionPercent }}</p>
+                    <p></p>
+                </td>
+                <td>
+                    <div class="dropdown" dropdown [class.show]="survey.dropdownOpen">
+                        <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true" aria-expanded="false" (click)="toggleDropdown(survey)">
+                            <span><i class="ki ki-ellipses-solid"></i></span>
+                        </a>
+                        <ul class="dd-menu" *ngIf="survey.dropdownOpen">
+                            <li (click)="reLaunchSurvey(survey)">
+                                <a>Re-launch Survey</a>
+                            </li>
+                            <li (click)="viewSurvey(survey)">
+                                <a>View</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

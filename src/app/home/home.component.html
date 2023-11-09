@@ -1,29 +1,22 @@
-<!-- <<<<<<< master
-<app-left-nav></app-left-nav>
-<app-top-nav></app-top-nav> -->
-<!-- <app-main-content></app-main-content> -->
-<!-- ======= -->
 <div *ngIf="userDetails != {}">
     <div>
         <app-top-nav [userDetails]="userDetails"></app-top-nav>
     </div>
     <div class="content-wrapper">
-      
-<!--        Replacable code-shiva-->
-        <ul class="nav topnav">
-            <li [ngClass]="{'active': router.url=='/pulseSurvey/home/openSurveys'}" [routerLink]="['openSurveys']"><a>OPEN SURVEYS</a></li>
-            <li [ngClass]="{'active':router.url == '/pulseSurvey/home/completedSurveys'}" [routerLink]="['completedSurveys']"><a>COMPLETED SURVEYS</a></li>
-        </ul>
-        <div class="content">
-            <router-outlet></router-outlet>
+        <div *ngIf="renderComponent">
+            <ul class="nav topnav">
+                <li [ngClass]="{'active': router.url=='/pulseSurvey/home/openSurveys'}" [routerLink]="['openSurveys']"><a>OPEN SURVEYS</a></li>
+                <li [ngClass]="{'active':router.url == '/pulseSurvey/home/completedSurveys'}" [routerLink]="['completedSurveys']"><a>COMPLETED SURVEYS</a></li>
+            </ul>
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
         </div>
-      <!--        Replacable code-shiva-->
-      <!--        Replacable code-varshitha-->
-      <app-main-content></app-main-content>
-      <!--        Replacable code-varshitha-->
+      <div *ngIf="!renderComponent">
+        <router-outlet></router-outlet>
+      </div>
     </div>
     <div class="left-nav">
-        <app-left-nav [userDetails]="userDetails"></app-left-nav>
+        <app-left-nav [userDetails]="userDetails" (navigateToProfile)="switchToProfile($event)"></app-left-nav>
     </div>
 </div>
-<!-- >>>>>>> master -->

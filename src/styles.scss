@@ -1,9 +1,13 @@
-
 * {
     margin:0;
     padding:0;
     box-sizing: border-box;
 }
+:root {
+    --primary-color: white;
+    --primary-color-light:rgb(118, 97, 139);
+}
+
 
 body {
     height:100vh;

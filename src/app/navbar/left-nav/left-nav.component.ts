@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,EventEmitter,Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
@@ -14,7 +14,8 @@ import { loggeduser } from 'src/app/modals/modal';
 })
 export class LeftNavComponent {
 
-  @Input() userDetails:loggeduser={name:'',emailaddress:'',EmployeeId:'',role:''};
+  @Output() navigateToProfile: EventEmitter<string>= new EventEmitter<string>();
+  @Input() userDetails:loggeduser={name:'',emailaddress:'',employeeId:'',role:''};
   constructor(private router:Router){}
 
 
@@ -22,10 +23,9 @@ export class LeftNavComponent {
     this.userDetails=JSON.parse(<string>localStorage.getItem('currentUser'));
   }
   toMe() {
-    this.router.navigate(['/pulseSurvey/home/Me/openSurveys'])
+    this.navigateToProfile.emit("me");
   }
   toAdmin(){
-    this.router.navigate(['/pulseSurvey/home/Admin/surveys/active'])
-
+    this.navigateToProfile.emit("admin");
   }
 }

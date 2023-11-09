@@ -13,12 +13,4 @@ import { SettingsComponent } from '../admin/settings/settings.component';
   styleUrls: ['./main-content.component.scss'],
 })
 export class MainContentComponent {
-  constructor(private router:Router){}
-
-  toOpenSurveys() {
-    this.router.navigate(['/pulseSurvey/home/Me/openSurveys']);
-  }
-  toCompletedSurveys() {
-    this.router.navigate(['/pulseSurvey/home/Me/completedSurveys'])
-  }
 }

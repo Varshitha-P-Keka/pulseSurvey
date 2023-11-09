@@ -12,6 +12,8 @@ export class UserDataService {
   private userCredentials = new BehaviorSubject<{}>({});
   private userSurveyId =new BehaviorSubject<number>(0);
   private userSurveyQuestions = new BehaviorSubject<boolean>(false);
+  private viewSurveyId = new BehaviorSubject<number>(0);
+  private viewClosedSurveyId = new BehaviorSubject<{}>({});
 
   setCredentials(userData:loggeduser){
     this.userCredentials.next(userData);
@@ -35,5 +37,21 @@ export class UserDataService {
 
   getSurveyQuestionsConfirmation(){
     return this.userSurveyQuestions;
+  }
+
+  setViewSurveyId(id:number){
+    this.viewSurveyId.next(id);
+  }
+
+  getViewSurveyId(){
+    return this.viewSurveyId;
+  }
+
+  setViewClosedSurveyId(data:{}){
+    this.viewClosedSurveyId.next(data);
+  }
+
+  getViewClosedSurveyId(){
+    return this.viewClosedSurveyId;
   }
 }

@@ -26,7 +26,9 @@ export class HomeComponent {
         localStorage.setItem('currentUser',JSON.stringify(this.userDetails));
       }
     })
-    this.router.navigate(['pulseSurvey/home/openSurveys']);
+    // this.router.navigate(['pulseSurvey/home/openSurveys']);
+    this.router.navigate(['pulseSurvey/home/completedSurveys']);
+
   }
 
   handleShowNavChange(value: boolean) {

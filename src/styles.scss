@@ -49,3 +49,12 @@ body {
     color: #76618B !important;
     border-color: #76618B !important;
 }
+.select-filter-picker {
+
+    .ng-select .ng-select-container{
+        border:none;
+        border-right: 1px solid #ccc;
+        border-radius: 0 !important;
+        border-top-left-radius: 3px !important;
+    }
+}

@@ -16,7 +16,6 @@ import { surveyQuestionAddResponse } from 'src/app/modals/modal';
     standalone: true,
     imports: [CommonModule, NgSelectModule, FormsModule],
     templateUrl: './survey-questions.component.html',
-    styleUrls: ['./survey-questions.component.scss'],
 })
 export class SurveyQuestionsComponent {
     @Input() surveyId: number = 0;

@@ -10,12 +10,12 @@ import jwt_decode from 'jwt-decode';
 import { loggeduser } from '../modals/modal';
 
 @Component({
-    selector: 'app-login-employee',
-    standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
-    templateUrl: './login-employee.component.html',
-    styleUrls: ['./login-employee.component.scss'],
+  selector: 'app-login-employee',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './login-employee.component.html',
 })
+
 export class LoginEmployeeComponent {
   currentUser:loggeduser={employeeId:'',role:'',emailaddress:'',name:''}
   loginForm!:FormGroup;
@@ -38,9 +38,6 @@ export class LoginEmployeeComponent {
         this.setCurrentUser(decodedToken);
         this.udService.setCredentials(this.currentUser);
          this.router.navigate(['/pulseSurvey/home']);
-      },
-      error:(e)=>{
-        console.log('Error',e);
       }})
     this.router.navigate(['/pulseSurvey/home']);
   }

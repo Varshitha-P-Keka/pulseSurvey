@@ -1,0 +1,15 @@
+.navbar {
+    margin-top: 0px;
+}
+
+.content-wrapper{
+    margin-left:100px;
+}
+
+.content{
+    max-height: 685px;
+}
+
+.active a::after {
+    border-bottom-color: #e3e5e8;
+}

@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h5 class="modal-title">Re-Launch survey Survey</h5>
+    <i class="ki ki-close" (click)="hideModal()"></i>
+</div>
+<div class="modal-body">
+    <p>Note: You can't update the questions here.</p>
+    <div class="form-group">
+        <form [formGroup]="updateSurveyForm" (ngSubmit)="onSubmit()">
+
+            <div>
+                <label>Title of this survey</label>
+                <input type="text" class="form-control input-sm" formControlName="surveyName"/>
+            </div>
+            <div>
+                <label>Description</label>
+                <textarea class="form-control question-area" rows="2" formControlName="surveyDescription" ></textarea>
+            </div>
+            <div>
+                <label>The survey expires on</label>
+
+                <div class="row clear-margin-x">
+                    <div class="col-sm-12 clear-padding-x">
+                        <div class="form-group">
+                            <div class="input-calendar col-sm-12 clear-padding-x">
+                                <input type="text" class="form-control w-33" id="DateAssigned" bsDatepicker [bsConfig]="{ showWeekNumbers: false }" readonly formControlName="surveyExpiry">
+                                <span class="ic-calendar"><i class="ki ki-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer p-20">
+                <button class="btn btn-secondary" (click)="hideModal()"> Cancel </button>
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

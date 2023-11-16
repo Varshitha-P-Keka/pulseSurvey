@@ -12,8 +12,8 @@ import { UserDataService } from 'src/app/services/user-data.service';
     standalone: true,
     imports: [CommonModule,RightModalQuestionDetailsComponent],
     templateUrl: './view-survey.component.html',
-    styleUrls: ['./view-survey.component.scss'],
 })
+
 export class ViewSurveyComponent {
   modalRef:BsModalRef|undefined;
     currentSurvey: any;

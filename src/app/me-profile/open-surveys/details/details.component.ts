@@ -9,8 +9,8 @@ import { UserDataService } from 'src/app/services/user-data.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
 })
+
 export class DetailsComponent {
   @Input() surveyId:number=0;
   surveyDetails:any|undefined;

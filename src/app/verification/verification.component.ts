@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './verification.component.html',
-  styleUrls: ['./verification.component.scss']
 })
+
 export class VerificationComponent {
 
   constructor( private router:Router){}

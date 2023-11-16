@@ -1,21 +1,9 @@
 .pulse-survey-title {
-    font-weight: 300;
+    font-weight: 400;
     color: #252525;
     font-size: 26px;
     font-family:'Segoe UI';
     padding-bottom: 10px;
-}
-
-.btn-primary {
-    background-color: rgb(118, 97, 139)!important;
-}
-
-.active a::after {
-    border-bottom-color: #e3e5e8;
-}
-
-.survey-table td:first-child {
-    width: 55%;
 }
 
 .pulse-survey-description {
@@ -23,27 +11,7 @@
     font-weight: 400;
     color: #686868;
 }
-
-.dropdown {
-  position: relative;
-}
-
-.survey-fields {
-    font-weight: 500;
-    font-size: 13px;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
+  
 .dropdown-menu a {
   display: block;
   padding: 8px 16px;
@@ -56,12 +24,16 @@
   background-color: #eee;
 }
 
-.survey-field {
-    color: #9da0a3;
-}
-
 .dropdown-menu.show {
   display: block;
+}
+
+.survey-table p {
+  font-size: 13px;
+}
+
+.survey-field {
+  color: #9da0a3;
 }
 
 .dd-menu {
@@ -70,15 +42,29 @@
     list-style-type: none;
     z-index: 9999;
     padding-left: 0px;
-    padding: 9px 0px 10px 0px;
+    padding: 20px 0px 10px 0px;
     width: 145px;
     background-color: #ffffff;
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); 
     li {
-        padding: 15px 8px 10px 15px;
-    }  
+      padding: 15px 8px 10px 15px;
+    }    
 }
 
 .dd-menu li:hover {
     background-color: #e0dfdf;
+}
+
+.settings {
+    padding-left: 20px;
+    padding-top: 40px;
+    width: 97%;
+}
+
+.settings div:first-child {
+  padding-bottom: 10px;
+}
+
+.templates-table {
+    padding-top: 20px;
 }

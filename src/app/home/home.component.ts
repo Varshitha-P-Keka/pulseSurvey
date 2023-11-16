@@ -11,7 +11,6 @@ import { UserDataService } from '../services/user-data.service';
   standalone: true,
   imports: [CommonModule,LeftNavComponent,TopNavComponent,RouterOutlet,RouterLink],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent { 
   userDetails:any;

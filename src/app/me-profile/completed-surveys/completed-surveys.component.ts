@@ -10,7 +10,6 @@ import { ServicesService } from 'src/app/services/services.service';
     standalone: true,
     imports: [CommonModule,NgSelectModule],
     templateUrl: './completed-surveys.component.html',
-    styleUrls: ['./completed-surveys.component.scss'],
 })
 export class CompletedSurveysComponent {
     userDetails: loggeduser = { name: '', emailaddress: '', employeeId: '', role: '' };

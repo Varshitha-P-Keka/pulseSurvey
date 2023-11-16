@@ -4,23 +4,30 @@
             <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
                 <div>
                     <label class="fw-bold">Photo</label>
-                    <input type="text" class="form-control input-sm" formControlName="ProfilePicture" />
-                    <span>Some note</span>
+                    <input type="file" class="form-control input-sm" formControlName="ProfilePicture" (change)="onFileSelected($event)"/>
+        
+
                 </div>
                 <div>
                     <label class="fw-bold">Name</label>
                     <input type="text" class="form-control input-sm" formControlName="EmployeeName" />
-                    <span>Some note</span>
+                    <div *ngIf="registrationForm.get('EmployeeName')?.invalid && registrationForm.get('EmployeeName')?.touched" class="error-message">
+                        <div *ngIf="registrationForm.get('EmployeeName')?.errors?.['required']">Employee Name is required</div>
+                    </div>
                 </div>
                 <div>
                     <label class="fw-bold">Email</label>
                     <input type="text" class="form-control input-sm" formControlName="Email" />
-                    <span>Some note</span>
+                    <div *ngIf="registrationForm.get('Email')?.invalid && registrationForm.get('Email')?.touched" class="error-message">
+                        <div *ngIf="registrationForm.get('Email')?.errors?.['required']">Email is required</div>
+                    </div>
                 </div>
                 <div>
                     <label class="fw-bold">Password</label>
                     <input type="password" class="form-control input-sm" formControlName="PasswordHash" autocomplete=""/>
-                    <span>Some note</span>
+                    <div *ngIf="registrationForm.get('PasswordHash')?.invalid && registrationForm.get('PasswordHash')?.touched" class="error-message">
+                        <div *ngIf="registrationForm.get('PasswordHash')?.errors?.['required']">Password is required</div>
+                    </div>
                 </div>
                 <div>
                     <label class="fw-bold">IsAdmin</label>
@@ -31,7 +38,10 @@
                         <label class="fw-bold" for="no">No</label>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary p-4 w-100">Register</button>
+                <button type="submit" class="btn btn-primary p-4 w-100" [disabled]="!registrationForm.valid || !(registrationForm.get('isAdmin')?.value)">Register</button>
+
+
+
             </form>
         </div>
     </div>

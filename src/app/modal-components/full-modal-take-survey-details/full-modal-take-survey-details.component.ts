@@ -14,7 +14,6 @@ import { UserDataService } from 'src/app/services/user-data.service';
   standalone: true,
   imports: [CommonModule,DetailsComponent,SurveyQuestionsComponent,SmallModalSurveyConfirmationComponent],
   templateUrl: './full-modal-take-survey-details.component.html',
-  styleUrls: ['./full-modal-take-survey-details.component.scss']
 })
 export class FullModalTakeSurveyDetailsComponent {
   surveyId:any=0;

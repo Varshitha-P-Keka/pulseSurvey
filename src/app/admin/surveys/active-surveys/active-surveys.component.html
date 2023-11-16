@@ -1,11 +1,11 @@
-
-<div class="active-surveys-container m-20">
-    <div class="active-surveys d-flex justify-content-between">
+<div class="active-surveys-container pt-2">
+    <div class="d-flex justify-content-between mb-20">
         <div>
-            <p class="pulse-survey-title">Active Pulse Surveys</p>
-            <p class="pulse-survey-description mb-20">Here you can view and manage the pulse surveys that are active.</p>
+            <h2> Active Pulse Surveys </h2>
+            <p class="pulse-survey-description ">Here you can view and manage the pulse surveys that are active.
+            </p>
         </div>
-        <button class="btn btn-primary bb" (click)="toLaunchNewSurvey()">Launch new survey</button> 
+        <button class="btn btn-primary bb" (click)="toLaunchNewSurvey()" routerLink="/pulseSurvey/home/Admin/surveys/active/LaunchNewSurvey">Launch new survey</button>
     </div>
     <table class="table standard-table two-line-table survey-table">
         <thead>
@@ -20,33 +20,35 @@
         <tbody>
             <tr *ngFor="let survey of surveys; let i = index">
                 <td>
-                    <p class="survey-fields">{{survey.surveyTitle}}</p>
+                    <p>{{survey.surveyTitle}}</p>
                     <p class="survey-field">{{survey.surveyDescription}}</p>
                 </td>
                 <td>
-                    <p class="survey-fields">{{ survey.completionPercent + '%'}}</p>
+                    <p>{{ survey.completionPercent + '%'}}</p>
                 </td>
                 <td>
-                    <p class="survey-fields">{{ survey.expiresOn }}</p>
+                    <p>{{ survey.expiresOn }}</p>
                 </td>
                 <td>
-                    <p class="survey-fields">{{ survey.launchedOn }}</p>
+                    <p>{{ survey.launchedOn }}</p>
                     <p class="survey-field">By {{ survey.launchedBy }}</p>
                 </td>
                 <td>
-                    <div class="dropdown" dropdown [class.show]="survey.dropdownOpen">
-                        <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true" aria-expanded="false" (click)="toggleDropdown(survey)">
-                            <span><i class="ki ki-ellipses-solid"></i></span>
+                    <div class="dropdown" dropdown [class.show]="survey.dropdownOpen" >
+                        <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true"
+                            aria-expanded="false" (click)="toggleDropdown(survey)">
+                            <i class="ki ki-ellipses-solid"></i>
                         </a>
                         <ul class="dd-menu" *ngIf="survey.dropdownOpen">
-                            <li (click)="toUpdateSurvey(survey)">
-                                <a >Update</a>
+                            <li >
+                                <a (click)="toUpdateSurvey(survey)">Update</a>
                             </li>
-                            <li  (click)="toClosedSurveys(survey)">
-                                <a >Close survey</a>
+                            <li>
+                                <a (click)="toClosedSurveys(survey)">Close survey</a>
                             </li>
+                            
                         </ul>
-                    </div>    
+                    </div>
                 </td>
             </tr>
         </tbody>

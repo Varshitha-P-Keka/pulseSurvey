@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 :root {
+    --primary-color: #76618B;
     --primary-color-light:rgb(118, 97, 139);
 }
 
@@ -11,10 +12,19 @@
     color: white !important;
 }
 
+.btn-primary:hover {
+    background-color: #6e5883 !important;
+}
+
+.form-control {
+    border-color: #c9ccd3 !important;
+}
+
 
 body {
     height:100vh;
     margin-top: 0;
+    font-family:'Segoe UI';
 }
 
 .sub-topnav.nav .active a::after {

@@ -1,5 +1,5 @@
-.left-nav{
-    margin-top:60px;
+.navbar {
+    margin-top: 0px;
 }
 
 .content-wrapper{
@@ -8,4 +8,8 @@
 
 .content{
     max-height: 685px;
+}
+
+.active a::after {
+    border-bottom-color: #e3e5e8;
 }

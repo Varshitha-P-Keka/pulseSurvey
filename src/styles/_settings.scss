@@ -1,5 +1,5 @@
 .pulse-survey-title {
-    font-weight: 300;
+    font-weight: 400;
     color: #252525;
     font-size: 26px;
     font-family:'Segoe UI';
@@ -26,6 +26,14 @@
 
 .dropdown-menu.show {
   display: block;
+}
+
+.survey-table p {
+  font-size: 13px;
+}
+
+.survey-field {
+  color: #9da0a3;
 }
 
 .dd-menu {

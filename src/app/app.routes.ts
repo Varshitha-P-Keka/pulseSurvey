@@ -12,8 +12,7 @@ import { LaunchSurveyComponent } from './admin-modals/launch-survey/launch-surve
 import { OpenSurveysComponent } from './me-profile/open-surveys/open-surveys.component';
 import { CompletedSurveysComponent } from './me-profile/completed-surveys/completed-surveys.component';
 import { ViewSurveyComponent } from './admin/surveys/closed-surveys/view-survey/view-survey.component';
-import { ClosedSurveysPageComponent } from './closed-surveys-page/closed-surveys-page.component';
-import { Component } from '@angular/core';
+
 
 export const routes: Routes = [
     { path: '', redirectTo: 'pulseSurvey', pathMatch: 'full' },

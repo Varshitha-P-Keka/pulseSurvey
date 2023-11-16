@@ -10,6 +10,7 @@ import { UserDataService } from 'src/app/services/user-data.service';
   imports: [CommonModule],
   templateUrl: './details.component.html'
 })
+
 export class DetailsComponent {
   @Input() surveyId:number=0;
   surveyDetails:any|undefined;

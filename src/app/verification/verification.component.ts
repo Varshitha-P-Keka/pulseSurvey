@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   imports: [CommonModule],
   templateUrl: './verification.component.html'
 })
+
 export class VerificationComponent {
 
   constructor( private router:Router){}

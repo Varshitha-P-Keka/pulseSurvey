@@ -1,36 +1,22 @@
-.pulse-survey-title {
-    font-weight: 300;
-    color: #252525;
-    font-size: 26px;
-    font-family:'Segoe UI';
-    padding-bottom: 10px;
-}
-
-.btn-primary {
-    background-color: rgb(118, 97, 139)!important;
-}
-
 .active a::after {
-    border-bottom-color: #e3e5e8;
+  border-bottom-color: #e3e5e8 !important;
+}
+
+.active-surveys-container {
+  overflow-y: scroll;
+  max-height: 602px;
 }
 
 .survey-table td:first-child {
-    width: 55%;
+  width: 55%;
 }
 
 .pulse-survey-description {
-    font-size: 13px;
-    font-weight: 400;
-    color: #686868;
+  color: #686868;
 }
 
 .dropdown {
   position: relative;
-}
-
-.survey-fields {
-    font-weight: 500;
-    font-size: 13px;
 }
 
 .dropdown-menu {
@@ -57,26 +43,47 @@
 }
 
 .survey-field {
-    color: #9da0a3;
+  color: #9da0a3;
+  font-size: 12px;
 }
 
 .dropdown-menu.show {
   display: block;
 }
 
+.dropdown.show .icon-click .ki {
+  color: #76618b;
+}
+
 .dd-menu {
-    position: absolute;
-    right: 37px;
-    list-style-type: none;
-    z-index: 9999;
-    padding-left: 0px;
-    padding: 9px 0px 10px 0px;
-    width: 145px;
-    background-color: #ffffff;
-    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); 
-    li {
-        padding: 15px 8px 10px 15px;
-    }  
+  position: absolute;
+  right: 37px;
+  list-style-type: none;
+  z-index: 9999;
+  padding-left: 0;
+  width: 145px;
+  background-color: #ffffff;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+}
+
+.dd-menu li {
+  padding: 15px 8px 15px 15px;
+  display: block;
+  cursor: pointer;
+}
+
+.dd-menu li:first-child {
+  padding-top: 20px;
+}
+
+.dd-menu li:last-child {
+  padding-bottom: 20px;
+}
+
+.dd-menu a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .dd-menu li:hover {

@@ -1,0 +1,81 @@
+@import "~@ng-select/ng-select/themes/material.theme.css";
+.select-filter-picker {
+  width: 350px;
+}
+.select-filter-picker .ng-select {
+  padding-bottom: 0;
+}
+
+.search-filter-text {
+  height: 39px;
+  width: 100%;
+}
+.search-filter-text .ki-search {
+  top: 7px;
+  left: 5px;
+}
+.search-filter-text input {
+  width: 100%;
+  outline: none;
+}
+
+.filter-reset-btn {
+  height: 39px;
+  width: 100px;
+  cursor: pointer;
+}
+.filter-reset-btn .ki-refresh {
+  top: 7.5px;
+  left: 7px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background-color: #eee;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dd-menu {
+  position: absolute;
+  right: 37px;
+  list-style-type: none;
+  z-index: 9999;
+  padding-left: 0px;
+  padding: 20px 0px 10px 0px;
+  width: 145px;
+  background-color: #ffffff;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+}
+.dd-menu li {
+  padding: 15px 8px 10px 15px;
+}
+
+.dd-menu li:hover {
+  background-color: #e0dfdf;
+}/*# sourceMappingURL=closed-surveys.component.css.map */

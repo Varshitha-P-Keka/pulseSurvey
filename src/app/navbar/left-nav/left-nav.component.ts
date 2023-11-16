@@ -11,6 +11,7 @@ import { loggeduser } from 'src/app/modals/modal';
   imports: [CommonModule,RouterModule],
   templateUrl: './left-nav.component.html'
 })
+
 export class LeftNavComponent {
   @Input() userDetails:loggeduser={name:'',emailaddress:'',employeeId:'',role:''};
   @Output() showNavChange = new EventEmitter<boolean>();
@@ -21,6 +22,7 @@ export class LeftNavComponent {
 
   ngOnInit(){
     this.userDetails=JSON.parse(<string>localStorage.getItem('currentUser'));
+    this.activeItem = 'me';
   }
   
   toMe() {

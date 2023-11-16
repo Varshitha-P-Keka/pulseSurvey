@@ -1,24 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { Router, RouterOutlet,RouterLinkActive } from '@angular/router';
 
-@Component({
+@Component ({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule,RouterOutlet],
+  imports: [CommonModule,RouterOutlet,RouterLinkActive,RouterModule],
   templateUrl: './admin.component.html'
 })
 
 export class AdminComponent {
-
+  
   constructor(public router:Router){}
 
-  navigateTo(route: string) {
-    this.router.navigate([`/pulseSurvey/home/Admin/${route}`]);
-  }
-
-  isActive(route: string) {
-    return this.router.url.endsWith(route);
+  navigateTo() {
+    this.router.navigate(['/pulseSurvey/home/Admin/surveys/active']);
   }
 }

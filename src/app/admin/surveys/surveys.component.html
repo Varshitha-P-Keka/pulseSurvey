@@ -1,7 +1,7 @@
-<ul class="nav sub-topnav sub-topnav-align sub-navbar">
-    <li [class.active]="showActiveTab"><a (click)="setTab(true)"> Active </a></li>
-    <li [class.active]="!showActiveTab"><a (click)="setTab(false)"> Closed </a></li>
-  </ul>
-  <div class="admin-container">
-    <router-outlet></router-outlet>  
-  </div>
+<ul class="nav sub-topnav sub-topnav-align pl-20">
+  <li routerLinkActive="active" [routerLink]="['/pulseSurvey/home/Admin/surveys/active']"><a> Active </a></li>
+  <li routerLinkActive="active" [routerLink]="['/pulseSurvey/home/Admin/surveys/closed']"><a> Closed </a></li>
+</ul>
+<div class="p-20">
+  <router-outlet></router-outlet>  
+</div>

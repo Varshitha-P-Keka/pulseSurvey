@@ -8,7 +8,8 @@ import { UpdateTemplateComponent } from './admin/settings/update-template/update
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterModule, VerificationComponent,UpdateTemplateComponent],
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'pulseSurvey';

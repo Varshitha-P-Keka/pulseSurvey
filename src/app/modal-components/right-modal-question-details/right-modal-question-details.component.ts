@@ -8,12 +8,14 @@ import { switchMap, EMPTY, take } from 'rxjs';
 import { ServicesService } from 'src/app/services/services.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+
 @Component({
     selector: 'app-right-modal-question-details',
     standalone: true,
     imports: [CommonModule, FormsModule, NgSelectModule, BsDatepickerModule],
     templateUrl: './right-modal-question-details.component.html'
 })
+
 export class RightModalQuestionDetailsComponent {
     currentSurvey: any;
     toggleTab: string = 'analytical';

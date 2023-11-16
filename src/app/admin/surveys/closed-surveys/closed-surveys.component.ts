@@ -1,17 +1,21 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ModalServiceService } from 'src/app/services/modal-service.service';
 import { FormsModule } from '@angular/forms';
 
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UserDataService } from 'src/app/services/user-data.service';
+import { RelaunchSurveyComponent } from './relaunch-survey/relaunch-survey.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ServicesService } from 'src/app/services/services.service';
+
+import { BsModalRef,BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-closed-surveys',
   standalone: true,
-  imports: [CommonModule,NgSelectModule,FormsModule,BsDatepickerModule],
+  imports: [CommonModule,NgSelectModule,FormsModule,BsDatepickerModule,RelaunchSurveyComponent],
   templateUrl: './closed-surveys.component.html'
 })
 
@@ -19,6 +23,7 @@ export class ClosedSurveysComponent {
 
   @ViewChild('dateRangeCalendar') dateRangCalendar!: ElementRef;
   closedSurveys:any;
+  bsModalRef!: BsModalRef;
   filteredSurveys: any;
   selectedFilterId: any;
   inputTextFilter: string = '';
@@ -34,9 +39,14 @@ export class ClosedSurveysComponent {
       { id: 4, name: 'custom range' },
   ];
 
-  constructor(private httpService:ServicesService, private router: Router,private behaviorSubjectService:UserDataService){}
+  constructor(private httpService:ServicesService,public modalService: BsModalService, private router: Router,private behaviorSubjectService:UserDataService,private ModalService:ModalServiceService){}
 
   ngOnInit(){
+    this.httpService.surveyEdited$.subscribe((updated) => {
+      if (updated) {
+       this.showClosedSurveys();
+    }});
+
     this.httpService.getClosedSurveys().subscribe({
       next:(data)=>{
         this.closedSurveys = data;
@@ -47,7 +57,9 @@ export class ClosedSurveysComponent {
       error:(e)=>{
         console.log(e);
       }
-    })
+    });
+
+    this.showClosedSurveys();
   }
 
   // Development
@@ -116,7 +128,21 @@ reset(){
   }
 
   reLaunchSurvey(survey:any){
-    console.log("Re launch survey",survey);
+    this.bsModalRef = this.modalService.show(RelaunchSurveyComponent, { class: 'small-modal' });
+    this.ModalService.setupdateSurvey(survey);
+    survey.dropdownOpen = false; 
+  }
+
+  showClosedSurveys(){
+    this.httpService.getClosedSurveys().subscribe({
+      next:(data)=>{
+        this.closedSurveys = data;
+        console.log(data);
+      },
+      error:(e)=>{
+        console.log(e);
+      }
+    })
   }
 
   viewSurvey(survey:any){

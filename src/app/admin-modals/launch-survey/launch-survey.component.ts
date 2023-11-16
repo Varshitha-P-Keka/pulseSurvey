@@ -1,15 +1,22 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule,DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { FormsModule, Validators } from '@angular/forms';
-import {FormGroup,ReactiveFormsModule,FormBuilder,FormArray,} from '@angular/forms';
-import { ServicesService } from 'src/app/services/services.service';
+import {FormGroup,ReactiveFormsModule,FormBuilder,FormArray,FormsModule, Validators} from '@angular/forms';
+
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ModalServiceService } from 'src/app/services/modal-service.service';
 import { BsDropdownDirective, BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { DatePipe } from '@angular/common';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
-import {BsDatepickerConfig,BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {BsDatepickerModule,BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
+
+import { ServicesService } from 'src/app/services/services.service';
+import { SurveyData } from 'src/app/modals/launchSurveyData';
+import { SurveyQuestion } from 'src/app/modals/launchSurveyQuestions';
+import { ModalServiceService } from 'src/app/services/modal-service.service';
+
+enum ActiveStep {
+  BasicFields = 1,
+  SurveyQuestions = 2,
+}
 
 @Component ({
   selector: 'app-launch-survey',
@@ -23,7 +30,7 @@ export class LaunchSurveyComponent implements OnInit {
   showExisitingTemplates = false;
   showDescription: boolean = false;
   selectedItem: string = 'Select';
-  activeStep: number = 1;
+  activeStep: ActiveStep = ActiveStep.BasicFields;
   questionName: any;
   surveys: any;
   errorInpuFieldMsg: any;
@@ -31,7 +38,7 @@ export class LaunchSurveyComponent implements OnInit {
   surveyNames: any;
   existingTemplateNames:any;
   templateId:any;
-  exisitngTemplates:any
+  exisitngTemplates:any;
   formResponses: any[] = [];
   optionIdCounter = 1; 
   options: any[] = [];
@@ -39,13 +46,10 @@ export class LaunchSurveyComponent implements OnInit {
   surveyQuestionsForm!: FormGroup;
   launchSurveyModalRef!: BsModalRef;
   fullModalRef!: BsModalRef;
-  templateQuestions:any;  
+  templateQuestions:any; 
   @ViewChild('dropdown', { static: true }) dropdown!: BsDropdownDirective;
-  @ViewChild('launchNewSurvey', { static: true })
+  @ViewChild('launchNewSurvey', { static: true }) 
   launchNewSurvey!: TemplateRef<any>;
-  bsConfig: Partial<BsDatepickerConfig> = {
-    showWeekNumbers: false,
-  };
 
   constructor(private router: Router,private modalService: BsModalService,private ModalService: ModalServiceService,private service: ServicesService,private formBuilder: FormBuilder,private datePipe: DatePipe) {}
 
@@ -73,7 +77,7 @@ export class LaunchSurveyComponent implements OnInit {
     });
 
     this.ModalService.launchNewSurvey$.subscribe((data) => {
-      this.launchSurvey();
+      this.onLaunchSurveyClick();
     });  
   }
   
@@ -88,33 +92,16 @@ export class LaunchSurveyComponent implements OnInit {
     });
   }  
  
-  launchSurveyQuestions() {
-    const surveyQuestionFormsArray = this.formResponses.map (
-      (response) => response.surveyQuestionForm.value
-    );
-    const customSurveyQuestionFormsArray = surveyQuestionFormsArray.map (
-      (formValue) => ({        
-            surveyQuestionId: 0,
-            questionText: formValue.surveyQuestionName,
-            description: formValue.surveyQuestionDescription,
-            questionType: formValue.radiobutton,
-            options: formValue.inputFields.map((option:any, index:any) => ({
-              optionId: index + 1,
-              optionText: option,
-          })),
-              
-      })
-    );
-    const surveydata = {
-        surveyId: 0,
-        surveyTitle: this.basicFieldsForm.value.surveyName,
-        surveyDescription: this.basicFieldsForm.value.surveyDescription,
-        launchedOn: this.formatDate(new Date()),
-        expiresOn: this.formatDate(this.basicFieldsForm.value.surveyExpiry),
-        adminId: 1,
-        surveyQuestions: customSurveyQuestionFormsArray
-    }
-    this.service.sendSurveyQuestions(surveydata);
+  launchSurvey() {
+    const surveyQuestionFormsArray = this.formResponses.map ((response) => response.surveyQuestionForm.value);
+    const customSurveyQuestionFormsArray = surveyQuestionFormsArray.map((formValue: any) => {
+      const options = formValue.inputFields.map((option: any, index: number) => ({ optionId: index + 1, optionText: option }));
+      return new SurveyQuestion(0,formValue.surveyQuestionName,formValue.surveyQuestionDescription,formValue.radiobutton,options
+      );
+    });
+
+    const surveyData = new SurveyData (0,this.basicFieldsForm.value.surveyName,this.basicFieldsForm.value.surveyDescription,this.formatDate(new Date()),this.formatDate(this.basicFieldsForm.value.surveyExpiry),1,customSurveyQuestionFormsArray)
+    this.service.sendSurveyQuestions(surveyData);
     this.hideModal(this.fullModalRef);
     this.hideModal(this.launchSurveyModalRef);
     this.router.navigate(['/pulseSurvey/home/Admin/surveys/active']);    
@@ -131,11 +118,12 @@ export class LaunchSurveyComponent implements OnInit {
     const currentResponse = this.formResponses[index];
     const inputFields = currentResponse.surveyQuestionForm.get('inputFields') as FormArray;
     if (inputFields.length < 5) {
-        inputFields.push(this.formBuilder.control(''));
-        currentResponse.errorInpuFieldMsg = '';
-        this.options.push({ optionId: this.optionIdCounter++, optionValue: '' });
-    } else {
-        currentResponse.errorInpuFieldMsg = 'Max 5 options';
+      inputFields.push(this.formBuilder.control(''));
+      currentResponse.errorInpuFieldMsg = '';
+      this.options.push({ optionId: this.optionIdCounter++, optionValue: '' });
+    } 
+    else {
+      currentResponse.errorInpuFieldMsg = 'Max 5 options';
     }
   }
   
@@ -227,11 +215,12 @@ export class LaunchSurveyComponent implements OnInit {
 
   onSave() {    
     this.updateActiveStep(2);
-    if(this.selectedItem!='select') {
+    console.log('selected item',this.selectedItem);
+    if(this.selectedItem!='Create a new survey') {
+      console.log('entereddd')
       this.templateId = this.getTemplateIdByName(this.selectedItem);
       this.service.getTemplateQuestions(this.templateId).subscribe((templateQuestions: any) => {
-        console.log(templateQuestions);
-        templateQuestions.forEach((question: any) => {
+       templateQuestions.forEach((question: any) => {
           const newForm = this.generateSurveyQuestionForm(); 
           newForm.patchValue ({
             surveyQuestionName: question.questionText, 
@@ -260,19 +249,21 @@ export class LaunchSurveyComponent implements OnInit {
     return fdate + 'Z';
   }
 
-  toBasicFields(){
+  toBasicFields() {
     this.updateActiveStep(1);
   }
+
   onAdditionalItemSelect(additionalItem: string) {
     this.selectedItem = additionalItem;
   }
   
-  launchSurvey() {
+  onLaunchSurveyClick () {
     this.launchSurveyModalRef = this.modalService.show(this.launchNewSurvey, {class: 'small-modal',});
     this.selectedItem = 'select';
-    let t = this.ModalService.getTemplates();
-    this.exisitngTemplates = t;
-    const templateTitles: string[] = t.map((item:any) => item.templateTitle);
-    this.existingTemplateNames = templateTitles;   
+    this.service.getTemplates().subscribe((data:any)=>{
+      this.exisitngTemplates = data;
+      const templateTitles: string[] = data.map((item:any) => item.templateTitle);
+      this.existingTemplateNames = templateTitles;   
+    });
   }
 }

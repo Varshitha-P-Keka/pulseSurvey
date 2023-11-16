@@ -12,6 +12,7 @@ export class ModalServiceService {
   templateToDelete:any;
   updateSurvey:any;
   surveyToClose:any;
+  image:any
 
   private surveyUpdated = new Subject<any>();
   surveyUpdated$ = this.surveyUpdated.asObservable();
@@ -34,6 +35,14 @@ export class ModalServiceService {
 
   setupdateTemplate(template:any){
     this.templateToUpdate = template;
+  }
+
+  setImage(image:any) {
+    this.image = image;
+  }
+  
+  getImage() {
+    return this.image;
   }
 
   getUpdateTemplate(){
@@ -65,12 +74,4 @@ export class ModalServiceService {
     this.surveyToClose = survey;
     this.closeSurvey.next(survey);
   }
-
-  setTemplates(data:any){
-    this.templates =data;
-  }
-
-  getTemplates(){
-    return this.templates;
-  }  
 }

@@ -1,59 +1,56 @@
 
-    <div class="modal-header">
-        <h5 class="modal-title">update template</h5>
-        <i class="ki ki-close" (click)="hideModal()"></i>
-    </div> 
-    <div class="modal-sub-header">
-        <div class="stepper-wizard w-480px justify-content-between">
-            <div class="step" [ngClass]="{ 'active': activeStep === 1 }" (click)="updateActiveStep(1)">
-                <div class="step-number">
-                    <span>1</span>
-                </div>
-                <label class="step-label">
-                    <span>BASIC FIELDS</span>
-                </label>
+<div class="modal-header">
+    <h5 class="modal-title">update template</h5>
+    <i class="ki ki-close" (click)="hideModal()"></i>
+</div> 
+<div class="modal-sub-header">
+    <div class="stepper-wizard w-480px justify-content-between">
+        <div class="step" [ngClass]="{ 'active': activeStep === 1 }" (click)="updateActiveStep(1)">
+            <div class="step-number">
+                <span>1</span>
             </div>
-            <div class="step" [ngClass]="{ 'active': activeStep === 2 }" (click)="updateActiveStep(2)">
-                <div class="step-number">
-                    <span>2</span>
-                </div>
-                <label class="step-label">
-                    <span>QUESTOINS IN TEMPLATE </span>
-                </label>
-            </div>
+            <label class="step-label">
+                <span>BASIC FIELDS</span>
+            </label>
         </div>
-        <div>
-            <button class="btn btn-primary" *ngIf="activeStep === 1" (click)="onSave()">Save & Continue</button>
-            <div *ngIf="activeStep === 2" class="d-flex justify-content-between w-150">
-                <button class="btn btn-secondary">Back</button>
-                <button class="btn btn-primary" (click)="addTemplateQuestions()" >Launch</button>
-            </div>            
+        <div class="step" [ngClass]="{ 'active': activeStep === 2 }" (click)="updateActiveStep(2)">
+            <div class="step-number">
+                <span>2</span>
+            </div>
+            <label class="step-label">
+                <span>QUESTOINS IN TEMPLATE </span>
+            </label>
         </div>
     </div>
-
-    <div class="modal-body">
-        <div *ngIf="activeStep === 1">
-            <div class="form-group">
-                <form [formGroup]="basicFieldsForm" >
-    
-                    <div>
-                        <label> Survey Title </label>
-                        <input type="text" class="form-control input-sm w-33" formControlName="templateTitle"/>
-                    </div>
-                    <div>
-                        <label>Description</label>
-                        <input type="text" class="form-control input-sm w-33" formControlName="templateDescription"/>
-                    </div>
-                </form>
-            </div>
-        </div> 
-        <div *ngIf="activeStep === 2">
-            <button class="btn btn-link" (click)="addResponse()">Add Question</button>
-            <div *ngFor="let response of responses; let i = index" class="add-question">
-                <accordion [closeOthers]="true">
-                    <ng-container>
-                        <div class="d-flex align-items-start mb-10">
-                            <accordion-group [isOpen]="true" class="flex-fill">
+    <div>
+        <button class="btn btn-primary" *ngIf="activeStep === 1" (click)="onSave()">Save & Continue</button>
+        <div *ngIf="activeStep === 2" class="d-flex justify-content-between w-150">
+            <button class="btn btn-secondary">Back</button>
+            <button class="btn btn-primary" (click)="addTemplateQuestions()" >Launch</button>
+        </div>            
+    </div>
+</div>
+<div class="modal-body">
+    <div *ngIf="activeStep === 1">
+        <div class="form-group">
+            <form [formGroup]="basicFieldsForm" >
+                <div>
+                    <label> Title of this Survey </label>
+                    <input type="text" class="form-control input-sm w-50" formControlName="templateTitle"/>
+                </div>
+                <div>
+                    <label>Description</label>
+                    <input type="text" class="form-control input-sm w-50" formControlName="templateDescription"/>
+                </div>
+            </form>
+        </div>
+    </div> 
+    <div *ngIf="activeStep === 2">
+        <div *ngFor="let response of formResponses; let i = index" class="d-flex w-75">
+            <accordion [closeOthers]="true" class="w-100">
+                <ng-container>
+                    <div class="d-flex align-items-start mb-10">
+                        <accordion-group [isOpen]="true" class="flex-fill">
                             <div accordion-heading>
                             <div class="d-flex align-items-center flex-fill mb-10 mt-10">
                                 <p class="text-large text-truncate-1">{{ response.questionName }}</p>
@@ -64,49 +61,41 @@
                             <div class="collapse show mt-10 mb-10" data-parent="#accordion">
                                 <div class="form-group question-group">
                                     <form [formGroup]="response.templateQuestionForm" >
-                                        <textarea class="form-control question-area" rows="2" placeholder="Type the question here" formControlName="surveyQuestionName"></textarea>
-
+                                        <textarea class="form-control question-area" rows="2" placeholder="Type the question here" formControlName="surveyQuestionName" ></textarea>
                                         <a class="add-description" (click)="addDescription()">+ Add additional Description</a>
                                         <textarea class="form-control question-area" rows="3" placeholder="Provide a Description so that the employees can understand what exactly to respond to this question" *ngIf="showDescription" formControlName="surveyQuestionDescription"></textarea>
-                                                                    
                                         <div class="radio-buttons">
-                                        
-                                            <input type="radio" formControlName="radiobutton" id="Rating_{{i}}" value="Rating">
-                                            <label for="Rating_{{i}}" class="radio-button-labels">Rating</label>
-
-                                            <input type="radio" formControlName="radiobutton" id="Commentonly_{{i}}" value="Text">
-                                            <label for="Commentonly_{{i}}" class="radio-button-labels">Comment only</label>
-
-                                            <input type="radio" formControlName="radiobutton" id="option3_{{i}}" value="Select one from list">
-                                            <label for="option3_{{i}}" class="radio-button-labels">Select one from list</label>
-
-
-                                        </div> 
-                                        <!-- <a *ngIf="responses[i]?.surveyQuestionForm.get('radiobutton')?.value === 'Select one from list'" (click)="addInputField(i)">+ Add More options</a> -->
-                                        <a *ngIf="responses[i]?.templateQuestionForm.get('radiobutton')?.value === 'Select one from list'" (click)="addInputField(i)" >+ Add More options</a>
-                                      <div class="d-flex">
-                                        <div formArrayName="options">
-                                            <div *ngFor="let inputField of response.templateQuestionForm.get('options')?.controls; let j = index">
-                                                <div class="d-flex">
-                                                    <input type="text" [formControlName]="j" class="form-control w-150"  />
-                                                    <i class="ki ki-close"></i>
-                                                </div>
-                                             
+                                            <p> How do you want the employees to respond to this question? </p> 
+                                            <div class="d-flex justify-content-between w-430">
+                                                <input type="radio" formControlName="radiobutton" id="Rating_{{i}}" value="Rating">
+                                                <label for="Rating_{{i}}" class="radio-button-labels">Rating</label>
+                                                <input type="radio" formControlName="radiobutton" id="Commentonly_{{i}}" value="Text">
+                                                <label for="Commentonly_{{i}}" class="radio-button-labels">Comment only</label>
+                                                <input type="radio" formControlName="radiobutton" id="option3_{{i}}" value="Select one from list">
+                                                <label for="option3_{{i}}" class="radio-button-labels">Select one from list</label>
                                             </div>
+                                        </div> 
+                                        <a *ngIf="formResponses[i]?.templateQuestionForm.get('radiobutton')?.value === 'Select one from list'" (click)="addInputField(i)" >+ Add More options</a>
+                                        <div class="d-flex">
+                                            <div formArrayName="options">
+                                                <div *ngFor="let inputField of response.templateQuestionForm.get('options')?.controls; let j = index">
+                                                    <div class="d-flex">
+                                                        <input type="text" [formControlName]="j" class="form-control w-400 mr-2 mt-3"/>
+                                                        <i class="ki ki-close close-icon" (click)="removeInputField(j, i)"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="errorMessage">{{response.maxInputFieldsErrorMsg}}</div>
                                         </div>
-                                        <div class="errorMessage">{{response.errorMessage}}</div>
-
-                                      </div>                                      
-
                                     </form> 
                                 </div>                             
                             </div>
-                            </accordion-group>
-                        </div>
-                    </ng-container>
-                </accordion>      
-                <i class="ki ki-delete" ></i>
-            </div>
-            
+                        </accordion-group>
+                    </div>
+                </ng-container>
+            </accordion>      
+            <i class="ki ki-delete" (click)="deleteAccordion(i)"></i>
         </div>
+        <button class="btn btn-link" (click)="addResponse()">Add Question</button>
     </div>
+</div>

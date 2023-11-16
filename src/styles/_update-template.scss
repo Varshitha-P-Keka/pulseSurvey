@@ -1,0 +1,47 @@
+.form-group label {
+    color: #616060;
+}
+
+.modal-body {
+    padding-left: 30px !important;
+}
+
+.question-area {
+    margin-bottom: 17px;
+    margin-top: 10px;
+}
+
+.close-icon {
+    margin-top: 21px;
+}
+
+.w-430 {
+    width: 430px;
+}
+
+.radio-buttons p {
+    font-weight: 700;
+    font-size: 13px;
+    padding-bottom: 10px;
+
+}
+
+a:not([href]):not([tabindex]) {
+    color: #76618B;
+}
+
+.radio-buttons {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    input,label {
+        margin-top: 5px;
+    }
+}
+
+radio-button-labels {
+    margin-right: 10px;
+}
+
+.radio-button-labels label:first-child {
+    margin-left: 0;
+}

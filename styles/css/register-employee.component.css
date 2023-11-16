@@ -1,0 +1,19 @@
+.register-page-wrap {
+  background: linear-gradient(to bottom, #9796f0, #fbc7d4);
+}
+.register-page-wrap .form-group {
+  outline: 1px dashed rgb(32, 106, 163);
+  outline-offset: 60px;
+}
+.register-page-wrap .register-form {
+  width: 30%;
+}
+.register-page-wrap label {
+  font-size: 15px;
+}
+.register-page-wrap input {
+  border: 2px solid white;
+}
+.register-page-wrap input:hover {
+  background-color: white;
+}/*# sourceMappingURL=register-employee.component.css.map */

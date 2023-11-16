@@ -1,0 +1,48 @@
+.survey-question {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.survey-response-type, .rating-label-circle {
+  color: grey;
+}
+
+.survey-input-container {
+  background-color: rgb(250, 250, 250);
+  width: 80%;
+}
+
+.survey-input {
+  resize: none;
+  outline: none;
+  width: 100%;
+  border-color: rgb(216, 219, 223);
+  caret-color: rgb(216, 219, 223);
+  color: grey;
+}
+
+.survey-input::-moz-placeholder {
+  color: grey;
+}
+
+.survey-input:-ms-input-placeholder {
+  color: grey;
+}
+
+.survey-input::placeholder {
+  color: grey;
+}
+
+.rating-circle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: rgb(118, 97, 139);
+}
+
+.rating-circle-fill {
+  background-color: rgb(118, 97, 139);
+}/*# sourceMappingURL=survey-questions.component.css.map */

@@ -25,8 +25,8 @@ export class LoginEmployeeComponent {
 
   ngOnInit(){
     this.loginForm = this.fb.group({
-      email:[''],
-      password:['']
+      email:['',Validators.required],
+      password:['',Validators.required]
     })
   }
 

@@ -1,0 +1,33 @@
+.view-survey-header {
+  border: 1px solid rgb(212, 215, 220);
+  background-color: white;
+}
+.view-survey-header .view-survey-details {
+  width: 60%;
+}
+
+.color-grey {
+  color: grey;
+  font-size: 10px;
+}
+
+.view-survey-item {
+  background-color: white;
+  border: 1px solid rgb(212, 215, 220);
+}
+
+.details-link {
+  color: rgb(118, 97, 139) !important;
+}
+
+.percentage-container {
+  height: 10px;
+  width: 300px;
+  background-color: rgb(236, 234, 238);
+  border-radius: 10px;
+}
+.percentage-container .percentage-value {
+  height: 100%;
+  border-radius: 10px;
+  background-color: rgb(118, 97, 139);
+}/*# sourceMappingURL=view-survey.component.css.map */

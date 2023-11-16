@@ -15,7 +15,7 @@ import { surveyQuestionAddResponse } from 'src/app/modals/modal';
     selector: 'app-survey-questions',
     standalone: true,
     imports: [CommonModule, NgSelectModule, FormsModule],
-    templateUrl: './survey-questions.component.html',
+    templateUrl: './survey-questions.component.html'
 })
 export class SurveyQuestionsComponent {
     @Input() surveyId: number = 0;
@@ -57,6 +57,7 @@ export class SurveyQuestionsComponent {
         this.httpService.getSurveyQuestionsById(this.surveyId).subscribe({
             next: (data) => {
                 this.surveyQuestionsArray = data;
+                console.log("survey-questions-component",data);
                 this.assignSurveyQuestionResponseArray(this.surveyQuestionsArray);
             },
             error: (e) => {
@@ -74,7 +75,7 @@ export class SurveyQuestionsComponent {
         this.updateSelectAndRatingArray = [];
         for (let i = 0; i < surveyQuestionsArray.length; ++i) {
             this.surveyQuestionResponseArray.push({ questionResponseId: 0, surveyQuestionId: this.surveyQuestionsArray[i].surveyQuestionId, comment: '', selectedOption: 0 });
-            switch (surveyQuestionsArray[i].responseType) {
+            switch (surveyQuestionsArray[i].questionType) {
                 case 'Rating':
                     this.updateSelectAndRatingArray.push({ selectedRating: 0 });
                     break;

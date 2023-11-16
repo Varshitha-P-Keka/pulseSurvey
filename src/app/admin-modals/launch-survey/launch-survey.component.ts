@@ -6,7 +6,7 @@ import {FormGroup,ReactiveFormsModule,FormBuilder,FormArray,FormsModule, Validat
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { BsDropdownDirective, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
-import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {BsDatepickerModule,BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
 
 import { ServicesService } from 'src/app/services/services.service';
 import { SurveyData } from 'src/app/modals/launchSurveyData';
@@ -22,8 +22,8 @@ enum ActiveStep {
   selector: 'app-launch-survey',
   standalone: true,
   imports: [CommonModule,BsDatepickerModule,ReactiveFormsModule,BsDropdownModule,AccordionModule,FormsModule,],
-  providers: [BsModalService],
-  templateUrl: './launch-survey.component.html',
+  providers: [BsModalService, BsDatepickerConfig],
+  templateUrl: './launch-survey.component.html'
 })
 
 export class LaunchSurveyComponent implements OnInit {

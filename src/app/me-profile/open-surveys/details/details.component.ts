@@ -8,7 +8,7 @@ import { UserDataService } from 'src/app/services/user-data.service';
   selector: 'app-details',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './details.component.html',
+  templateUrl: './details.component.html'
 })
 
 export class DetailsComponent {

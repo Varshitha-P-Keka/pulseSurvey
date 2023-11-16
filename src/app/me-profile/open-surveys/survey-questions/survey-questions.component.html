@@ -2,7 +2,7 @@
     <ng-container *ngIf = responseArrayFlag >
         <div class="mb-10" *ngFor="let question of surveyQuestionsArray; index as i">
             <p class="survey-question">{{i+1}}. {{question.questionText}}</p>
-            <p class="mb-10 survey-response-type">Response type: {{question.responseType}}</p>
+            <p class="mb-10 survey-response-type">Response type: {{question.questionType}}</p>
             <ng-container *ngIf="question.questionType=='Text'">
                 <div class="p-20 survey-input-container">
                     <textarea [id]="question.surveyQuestionId" (blur)="updateComment($event)" class="p-8 border-radius-4 survey-input" placeholder={{question.description}}></textarea>

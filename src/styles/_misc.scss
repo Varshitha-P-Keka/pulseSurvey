@@ -50,10 +50,6 @@ body {
     display: flex;
 }
 
-// .register-page-wrap {
-//     background-color: #6e5883;
-// }
-
  .btn-primary,.stepper-wizard .step.active .step-number{
     background-color: #76618B!important;
     border-color: #76618B !important;
@@ -62,4 +58,13 @@ body {
 .btn.btn-link, .stepper-wizard .step .step-number {
     color: #76618B !important;
     border-color: #76618B !important;
+}
+.select-filter-picker {
+
+    .ng-select .ng-select-container{
+        border:none;
+        border-right: 1px solid #ccc;
+        border-radius: 0 !important;
+        border-top-left-radius: 3px !important;
+    }
 }

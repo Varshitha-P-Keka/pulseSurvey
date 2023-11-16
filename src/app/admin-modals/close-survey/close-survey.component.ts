@@ -4,13 +4,15 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ServicesService } from 'src/app/services/services.service';
 import { RouterLink } from '@angular/router';
 import { ModalServiceService } from 'src/app/services/modal-service.service';
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ReactiveFormsModule} from '@angular/forms';
 
 @Component ({
   selector: 'app-close-survey',
   standalone: true,
-  imports: [CommonModule, RouterLink],
-  providers: [BsModalService],
-  templateUrl: './close-survey.component.html',
+  imports: [CommonModule, RouterLink, BsDatepickerModule, ReactiveFormsModule],
+  providers: [BsModalService, BsDatepickerConfig],
+  templateUrl: './close-survey.component.html'
 })
 
 export class CloseSurveyComponent implements OnInit {

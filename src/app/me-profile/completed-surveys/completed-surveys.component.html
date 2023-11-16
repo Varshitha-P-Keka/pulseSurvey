@@ -1,22 +1,25 @@
 <div class="m-20 completed-surveys-container">
     <h2>Completed Pulse Surveys</h2>
     <p class="mb-20">Here you can see the pulse surveys that you have completed.</p>
-<div class="d-flex">
-        <div class="select-filter-picker">
-            <ng-select [searchable]="false" placeholder="Launched Between" (change)="filterPicked($event)">
-                <ng-option *ngFor="let selectedOption of filterOptions" [value] ="selectedOption.name" >{{selectedOption.name}}</ng-option>
-            </ng-select>
+    <div class="d-flex filter-container">
+        <div>
+            <div class="select-filter-picker">
+                <ng-select [searchable]="false" placeholder="Launched Between" (change)="filterDropDown($event.id)" [items]="filterOptions" bindLabel="name" bindValue="id" [clearable]="true" [(ngModel)]="selectedFilterId"></ng-select>
+            </div>
+            <div class="date-range-picker input-calendar w-300 form-group">
+                <input #dateRangeCalendar type="text" class="selected-filters form-control" bsDaterangepicker placement="right" [bsConfig]="{ showWeekNumbers: false, isAnimated: false, rangeInputFormat: 'D MMM YYYY' }" [(ngModel)]="selectedDate" (ngModelChange)="onDateChange($event)" />
+            </div>
         </div>
         <div class="search-filter-text d-flex">
             <label class="position-relative"><i class="ki ki-search position-absolute"></i></label>
-            <input class="h-100 pl-32" type="search" placeholder="Search">
+            <input class="h-100 pl-32" type="search" placeholder="Search" (input)="filterOnInput($event.target)" [(ngModel)]="inputTextFilter"/>
         </div>
         <div class="filter-reset-btn d-flex">
             <label class="position-relative"><i class="ki ki-refresh position-absolute"></i></label>
-            <input class="filter-reset-btn" type="reset">
+            <input class="filter-reset-btn" type="reset" (click)="reset()"/>
         </div>
-</div>
-    <table *ngIf="completedSurveys" class="table standard-table two-line-table">
+    </div>
+    <table *ngIf="filteredSurveys" class="table standard-table two-line-table">
         <thead>
             <tr>
                 <th>SURVEY TITLE</th>
@@ -26,21 +29,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let survey of completedSurveys">
+            <tr *ngFor="let survey of filteredSurveys">
                 <td>
-                    <p class="fw-bold">{{survey.surveyTitle}}</p>
-                    <p>{{survey.surveyDescription}}</p>
+                    <p class="fw-bold">{{ survey.surveyTitle }}</p>
+                    <p>{{ survey.surveyDescription }}</p>
                 </td>
                 <td>
-                    <p class="fw-bold">{{survey.launchedOn | date: 'mediumDate'}}</p>
-                    <p>by {{survey.launchedBy}}</p>
+                    <p class="fw-bold">{{ survey.launchedOn | date : 'mediumDate' }}</p>
+                    <p>by {{ survey.launchedBy }}</p>
                 </td>
                 <td>
-                    <p class="fw-bold">{{survey.closedOn | date: 'mediumDate'}}</p>
-                    <p>by {{survey.launchedBy}}</p>
+                    <p class="fw-bold">{{ survey.closedOn | date : 'mediumDate' }}</p>
+                    <p>by {{ survey.launchedBy }}</p>
                 </td>
                 <td>
-                    <p class="fw-bold">{{survey.completedOn | date: 'mediumDate'}}</p>
+                    <p class="fw-bold">{{ survey.completedOn | date : 'mediumDate' }}</p>
                 </td>
             </tr>
         </tbody>

@@ -10,10 +10,10 @@ import jwt_decode from 'jwt-decode';
 import { loggeduser } from '../modals/modal';
 
 @Component({
-  selector: 'app-login-employee',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './login-employee.component.html',
+    selector: 'app-login-employee',
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: './login-employee.component.html'
 })
 
 export class LoginEmployeeComponent {

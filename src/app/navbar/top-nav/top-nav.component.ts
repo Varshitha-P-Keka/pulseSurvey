@@ -10,7 +10,7 @@ import { ModalServiceService } from 'src/app/services/modal-service.service';
   selector: 'app-top-nav',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './top-nav.component.html',
+  templateUrl: './top-nav.component.html'
 })
 export class TopNavComponent {
   @Input() userDetails:loggeduser={name:'',emailaddress:'',employeeId:'',role:''};

@@ -8,7 +8,7 @@ import { UserDataService } from 'src/app/services/user-data.service';
   selector: 'app-small-modal-survey-confirmation',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './small-modal-survey-confirmation.component.html',
+  templateUrl: './small-modal-survey-confirmation.component.html'
 })
 export class SmallModalSurveyConfirmationComponent {
 

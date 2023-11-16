@@ -10,7 +10,7 @@ import { UserDataService } from '../services/user-data.service';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule,LeftNavComponent,TopNavComponent,RouterOutlet,RouterLink],
-  templateUrl: './home.component.html',
+  templateUrl: './home.component.html'
 })
 export class HomeComponent { 
   userDetails:any;

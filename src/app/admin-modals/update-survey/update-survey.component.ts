@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule,DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router,RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup} from '@angular/forms';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule, BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
 import { BehaviorSubject } from 'rxjs';
 
 
@@ -15,9 +15,9 @@ import { ModalServiceService } from 'src/app/services/modal-service.service';
 @Component ({
   selector: 'app-update-survey',
   standalone: true,
-  imports: [CommonModule, BsDatepickerModule, ReactiveFormsModule,FormsModule],
-  providers: [BsModalService],
-  templateUrl: './update-survey.component.html',
+  imports: [CommonModule, RouterLink, BsDatepickerModule, ReactiveFormsModule,FormsModule],
+  providers: [BsModalService, BsDatepickerConfig],
+  templateUrl: './update-survey.component.html'
 })
 
 export class UpdateSurveyComponent implements OnInit {

@@ -16,8 +16,7 @@ import {BsDatepickerConfig,BsDatepickerModule} from 'ngx-bootstrap/datepicker';
   standalone: true,
   imports: [CommonModule,BsDatepickerModule,ReactiveFormsModule,BsDropdownModule,AccordionModule,FormsModule,],
   providers: [BsModalService, BsDatepickerConfig],
-  templateUrl: './launch-survey.component.html',
-  styleUrls: ['./launch-survey.component.scss'],
+  templateUrl: './launch-survey.component.html'
 })
 
 export class LaunchSurveyComponent implements OnInit {

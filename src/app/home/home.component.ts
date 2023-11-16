@@ -10,8 +10,7 @@ import { UserDataService } from '../services/user-data.service';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule,LeftNavComponent,TopNavComponent,RouterOutlet,RouterLink],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './home.component.html'
 })
 export class HomeComponent { 
   userDetails:any;
@@ -26,9 +25,7 @@ export class HomeComponent {
         localStorage.setItem('currentUser',JSON.stringify(this.userDetails));
       }
     })
-    // this.router.navigate(['pulseSurvey/home/openSurveys']);
-    this.router.navigate(['pulseSurvey/home/completedSurveys']);
-
+    this.router.navigate(['pulseSurvey/home/openSurveys']);
   }
 
   handleShowNavChange(value: boolean) {

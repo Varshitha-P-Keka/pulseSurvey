@@ -11,8 +11,7 @@ import { ServicesService } from 'src/app/services/services.service';
     selector: 'app-completed-surveys',
     standalone: true,
     imports: [CommonModule, NgSelectModule, FormsModule, BsDatepickerModule],
-    templateUrl: './completed-surveys.component.html',
-    styleUrls: ['./completed-surveys.component.scss'],
+    templateUrl: './completed-surveys.component.html'
 })
 export class CompletedSurveysComponent {
     @ViewChild('dateRangeCalendar') dateRangCalendar!: ElementRef;

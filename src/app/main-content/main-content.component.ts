@@ -9,8 +9,7 @@ import { SettingsComponent } from '../admin/settings/settings.component';
   selector: 'app-main-content',
   standalone: true,
   imports: [CommonModule,RouterModule, RouterOutlet,SurveysComponent,SettingsComponent],
-  templateUrl: './main-content.component.html',
-  styleUrls: ['./main-content.component.scss'],
+  templateUrl: './main-content.component.html'
 })
 export class MainContentComponent {
 }

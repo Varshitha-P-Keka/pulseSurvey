@@ -1,60 +1,22 @@
-* {
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-}
-:root {
-    --primary-color-light:rgb(118, 97, 139);
-}
+@import '~@ng-select/ng-select/themes/material.theme.css';
 
-.btn-group.btn-group-secondary .btn-link.btn.active, .btn-link {
-    color: white !important;
-}
-
-
-body {
-    height:100vh;
-    margin-top: 0;
-}
-
-.sub-topnav.nav .active a::after {
-    border-color: #76618B !important;
-}
-
-.bottom  {
-    position: absolute;
-    z-index: 999999;
-}
-
-.bs-datepicker {
-    top:13px;
-    left: 57px;
-}
-
-.bs-datepicker .bs-datepicker-body .selected, .bs-datepicker .bs-datepicker-head {
-    background-color: #76618B !important;
-}
-
-.step-label span {
-    width: 128px;
-    display: flex;
-}
-
- .btn-primary,.stepper-wizard .step.active .step-number{
-    background-color: #76618B!important;
-    border-color: #76618B !important;
-}
-
-.btn.btn-link, .stepper-wizard .step .step-number {
-    color: #76618B !important;
-    border-color: #76618B !important;
-}
-.select-filter-picker {
-
-    .ng-select .ng-select-container{
-        border:none;
-        border-right: 1px solid #ccc;
-        border-radius: 0 !important;
-        border-top-left-radius: 3px !important;
-    }
-}
+@import './styles/misc';
+@import './styles/completed-surveys';
+@import './styles/settings';
+@import './styles/active-surveys';
+@import './styles/closed-surveys';
+@import './styles/surveys';
+@import './styles/admin';
+@import './styles/launch-survey';
+@import './styles/update-survey';
+@import './styles/home';
+@import './styles/login-employee';
+@import './styles/survey-questions';
+@import './styles/open-surveys';
+@import './styles/take-survey';
+@import './styles/question-details';
+@import './styles/survey-confirmation';
+@import './styles/left-nav';
+@import './styles/top-nav';
+@import './styles/register-employee';
+@import './styles/verification';

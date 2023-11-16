@@ -10,8 +10,7 @@ import { ServicesService } from '../services/services.service';
     selector: 'app-register-employee',
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule],
-    templateUrl: './register-employee.component.html',
-    styleUrls: ['./register-employee.component.scss'],
+    templateUrl: './register-employee.component.html'
 })
 export class RegisterEmployeeComponent {
     registrationForm!: FormGroup;

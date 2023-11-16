@@ -9,8 +9,7 @@ import { loggeduser } from 'src/app/modals/modal';
   selector: 'app-left-nav',
   standalone: true,
   imports: [CommonModule,RouterModule],
-  templateUrl: './left-nav.component.html',
-  styleUrls: ['./left-nav.component.scss']
+  templateUrl: './left-nav.component.html'
 })
 export class LeftNavComponent {
   @Input() userDetails:loggeduser={name:'',emailaddress:'',employeeId:'',role:''};

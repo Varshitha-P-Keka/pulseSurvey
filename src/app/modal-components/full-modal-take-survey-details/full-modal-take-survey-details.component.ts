@@ -13,8 +13,7 @@ import { UserDataService } from 'src/app/services/user-data.service';
   selector: 'app-full-modal-take-survey-details',
   standalone: true,
   imports: [CommonModule,DetailsComponent,SurveyQuestionsComponent,SmallModalSurveyConfirmationComponent],
-  templateUrl: './full-modal-take-survey-details.component.html',
-  styleUrls: ['./full-modal-take-survey-details.component.scss']
+  templateUrl: './full-modal-take-survey-details.component.html'
 })
 export class FullModalTakeSurveyDetailsComponent {
   surveyId:any=0;

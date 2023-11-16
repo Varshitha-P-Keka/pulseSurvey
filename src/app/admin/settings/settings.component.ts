@@ -16,8 +16,7 @@ import { CreateTemplateComponent } from './create-template/create-template.compo
   standalone: true,
   imports: [CommonModule,RouterLink,RouterOutlet,UpdateTemplateComponent,CreateTemplateComponent,DeleteTemplateComponent],
   providers: [BsModalService],
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  templateUrl: './settings.component.html'
 })
 export class SettingsComponent implements OnInit {
   templates:any;

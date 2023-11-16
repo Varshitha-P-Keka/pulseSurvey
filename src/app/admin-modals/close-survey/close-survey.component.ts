@@ -16,8 +16,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
   standalone: true,
   imports: [CommonModule, RouterLink, BsDatepickerModule, ReactiveFormsModule],
   providers: [BsModalService, BsDatepickerConfig],
-  templateUrl: './close-survey.component.html',
-  styleUrls: ['./close-survey.component.scss']
+  templateUrl: './close-survey.component.html'
 })
 export class CloseSurveyComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig> = {

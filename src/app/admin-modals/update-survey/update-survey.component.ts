@@ -19,8 +19,7 @@ import { BehaviorSubject } from 'rxjs';
   standalone: true,
   imports: [CommonModule, RouterLink, BsDatepickerModule, ReactiveFormsModule,ActiveSurveysComponent,FormsModule],
   providers: [BsModalService, BsDatepickerConfig],
-  templateUrl: './update-survey.component.html',
-  styleUrls: ['./update-survey.component.scss']
+  templateUrl: './update-survey.component.html'
 })
 
 export class UpdateSurveyComponent implements OnInit {

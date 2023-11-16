@@ -6,8 +6,7 @@ import { Router, RouterOutlet } from '@angular/router';
   selector: 'app-surveys',
   standalone: true,
   imports: [CommonModule,RouterOutlet],
-  templateUrl: './surveys.component.html',
-  styleUrls: ['./surveys.component.scss']
+  templateUrl: './surveys.component.html'
 })
 export class SurveysComponent {
   showActiveTab: boolean = true;

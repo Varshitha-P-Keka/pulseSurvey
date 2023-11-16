@@ -12,8 +12,7 @@ import { FullModalTakeSurveyDetailsComponent } from 'src/app/modal-components/fu
     selector: 'app-open-surveys',
     standalone: true,
     imports: [CommonModule, RouterOutlet, FullModalTakeSurveyDetailsComponent],
-    templateUrl: './open-surveys.component.html',
-    styleUrls: ['./open-surveys.component.scss'],
+    templateUrl: './open-surveys.component.html'
 })
 export class OpenSurveysComponent {
     @Input() userDetails: loggeduser = { name: '', emailaddress: '', employeeId: '', role: '' };

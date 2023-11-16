@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
   selector: 'app-verification',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './verification.component.html',
-  styleUrls: ['./verification.component.scss']
+  templateUrl: './verification.component.html'
 })
 export class VerificationComponent {
 

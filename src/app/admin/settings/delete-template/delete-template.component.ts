@@ -9,8 +9,7 @@ import { ModalServiceService } from 'src/app/services/modal-service.service';
   standalone: true,
   imports: [CommonModule],
   providers: [BsModalService],
-  templateUrl: './delete-template.component.html',
-  styleUrls: ['./delete-template.component.scss']
+  templateUrl: './delete-template.component.html'
 })
 
 export class DeleteTemplateComponent {

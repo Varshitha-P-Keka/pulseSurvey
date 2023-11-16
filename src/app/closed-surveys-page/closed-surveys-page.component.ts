@@ -6,8 +6,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-closed-surveys-page',
   standalone: true,
   imports: [CommonModule,RouterOutlet],
-  templateUrl: './closed-surveys-page.component.html',
-  styleUrls: ['./closed-surveys-page.component.scss']
+  templateUrl: './closed-surveys-page.component.html'
 })
 export class ClosedSurveysPageComponent {
 

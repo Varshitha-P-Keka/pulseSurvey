@@ -12,8 +12,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
     selector: 'app-right-modal-question-details',
     standalone: true,
     imports: [CommonModule, FormsModule, NgSelectModule, BsDatepickerModule],
-    templateUrl: './right-modal-question-details.component.html',
-    styleUrls: ['./right-modal-question-details.component.scss'],
+    templateUrl: './right-modal-question-details.component.html'
 })
 export class RightModalQuestionDetailsComponent {
     currentSurvey: any;

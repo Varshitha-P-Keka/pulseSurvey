@@ -15,8 +15,7 @@ import { UpdateSurveyComponent } from 'src/app/admin-modals/update-survey/update
   standalone: true,
   imports: [CommonModule,RouterLink,RouterOutlet,UpdateSurveyComponent,CloseSurveyComponent],
   providers: [BsModalService],
-  templateUrl: './active-surveys.component.html',
-  styleUrls: ['./active-surveys.component.scss']
+  templateUrl: './active-surveys.component.html'
 })
 
 export class ActiveSurveysComponent {

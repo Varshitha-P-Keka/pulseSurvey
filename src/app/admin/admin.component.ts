@@ -7,8 +7,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-admin',
   standalone: true,
   imports: [CommonModule,RouterOutlet],
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  templateUrl: './admin.component.html'
 })
 
 export class AdminComponent {
@@ -16,7 +15,7 @@ export class AdminComponent {
   constructor(public router:Router){}
 
   navigateTo(route: string) {
-    this.router.navigate(['/pulseSurvey/home/Admin/'+ route]);
+    this.router.navigate([`/pulseSurvey/home/Admin/${route}`]);
   }
 
   isActive(route: string) {

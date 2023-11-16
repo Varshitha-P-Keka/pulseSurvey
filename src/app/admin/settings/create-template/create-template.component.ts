@@ -14,8 +14,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule,AccordionModule],
   providers: [BsModalService,BsDatepickerConfig],
-  templateUrl: './create-template.component.html',
-  styleUrls: ['./create-template.component.scss']
+  templateUrl: './create-template.component.html'
 })
 
 export class CreateTemplateComponent implements OnInit {

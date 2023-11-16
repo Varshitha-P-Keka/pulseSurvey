@@ -9,8 +9,7 @@ import { loggeduser } from 'src/app/modals/modal';
   selector: 'app-top-nav',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './top-nav.component.html',
-  styleUrls: ['./top-nav.component.scss']
+  templateUrl: './top-nav.component.html'
 })
 export class TopNavComponent {
   @Input() userDetails:loggeduser={name:'',emailaddress:'',employeeId:'',role:''};

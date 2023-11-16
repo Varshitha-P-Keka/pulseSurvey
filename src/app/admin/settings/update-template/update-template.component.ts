@@ -8,15 +8,13 @@ import { ModalServiceService } from 'src/app/services/modal-service.service';
 import { DatePipe } from '@angular/common';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import {BsDatepickerConfig,BsDatepickerModule} from 'ngx-bootstrap/datepicker';
-import { ThisReceiver } from '@angular/compiler';
 
 @Component ({
   selector: 'app-update-template',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule,AccordionModule],
   providers: [BsModalService,BsDatepickerConfig],
-  templateUrl: './update-template.component.html',
-  styleUrls: ['./update-template.component.scss']
+  templateUrl: './update-template.component.html'
 })
 
 export class UpdateTemplateComponent {

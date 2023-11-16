@@ -12,8 +12,7 @@ import { ServicesService } from 'src/app/services/services.service';
   selector: 'app-closed-surveys',
   standalone: true,
   imports: [CommonModule,NgSelectModule,FormsModule,BsDatepickerModule],
-  templateUrl: './closed-surveys.component.html',
-  styleUrls: ['./closed-surveys.component.scss']
+  templateUrl: './closed-surveys.component.html'
 })
 
 export class ClosedSurveysComponent {

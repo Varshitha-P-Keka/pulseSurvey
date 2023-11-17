@@ -1,10 +1,14 @@
 .register-page-wrap {
   background: linear-gradient(to bottom, #9796f0, #fbc7d4) !important;
 
-  .authentication-forms {
-    outline: 1px dashed rgb(32, 106, 163);
-    outline-offset: 60px;
-  }
+    .form-group-outline{
+        outline:1px dashed rgb(32,106,163);
+        outline-offset: 60px;
+    }
+    
+    .register-form{
+        width:30%;
+    }
 
   .register-form {
     width: 30%;

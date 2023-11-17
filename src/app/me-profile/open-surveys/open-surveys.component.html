@@ -14,16 +14,16 @@
         <tbody>
             <tr *ngFor="let eachSurvey of surveyDetails">
                 <td>
-                    <p class="fw-bold">{{ eachSurvey.surveyTitle }}</p>
-                    <p>{{ eachSurvey.surveyDescription }}</p>
+                    <p class="font-weight-normal">{{ eachSurvey.surveyTitle }}</p>
+                    <p class="table-color-secondary">{{ eachSurvey.surveyDescription }}</p>
                 </td>
                 <td>
-                    <p class="fw-bold">{{ eachSurvey.expiresOn | date: 'mediumDate' }}</p>
-                    <p>Expires in {{eachSurvey.expiresAfter}} days</p>
+                    <p class="font-weight-normal">{{ eachSurvey.expiresOn | date: 'mediumDate' }}</p>
+                    <p class="table-color-secondary">Expires in {{eachSurvey.expiresAfter}} days</p>
                 </td>
                 <td>
-                    <p class="fw-bold">{{ eachSurvey.launchedOn | date: 'mediumDate' }}</p>
-                    <p>by {{ eachSurvey.launchedBy }}</p>
+                    <p class="font-weight-normal">{{ eachSurvey.launchedOn | date: 'mediumDate' }}</p>
+                    <p class="table-color-secondary">by {{ eachSurvey.launchedBy }}</p>
                 </td>
                 <td>
                     <a class="take-survey-link" (click)="openFullModal(eachSurvey.surveyId)">Take Survey</a>

@@ -9,6 +9,22 @@
     --primary-color-light:rgb(118, 97, 139);
 }
 
+.light-theme{
+    --primary-nav-background: #FFFFFF;
+    --primary-background-color: #fff;
+    --secondary-background-color: #f3f4f7;
+    --primary-color-text: #222;
+    --secondary-color-text: #777;
+}
+
+.dark-theme{
+    --primary-nav-background: #2F394C;
+    --primary-background-color: #273143;
+    --secondary-background-color: #1B2531;
+    --primary-color-text: #E4E6E9;
+    --secondary-color-text: #A2A9B4;
+}
+
 .btn-group.btn-group-secondary .btn-link.btn.active, .btn-link {
     color: white !important;
 }
@@ -68,4 +84,8 @@ body {
         border-radius: 0 !important;
         border-top-left-radius: 3px !important;
     }
+}
+
+.table-color-secondary{
+    color: #9da0a3;
 }

@@ -5,6 +5,7 @@ import { DatePipe } from '@angular/common';
 import { loggeduser } from 'src/app/modals/modal';
 import { ServicesService } from 'src/app/services/services.service';
 import { ModalServiceService } from 'src/app/services/modal-service.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 
 @Component({
@@ -18,8 +19,9 @@ export class TopNavComponent {
   today:any;
   userDetails:any
   selectedFile:any
+  selectedTheme:string = 'light-theme';
 
-  constructor(private date:DatePipe,private ModalService:ModalServiceService,private service:ServicesService){}
+  constructor(private date:DatePipe,private ModalService:ModalServiceService,private service:ServicesService,private udService: UserDataService){}
 
   ngOnInit() {
     this.service.getEmployeeDetails().subscribe((data:any)=>{
@@ -32,5 +34,16 @@ export class TopNavComponent {
     this.selectedFile = this.userDetails.profilePicture;
     console.log(this.selectedFile);
     
+  }
+
+  darkTheme(){
+    if(this.selectedTheme=='light-theme'){
+      this.selectedTheme = 'dark-theme';
+      this.udService.setTheme('dark-theme');
+    }
+    else{
+      this.selectedTheme = 'light-theme';
+      this.udService.setTheme('light-theme');
+    }
   }
 }

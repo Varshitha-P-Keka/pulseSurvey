@@ -4,28 +4,28 @@
         <div class="d-flex mt-10 view-survey-details justify-content-between">
             <div>
                 <p class="color-grey">STATUS</p>
-                <p class="fw-bold">{{currentSurvey.status}}</p>
+                <p class="font-weight-normal">{{currentSurvey.status}}</p>
             </div>
             <div>
                 <p class="color-grey">EXPIRED ON</p>
-                <p class="fw-bold">{{currentSurvey.expiredOn | date: 'mediumDate'}}</p>
+                <p class="font-weight-normal">{{currentSurvey.expiredOn | date: 'mediumDate'}}</p>
             </div>
             <div>
                 <p class="color-grey">LAUNCHED ON</p>
-                <p class="fw-bold">{{currentSurvey.launchedOn | date: 'mediumDate'}}</p>
+                <p class="font-weight-normal">{{currentSurvey.launchedOn | date: 'mediumDate'}}</p>
             </div>
             <div>
                 <p class="color-grey">LAUNCHED BY</p>
-                <p class="fw-bold">{{currentSurvey.launchedBy}}</p>
+                <p class="font-weight-normal">{{currentSurvey.launchedBy}}</p>
             </div>
             <div>
                 <p class="color-grey">COMPLETION</p>
-                <p class="fw-bold">{{currentSurvey.completionPercent}}%</p>
+                <p class="font-weight-normal">{{currentSurvey.completionPercent}}%</p>
             </div>
         </div>
     </div>
     <div class="mt-10 p-20 view-survey-item" *ngFor="let question of currentSurvey.surveyQuestionsSummary, index as i">
-        <p class="fw-bold">{{i+1}}. {{question.questionText}}</p>
+        <p class="font-weight-normal">{{i+1}}. {{question.questionText}}</p>
         <div class="color-grey d-flex">
             <p>Response Type: </p>
             <p class="pl-4">{{question.questionType}}</p>

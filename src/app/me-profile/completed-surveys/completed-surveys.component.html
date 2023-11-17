@@ -31,19 +31,19 @@
         <tbody>
             <tr *ngFor="let survey of filteredSurveys">
                 <td>
-                    <p class="fw-bold">{{ survey.surveyTitle }}</p>
-                    <p>{{ survey.surveyDescription }}</p>
+                    <p class="font-weight-normal">{{ survey.surveyTitle }}</p>
+                    <p class="table-color-secondary">{{ survey.surveyDescription }}</p>
                 </td>
                 <td>
-                    <p class="fw-bold">{{ survey.launchedOn | date : 'mediumDate' }}</p>
-                    <p>by {{ survey.launchedBy }}</p>
+                    <p class="font-weight-normal">{{ survey.launchedOn | date : 'mediumDate' }}</p>
+                    <p class="table-color-secondary">by {{ survey.launchedBy }}</p>
                 </td>
                 <td>
-                    <p class="fw-bold">{{ survey.closedOn | date : 'mediumDate' }}</p>
-                    <p>by {{ survey.launchedBy }}</p>
+                    <p class="font-weight-normal">{{ survey.closedOn | date : 'mediumDate' }}</p>
+                    <p class="table-color-secondary">by {{ survey.launchedBy }}</p>
                 </td>
                 <td>
-                    <p class="fw-bold">{{ survey.completedOn | date : 'mediumDate' }}</p>
+                    <p class="font-weight-normal">{{ survey.completedOn | date : 'mediumDate' }}</p>
                 </td>
             </tr>
         </tbody>

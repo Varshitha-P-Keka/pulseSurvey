@@ -12,7 +12,7 @@ import { ServicesService } from 'src/app/services/services.service';
 
 import { BsModalRef,BsModalService } from 'ngx-bootstrap/modal';
 
-@Component({
+@Component ({
   selector: 'app-closed-surveys',
   standalone: true,
   imports: [CommonModule,NgSelectModule,FormsModule,BsDatepickerModule,RelaunchSurveyComponent],
@@ -50,7 +50,6 @@ export class ClosedSurveysComponent {
     this.httpService.getClosedSurveys().subscribe({
       next:(data)=>{
         this.closedSurveys = data;
-        console.log(data);
         this.filteredSurveys = data;
         this.combinedFilterArray = data;
       },
@@ -62,26 +61,24 @@ export class ClosedSurveysComponent {
     this.showClosedSurveys();
   }
 
-  // Development
   filterOnInput(event: any) {
     this.inputTextFilter = event.value.trim();
     if(this.selectedFilterId == 4)
-        this.combinedSelectFilter(this.selectedFilterId,this.filterStartDate,this.filterEndDate);
+      this.combinedSelectFilter(this.selectedFilterId,this.filterStartDate,this.filterEndDate);
     else
-        this.combinedSelectFilter(this.selectedFilterId);
+      this.combinedSelectFilter(this.selectedFilterId);
 }
 
 filterDropDown(id: number) {
     if(id==4){
-        this.dateRangCalendar.nativeElement.click();
+      this.dateRangCalendar.nativeElement.click();
     }
     else
-        this.combinedSelectFilter(id);
+      this.combinedSelectFilter(id);
 }
 
 combinedSelectFilter(id: number, setBeginDate?: any, setEndDate?: any){
     this.selectedFilterId = id;
-    console.log('Fliter Text', this.inputTextFilter);
     let today = new Date();
     let beginDate = new Date(today);
     let endDate = new Date(today);
@@ -96,7 +93,7 @@ combinedSelectFilter(id: number, setBeginDate?: any, setEndDate?: any){
     if(this.selectedFilterId){
         this.filteredSurveys = this.closedSurveys.filter((survey: any) => {
             let launchedDate = new Date(survey.launchedOn);
-                return launchedDate >= beginDate && launchedDate <= endDate;
+              return launchedDate >= beginDate && launchedDate <= endDate;
             });
         this.combinedFilterArray = this.filteredSurveys;
     }
@@ -117,11 +114,6 @@ reset(){
     this.selectedDate = null;
     this.filteredSurveys = this.closedSurveys;
 }
-  // Development
-
-  // filterPicked(val:string){
-  //   console.log("Option changed",val);
-  // }
 
   toggleDropdown(survey: any) {
     survey.dropdownOpen = !survey.dropdownOpen;
@@ -137,7 +129,6 @@ reset(){
     this.httpService.getClosedSurveys().subscribe({
       next:(data)=>{
         this.closedSurveys = data;
-        console.log(data);
       },
       error:(e)=>{
         console.log(e);
@@ -148,7 +139,6 @@ reset(){
   viewSurvey(survey:any){
     this.behaviorSubjectService.setViewSurveyId(survey.surveyId);
     this.router.navigate(['pulseSurvey/home/Admin/surveys/closed/view']);
-    console.log("View Survey",survey);
   }
 
 }

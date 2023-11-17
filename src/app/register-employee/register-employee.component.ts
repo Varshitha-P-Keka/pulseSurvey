@@ -25,6 +25,7 @@ export class RegisterEmployeeComponent {
     constructor(private fb: FormBuilder,private toastr: ToastrService, private router: Router, private service: ServicesService,private ModalService:ModalServiceService) {}
 
     ngOnInit() {
+      // this.toastr.error("Error", "This is error Toastr");
         this.registrationForm = this.fb.group ({
           EmployeeName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
           PasswordHash: ['', Validators.required],
@@ -45,7 +46,6 @@ export class RegisterEmployeeComponent {
         } 
         else {
           this.registrationForm.value['isAdmin'] = true;
-
         }
 
         this.registrationForm.value.PasswordHash = shajs('sha256').update(this.registrationForm.value.PasswordHash).digest('hex');
@@ -58,7 +58,7 @@ export class RegisterEmployeeComponent {
           },
           error:(e)=>{
             if(e.status === 409) {
-              this.errorToastr();
+              // this.errorToastr();
               alert("User Already exists");
             }
             else {
@@ -83,5 +83,11 @@ export class RegisterEmployeeComponent {
           };
           fileReader.readAsDataURL(selectedFile);
         }
-      }        
+      }   
+    
+  
+  
 }
+
+
+

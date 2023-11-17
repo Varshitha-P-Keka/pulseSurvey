@@ -1,6 +1,8 @@
+import { Guid } from "guid-typescript";
+
 export class SurveyQuestion {
     constructor(
-      public surveyQuestionId: number,
+      public surveyQuestionId: string,
       public questionText: string,
       public description: string,
       public questionType: string,

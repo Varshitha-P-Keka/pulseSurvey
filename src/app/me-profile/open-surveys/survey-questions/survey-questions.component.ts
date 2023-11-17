@@ -19,7 +19,7 @@ import { surveyQuestionAddResponse } from 'src/app/modals/modal';
 })
 export class SurveyQuestionsComponent {
     @Input() surveyId: number = 0;
-    userDetails: loggeduser = { name: '', emailaddress: '', employeeId: '', role: '' };
+    userDetails: loggeduser = { name: '', emailaddress: '', employeeId: '', role: '',profilePicture:'' };
     surveyQuestionsArray: any;
     selectedOption: number = 0;
     userResponse: string = '';

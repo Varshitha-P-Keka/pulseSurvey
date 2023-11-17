@@ -19,7 +19,7 @@ export class HomeComponent {
   constructor(private udService:UserDataService, public router:Router){}
 
   ngOnInit(){
-  this.udService.getCredentials().subscribe((next:any)=>{
+  this.udService.getCredentials().subscribe((next:any)=> {
       if(JSON.stringify(next)!='{}'){
         this.userDetails = next;
         localStorage.setItem('currentUser',JSON.stringify(this.userDetails));

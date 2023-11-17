@@ -15,7 +15,7 @@ import { FullModalTakeSurveyDetailsComponent } from 'src/app/modal-components/fu
     templateUrl: './open-surveys.component.html'
 })
 export class OpenSurveysComponent {
-    @Input() userDetails: loggeduser = { name: '', emailaddress: '', employeeId: '', role: '' };
+    @Input() userDetails: loggeduser = { name: '', emailaddress: '', employeeId: '', role: '', profilePicture: ''};
     surveyDetails: any;
     currentDate: any;
     bsModalRef: BsModalRef | undefined;
@@ -26,9 +26,8 @@ export class OpenSurveysComponent {
     ngOnInit() {
         this.currentDate = new Date();
         this.userDetails = JSON.parse(<string>localStorage.getItem('currentUser'));
-        this.service.getOpenSurveysData(this.userDetails.employeeId).subscribe({
+        this.service.getOpenSurveysData().subscribe({
             next: (data) => {
-                console.log("Survey ts",data);
                 this.surveyDetails = data;
             },
             error: (e) => {

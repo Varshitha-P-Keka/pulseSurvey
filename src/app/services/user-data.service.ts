@@ -15,7 +15,7 @@ export class UserDataService {
   private viewSurveyId = new BehaviorSubject<number>(0);
   private viewClosedSurveyId = new BehaviorSubject<{}>({});
 
-  setCredentials(userData:loggeduser){
+  setCredentials(userData:loggeduser) {
     this.userCredentials.next(userData);
   }
 

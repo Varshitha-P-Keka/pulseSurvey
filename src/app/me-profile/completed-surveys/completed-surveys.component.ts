@@ -15,7 +15,7 @@ import { ServicesService } from 'src/app/services/services.service';
 })
 export class CompletedSurveysComponent {
     @ViewChild('dateRangeCalendar') dateRangCalendar!: ElementRef;
-    userDetails: loggeduser = { name: '', emailaddress: '', employeeId: '', role: '' };
+    userDetails: loggeduser = { name: '', emailaddress: '', employeeId: '', role: '',profilePicture:'' };
     completedSurveys: any;
     filteredSurveys: any;
     selectedFilterId: any;

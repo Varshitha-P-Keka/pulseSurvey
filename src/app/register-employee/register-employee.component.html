@@ -31,11 +31,11 @@
                 </div>
                 <div>
                     <label class="fw-bold">IsAdmin</label>
-                    <div>
+                    <div class="admin-radio-btns">
                         <input type="radio" id="yes" value="true" formControlName="isAdmin" />
-                        <label class="fw-bold" for="yes">Yes</label>
+                        <label class="fw-bold radio-buttons-label" for="yes">Yes</label>
                         <input type="radio" id="no" value="false" formControlName="isAdmin" />
-                        <label class="fw-bold" for="no">No</label>
+                        <label class="fw-bold radio-buttons-label" for="no">No</label>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary p-4 w-100" [disabled]="!registrationForm.valid || !(registrationForm.get('isAdmin')?.value)">Register</button>

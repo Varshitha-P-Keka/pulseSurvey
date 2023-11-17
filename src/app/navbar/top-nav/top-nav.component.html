@@ -11,10 +11,10 @@
         <div class="d-flex justify-content-between top-right-nav">
             <p>{{ today }}</p>
             <i class="ki ki-sun" (click)="darkTheme()"></i>
-            <p>{{userDetails.name}}</p>
+            <p>{{userDetails.employeeName}}</p>
             <div class="profile-picture-container">
                 <div>
-                    <img src="{{ selectedFile }}" class="profile-picture" src="" alt="dp">
+                    <img [src]="userDetails.profilePicture" class="profile-picture" src="" alt="dp">
                 </div>
             </div>
         </div>

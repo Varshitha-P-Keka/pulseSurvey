@@ -10,10 +10,17 @@
     }
 
     .top-right-nav{
-        width: 25%;
+        width: 36%;
     }
 
     .ki-sun {
         color: white;
     }
+}
+
+.profile-picture {
+    border-radius: 50%; /* Makes the image round */
+    width: 30px; /* Set your desired fixed width */
+    height: 30px; /* Set your desired fixed height */
+    object-fit: cover; /* Ensures the image covers the entire container */
 }

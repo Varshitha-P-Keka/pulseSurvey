@@ -23,7 +23,23 @@ export class ActiveSurveysComponent {
   surveys: any;
   dropdownOpen: boolean = false;
 
-  constructor(private router: Router,private service: ServicesService,public modalService: BsModalService,private ModalService: ModalServiceService) {}
+  constructor(private router: Router,private service: ServicesService,public modalService: BsModalService,private ModalService: ModalServiceService) {
+    
+  }
+
+  onClick(event: Event) {
+    if (!this.isClickedInside(event)) {
+      this.surveys.forEach((survey: any) => survey.dropdownOpen = false);
+    }
+  }
+
+  isClickedInside(event: Event): boolean {
+    return !!((event.target as HTMLElement).closest('.dropdown'));
+  }
+
+  closeAllDropdowns() {
+    this.surveys.forEach((survey: any) => (survey.dropdownOpen = false));
+  }
 
   ngOnInit(): void {
     this.subscribeToSurveyEvents();
@@ -38,6 +54,7 @@ export class ActiveSurveysComponent {
 
   toggleDropdown(survey: any) {
     survey.dropdownOpen = !survey.dropdownOpen;
+    document.addEventListener('click', this.onClick.bind(this));
   }
 
   toClosedSurveys(survey: any) {

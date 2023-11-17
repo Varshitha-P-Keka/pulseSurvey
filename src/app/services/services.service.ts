@@ -1,22 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { employee,verifyEmployee } from '../modals/modal';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class ServicesService {
 
   constructor(private http: HttpClient) {}
   originalToken: any = null;
   surveyIdResponse: any;
+  empToken:any;
 
   private surveyUpdatedSource = new BehaviorSubject<any>(null);
   surveyUpdated$ = this.surveyUpdatedSource.asObservable();
  
-  getVerifyEmployee(empData:verifyEmployee){
+  getVerifyEmployee(empData:verifyEmployee) {
     return this.http.post('https://localhost:7015/api/Employee/login',empData);
+  }
+
+  getEmployeeDetails() {
+    let tokenString = localStorage.getItem('token');
+    if (tokenString) {
+      let tokenObject = JSON.parse(tokenString);
+      this.empToken = tokenObject;
+      // console.log('hihihih',this.empToken.token);
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.empToken['token']}`);
+    return this.http.get('https://localhost:7015/api/employee/employeedetails', { headers });
   }
   
     private surveyEdited = new BehaviorSubject<any>(null);
@@ -25,15 +38,14 @@ export class ServicesService {
     private surveyAdded = new BehaviorSubject<any>(null);
     surveyAdded$ = this.surveyAdded.asObservable();
 
+    private templateAdded = new BehaviorSubject<any>(null);
+    templateAdded$ = this.templateAdded.asObservable();
 
-  private templateAdded = new BehaviorSubject<any>(null);
-  templateAdded$ = this.templateAdded.asObservable();
+    private templateUpdated = new BehaviorSubject<any>(null);
+    templateUpdated$ = this.templateUpdated.asObservable();
 
-  private templateUpdated = new BehaviorSubject<any>(null);
-  templateUpdated$ = this.templateUpdated.asObservable();
-
-  private templateDeleted = new BehaviorSubject<any>(null);
-  templateDeleted$ = this.templateDeleted.asObservable();
+    private templateDeleted = new BehaviorSubject<any>(null);
+    templateDeleted$ = this.templateDeleted.asObservable();
     
   setNewEmployee(empData: employee) {
     return this.http.post('https://localhost:7015/api/employee/register', empData);
@@ -76,7 +88,14 @@ export class ServicesService {
 }
 
   sendSurveyQuestions(data:any){  
-    this.http.post('https://localhost:7015/api/survey',data ).subscribe((response) => {this.surveyAdded.next(true);});
+    let tokenString = localStorage.getItem('token');
+    if (tokenString) {
+      let tokenObject = JSON.parse(tokenString);
+      this.empToken = tokenObject;
+    }
+    console.log(data)
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.empToken['token']}`);
+    this.http.post('https://localhost:7015/api/survey',data,{headers} ).subscribe((response) => {this.surveyAdded.next(true);});
   }
 
     getDetailedQuestionSummaryById(id: any){
@@ -87,19 +106,6 @@ export class ServicesService {
       return this.http.get(`https://localhost:7015/api/survey/analyticalquestionsummary/${id}`);
     }
 
-    launchNewSurvey(surveyData: any) {
-        this.http.post('https://localhost:7015/api/survey', surveyData).subscribe(
-            (response) => {
-                console.log('POST request successful for add survey', response);
-                this.surveyIdResponse = response;
-                this.surveyAdded.next(true);
-            },
-            (error) => {
-                console.error('Error occurred during PUT request', error);
-            }
-        );
-    }
-
     getSurveyId() {
         return this.surveyIdResponse;
     }
@@ -108,8 +114,14 @@ export class ServicesService {
         return this.http.get(`https://localhost:7015/api/survey/activesurveys`);
     }
 
-  getOpenSurveysData(id: any) {
-      return this.http.get(`https://localhost:7015/api/survey/opensurveys/${id}`);
+  getOpenSurveysData() {
+    let tokenString = localStorage.getItem('token');
+    if (tokenString) {
+      let tokenObject = JSON.parse(tokenString);
+      this.empToken = tokenObject;
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.empToken['token']}`);
+      return this.http.get(`https://localhost:7015/api/survey/opensurveys`, { headers });
   }
 
   getSurveyDetailsById(id: any) {
@@ -121,10 +133,22 @@ export class ServicesService {
   }
 
   postQuestionResponses(body: any) {
-      return this.http.post('https://localhost:7015/api/questionresponse/', body);
+    let tokenString = localStorage.getItem('token');
+    if (tokenString) {
+      let tokenObject = JSON.parse(tokenString);
+      this.empToken = tokenObject;
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.empToken['token']}`);
+      return this.http.post('https://localhost:7015/api/questionresponse/', body,{headers});
   }
 
   getCompletedSurveys(id: any) {
-      return this.http.get(`https://localhost:7015/api/survey/completedsurveys/${id}`);
+    let tokenString = localStorage.getItem('token');
+    if (tokenString) {
+      let tokenObject = JSON.parse(tokenString);
+      this.empToken = tokenObject;
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.empToken['token']}`);
+      return this.http.get(`https://localhost:7015/api/survey/completedsurveys/`,{headers});
   }
 }

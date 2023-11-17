@@ -1,5 +1,5 @@
-.register-page-wrap{
-    background:linear-gradient(to bottom, #9796f0,#fbc7d4) !important;
+.register-page-wrap {
+  background: linear-gradient(to bottom, #9796f0, #fbc7d4) !important;
 
     .form-group-outline{
         outline:1px dashed rgb(32,106,163);
@@ -10,15 +10,34 @@
         width:30%;
     }
 
-    label{
-        font-size: 15px;
-    }
+  .register-form {
+    width: 30%;
+  }
 
-    input{
-        border:2px solid white;
-    }
+  .radio-buttons-label {
+    padding-top: 0;
+    margin-right: 10px;
+  }
 
-    input:hover{
-        background-color: white;
-    }
+  .admin-radio-btns {
+    margin-top: 6px;
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-size: 15px;
+  }
+
+  input {
+    border: 2px solid white;
+  }
+
+  input:hover {
+    background-color: white;
+  }
+}
+
+.toast-container .ngx-toastr {
+  color: red !important;
+  background-color: black !important;
 }

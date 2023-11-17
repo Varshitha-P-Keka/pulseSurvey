@@ -13,7 +13,7 @@ import { loggeduser } from 'src/app/modals/modal';
 })
 
 export class LeftNavComponent {
-  @Input() userDetails:loggeduser={name:'',emailaddress:'',employeeId:'',role:''};
+  @Input() userDetails:loggeduser={name:'',emailaddress:'',employeeId:'',role:'',profilePicture: ''};
   @Output() showNavChange = new EventEmitter<boolean>();
   activeItem: any;
 

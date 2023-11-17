@@ -7,6 +7,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { BsDropdownDirective, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import {BsDatepickerModule,BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
+import { Guid } from 'guid-typescript';
 
 import { ServicesService } from 'src/app/services/services.service';
 import { SurveyData } from 'src/app/modals/launchSurveyData';
@@ -50,10 +51,16 @@ export class LaunchSurveyComponent implements OnInit {
   @ViewChild('dropdown', { static: true }) dropdown!: BsDropdownDirective;
   @ViewChild('launchNewSurvey', { static: true }) 
   launchNewSurvey!: TemplateRef<any>;
+  guid: any;
 
   constructor(private router: Router,private modalService: BsModalService,private ModalService: ModalServiceService,private service: ServicesService,private formBuilder: FormBuilder,private datePipe: DatePipe) {}
 
   ngOnInit(): void {
+    
+    let qid = Guid.create();
+      // let guidValue = qid.value;
+      let guidValue: string = Reflect.get(qid, 'value');
+      console.log(guidValue);
     this.basicFieldsForm = this.formBuilder.group ({
       surveyId: [''],
       surveyName: ['', [Validators.required]],
@@ -96,11 +103,17 @@ export class LaunchSurveyComponent implements OnInit {
     const surveyQuestionFormsArray = this.formResponses.map ((response) => response.surveyQuestionForm.value);
     const customSurveyQuestionFormsArray = surveyQuestionFormsArray.map((formValue: any) => {
       const options = formValue.inputFields.map((option: any, index: number) => ({ optionId: index + 1, optionText: option }));
-      return new SurveyQuestion(0,formValue.surveyQuestionName,formValue.surveyQuestionDescription,formValue.radiobutton,options
+      let qid = Guid.create();
+      let surveyQuestionId: string = Reflect.get(qid, 'value');
+      return new SurveyQuestion(surveyQuestionId,formValue.surveyQuestionName,formValue.surveyQuestionDescription,formValue.radiobutton,options
       );
     });
+    let qid = Guid.create();
+      let surveyId: string = Reflect.get(qid, 'value');
+    
 
-    const surveyData = new SurveyData (0,this.basicFieldsForm.value.surveyName,this.basicFieldsForm.value.surveyDescription,this.formatDate(new Date()),this.formatDate(this.basicFieldsForm.value.surveyExpiry),1,customSurveyQuestionFormsArray)
+    const surveyData = new SurveyData(surveyId,this.basicFieldsForm.value.surveyName,this.basicFieldsForm.value.surveyDescription,this.formatDate(new Date()),this.formatDate(this.basicFieldsForm.value.surveyExpiry),1,customSurveyQuestionFormsArray);
+    console.log(surveyData);
     this.service.sendSurveyQuestions(surveyData);
     this.hideModal(this.fullModalRef);
     this.hideModal(this.launchSurveyModalRef);

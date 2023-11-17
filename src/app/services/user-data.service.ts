@@ -14,6 +14,7 @@ export class UserDataService {
   private userSurveyQuestions = new BehaviorSubject<boolean>(false);
   private viewSurveyId = new BehaviorSubject<number>(0);
   private viewClosedSurveyId = new BehaviorSubject<{}>({});
+  private applicationTheme = new BehaviorSubject<string>('');
 
   setCredentials(userData:loggeduser){
     this.userCredentials.next(userData);
@@ -53,5 +54,13 @@ export class UserDataService {
 
   getViewClosedSurveyId(){
     return this.viewClosedSurveyId;
+  }
+
+  setTheme(theme:string){
+    this.applicationTheme.next(theme);
+  }
+
+  getTheme(){
+    return this.applicationTheme;
   }
 }

@@ -18,7 +18,7 @@
             </ng-container>
             <ng-container *ngIf="question.questionType=='Select one from list'">
                 <div class="mt-20 p-20 survey-input-container">
-                    <ng-select [id]="question.surveyQuestionId" [(ngModel)]="updateSelectAndRatingArray[i].selectedOption" [searchable]="false" (change)="optionSelected(question.surveyQuestionId,selectedOption)" >
+                    <ng-select [id]="question.surveyQuestionId" [(ngModel)]="updateSelectAndRatingArray[i].selectedOption" [searchable]="false" (change)="optionSelected(question.surveyQuestionId, $event)" >
                         <ng-option [id]="option.optionId" *ngFor="let option of question.options" [value]="option.optionId">{{option.optionText}}</ng-option>
                     </ng-select>
                 </div>

@@ -1,4 +1,4 @@
-import { Option } from "./optionsModal";
+import { Option } from './optionsModal';
 
 export class TemplateQuestion {
     templateQuestionId: number;
@@ -6,14 +6,14 @@ export class TemplateQuestion {
     questionText: string;
     description: string;
     questionType: string;
-    options: Option [];
-  
+    options: Option[];
+
     constructor(id: number, templateId: number, text: string, description: string, type: string, options: Option[]) {
-      this.templateQuestionId = id;
-      this.templateId = templateId;
-      this.questionText = text;
-      this.description = description;
-      this.questionType = type;
-      this.options = options;
+        this.templateQuestionId = id;
+        this.templateId = templateId;
+        this.questionText = text;
+        this.description = description;
+        this.questionType = type;
+        this.options = options;
     }
-  }
+}

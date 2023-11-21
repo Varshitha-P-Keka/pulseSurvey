@@ -1,6 +1,7 @@
 import { Component, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+
 import { VerificationComponent } from './verification/verification.component';
 import { UpdateTemplateComponent } from './admin/settings/update-template/update-template.component';
 import { UserDataService } from './services/user-data.service';
@@ -14,14 +15,12 @@ import { UserDataService } from './services/user-data.service';
 export class AppComponent {
   title = 'pulseSurvey';
 
-  constructor(private udService: UserDataService, private renderer: Renderer2){
-
+  constructor(private behaviorSubjectService: UserDataService, private renderer: Renderer2){
   }
 
   ngOnInit(){
-    this.udService.getTheme().subscribe({
+    this.behaviorSubjectService.getTheme().subscribe({
       next: (data)=>{
-        console.log(data);
         if(data=='dark-theme'){
           this.renderer.setAttribute(document.body,'class','dark-theme');
         }

@@ -1,33 +1,33 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { FormsModule } from '@angular/forms';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { switchMap, EMPTY, take } from 'rxjs';
-import { ServicesService } from 'src/app/services/services.service';
-import { UserDataService } from 'src/app/services/user-data.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+import { ApiService } from 'src/app/services/api.service';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
     selector: 'app-right-modal-question-details',
     standalone: true,
     imports: [CommonModule, FormsModule, NgSelectModule, BsDatepickerModule],
-    templateUrl: './right-modal-question-details.component.html'
+    templateUrl: './right-modal-question-details.component.html',
 })
-
 export class RightModalQuestionDetailsComponent {
     currentSurvey: any;
     toggleTab: string = 'analytical';
     detailedCurrentSurveyArray: any;
-    detailedSurvey:any
+    detailedSurvey: any;
     currentQuestionId: number = 0;
     currentQuestionIndex: number = 0;
     totalQuestions: number = 0;
     questionOptions: number[] = [];
     selectedQuestion: any = 'Question';
 
-    constructor(private modalRef: BsModalRef, private behaviorSubjectService: UserDataService, private httpService: ServicesService) {}
+    constructor(private modalRef: BsModalRef, private behaviorSubjectService: UserDataService, private apiService: ApiService) {}
 
     ngOnInit() {
         this.behaviorSubjectService
@@ -42,7 +42,7 @@ export class RightModalQuestionDetailsComponent {
                         this.currentQuestionIndex = this.questionOptions.findIndex((id) => id == this.currentQuestionId);
                         this.totalQuestions = this.questionOptions.length;
                         this.selectedQuestion = `Question ${this.currentQuestionIndex + 1}`;
-                        return this.httpService.getAnalyticalQuestionSummaryById(this.currentQuestionId);
+                        return this.apiService.getAnalyticalQuestionSummaryById(this.currentQuestionId);
                     }
                     return EMPTY;
                 })
@@ -63,23 +63,31 @@ export class RightModalQuestionDetailsComponent {
         this.currentQuestionId = id;
         this.currentQuestionIndex = <number>this.questionOptions.findIndex((questionId) => id == questionId);
         this.selectedQuestion = `Question ${this.currentQuestionIndex + 1}`;
+
         if (this.toggleTab == 'analytical') {
-            this.httpService.getAnalyticalQuestionSummaryById(id).subscribe({
+            this.apiService.getAnalyticalQuestionSummaryById(id).subscribe({
                 next: (data) => {
                     this.currentSurvey = data;
                 },
                 error: (e) => {},
             });
         }
+
         if (this.toggleTab == 'detailed') {
-            this.httpService.getDetailedQuestionSummaryById(id).subscribe({
+            this.apiService.getDetailedQuestionSummaryById(id).subscribe({
                 next: (data) => {
                     this.detailedSurvey = data;
                     this.currentSurvey = data;
-                    switch(this.detailedSurvey.questionType){
-                      case 'Text' : this.detailedCurrentSurveyArray = this.detailedSurvey.employees[0]; break;
-                      case 'Rating': this.detailedCurrentSurveyArray = this.detailedSurvey.employees;break;
-                      case 'Select one from list': this.detailedCurrentSurveyArray = this.detailedSurvey;break;
+                    switch (this.detailedSurvey.questionType) {
+                        case 'Text':
+                            this.detailedCurrentSurveyArray = this.detailedSurvey.employees[0];
+                            break;
+                        case 'Rating':
+                            this.detailedCurrentSurveyArray = this.detailedSurvey.employees;
+                            break;
+                        case 'Select one from list':
+                            this.detailedCurrentSurveyArray = this.detailedSurvey;
+                            break;
                     }
                     console.log('Detailed', data);
                 },

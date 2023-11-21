@@ -1,92 +1,86 @@
 import { Component } from '@angular/core';
-import { CommonModule,DatePipe } from '@angular/common';
-import { Router,RouterOutlet, RouterLink,RouterModule} from '@angular/router';
+import { CommonModule, DatePipe } from '@angular/common';
+import { Router, RouterOutlet, RouterModule } from '@angular/router';
 
-import{ BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
-import { ServicesService } from 'src/app/services/services.service';
+import { ApiService } from 'src/app/services/api.service';
+import { ModalService } from 'src/app/services/modal-service.service';
 import { CloseSurveyComponent } from 'src/app/admin-modals/close-survey/close-survey.component';
-import { ModalServiceService } from 'src/app/services/modal-service.service';
 import { UpdateSurveyComponent } from 'src/app/admin-modals/update-survey/update-survey.component';
 
-@Component ({
-  selector: 'app-active-surveys',
-  standalone: true,
-  imports: [CommonModule,RouterOutlet,UpdateSurveyComponent,CloseSurveyComponent,RouterModule],
-  providers: [BsModalService],
-  templateUrl: './active-surveys.component.html'
+@Component({
+    selector: 'app-active-surveys',
+    standalone: true,
+    imports: [CommonModule, RouterOutlet, UpdateSurveyComponent, CloseSurveyComponent, RouterModule],
+    providers: [BsModalService],
+    templateUrl: './active-surveys.component.html',
 })
-
 export class ActiveSurveysComponent {
-  activeSurveys: any = null;
-  bsModalRef!: BsModalRef;
-  surveys: any;
-  dropdownOpen: boolean = false;
+    activeSurveys: any = null;
+    bsModalRef!: BsModalRef;
+    surveys: any;
+    dropdownOpen: boolean = false;
 
-  constructor(private router: Router,private service: ServicesService,public modalService: BsModalService,private ModalService: ModalServiceService) {
-    
-  }
+    constructor(private apiService: ApiService, public bsModalService: BsModalService, private modalService: ModalService) {}
 
-  onClick(event: Event) {
-    if (!this.isClickedInside(event)) {
-      this.surveys.forEach((survey: any) => survey.dropdownOpen = false);
+    onClick(event: Event) {
+        if (!this.isClickedInside(event)) {
+            this.surveys.forEach((survey: any) => (survey.dropdownOpen = false));
+        }
     }
-  }
 
-  isClickedInside(event: Event): boolean {
-    return !!((event.target as HTMLElement).closest('.dropdown'));
-  }
+    isClickedInside(event: Event): boolean {
+        return !!(event.target as HTMLElement).closest('.dropdown');
+    }
 
-  closeAllDropdowns() {
-    this.surveys.forEach((survey: any) => (survey.dropdownOpen = false));
-  }
+    closeAllDropdowns() {
+        this.surveys.forEach((survey: any) => (survey.dropdownOpen = false));
+    }
 
-  ngOnInit(): void {
-    this.subscribeToSurveyEvents();
-    this.showActiveSurveys();
-  } 
+    ngOnInit(): void {
+        this.subscribeToSurveyEvents();
+        this.showActiveSurveys();
+    }
 
-  subscribeToSurveyEvents() {
-    this.service.surveyUpdated$.subscribe(() => this.showActiveSurveys());
-    this.service.surveyEdited$.subscribe(() => this.showActiveSurveys());
-    this.service.surveyAdded$.subscribe(() => this.showActiveSurveys());
-  }
+    subscribeToSurveyEvents() {
+        this.apiService.surveyUpdated$.subscribe(() => this.showActiveSurveys());
+        this.apiService.surveyEdited$.subscribe(() => this.showActiveSurveys());
+        this.apiService.surveyAdded$.subscribe(() => this.showActiveSurveys());
+    }
 
-  toggleDropdown(survey: any) {
-    survey.dropdownOpen = !survey.dropdownOpen;
-    document.addEventListener('click', this.onClick.bind(this));
-  }
+    toggleDropdown(survey: any) {
+        survey.dropdownOpen = !survey.dropdownOpen;
+        document.addEventListener('click', this.onClick.bind(this));
+    }
 
-  toClosedSurveys(survey: any) {
-    this.bsModalRef = this.modalService.show(CloseSurveyComponent, { class: 'small-modal' });
-    this.ModalService.setupdateSurvey(survey);
-    survey.dropdownOpen = false;
-  }
+    toClosedSurveys(survey: any) {
+        this.bsModalRef = this.bsModalService.show(CloseSurveyComponent, { class: 'small-modal' });
+        this.modalService.setupdateSurvey(survey);
+        survey.dropdownOpen = false;
+    }
 
-  toLaunchNewSurvey() {
-    this.service.getactiveSurveys().subscribe((data) => {
-      this.ModalService.triggerLaunchNewSurvey(data);
-    });
-  }
+    toLaunchNewSurvey() {
+        this.apiService.getactiveSurveys().subscribe((data) => {
+            this.modalService.triggerLaunchNewSurvey(data);
+        });
+    }
 
-  showActiveSurveys() {
-    this.service.getactiveSurveys().subscribe((data: any) => {
-      if (Array.isArray(data)) {
-        this.surveys = data.reverse().map((survey: any) => ({...survey,
-          launchedOn: this.transformDate(survey.launchedOn),
-          expiresOn: this.transformDate(survey.expiresOn)
-        }));
-      }
-    });
-  }  
+    showActiveSurveys() {
+        this.apiService.getactiveSurveys().subscribe((data: any) => {
+            if (Array.isArray(data)) {
+                this.surveys = data.reverse().map((survey: any) => ({ ...survey, launchedOn: this.transformDate(survey.launchedOn), expiresOn: this.transformDate(survey.expiresOn) }));
+            }
+        });
+    }
 
-  transformDate(date: any) {
-    return new DatePipe('en-US').transform(date, 'MMM dd, yyyy');
-  }
+    transformDate(date: any) {
+        return new DatePipe('en-US').transform(date, 'MMM dd, yyyy');
+    }
 
-  toUpdateSurvey(survey: any) {
-    this.bsModalRef = this.modalService.show(UpdateSurveyComponent, { class: 'small-modal' });
-    this.ModalService.setupdateSurvey(survey);
-    survey.dropdownOpen = false;
-  }
+    toUpdateSurvey(survey: any) {
+        this.bsModalRef = this.bsModalService.show(UpdateSurveyComponent, { class: 'small-modal' });
+        this.modalService.setupdateSurvey(survey);
+        survey.dropdownOpen = false;
+    }
 }

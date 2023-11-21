@@ -1,28 +1,28 @@
-import { Component,Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ServicesService } from 'src/app/services/services.service';
-import { UserDataService } from 'src/app/services/user-data.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-details',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './details.component.html'
+    selector: 'app-details',
+    standalone: true,
+    imports: [CommonModule],
+    templateUrl: './details.component.html',
 })
-
 export class DetailsComponent {
-  @Input() surveyId:number=0;
-  surveyDetails:any|undefined;
+    @Input() surveyId: number = 0;
+    surveyDetails: any | undefined;
 
-  constructor(private service:ServicesService, private udService:UserDataService){}
+    constructor(private apiService: ApiService) {}
 
-  ngOnInit(){
-    this.service.getSurveyDetailsById(this.surveyId).subscribe({
-      next: (data)=>{
-        this.surveyDetails= data ;
-      },
-      error: (e)=>{console.log(e)}
-    })
-  }
+    ngOnInit() {
+        this.apiService.getSurveyDetailsById(this.surveyId).subscribe({
+            next: (data) => {
+                this.surveyDetails = data;
+            },
+            error: (e) => {
+                console.log(e);
+            },
+        });
+    }
 }

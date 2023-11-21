@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BsModalRef } from 'ngx-bootstrap/modal';
+
 import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
@@ -12,10 +13,10 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class SmallModalSurveyConfirmationComponent {
 
-    constructor(public modalRef: BsModalRef, private udService: UserDataService){}
+    constructor(public modalRef: BsModalRef, private behaviorSubjectService: UserDataService){}
 
     submitSurevyQuestions(){
-      this.udService.setSurveyQuestionsConfirmation(true);
+      this.behaviorSubjectService.setSurveyQuestionsConfirmation(true);
       this.modalRef.hide();
     }
 }

@@ -1,20 +1,20 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 import { Router } from '@angular/router';
 
-import { loggeduser } from 'src/app/modals/modal';
+// import { loggeduser } from 'src/app/modals/modal';
 import { ServicesService } from 'src/app/services/services.service';
-import { ModalServiceService } from 'src/app/services/modal-service.service';
+import { ModalService } from 'src/app/services/modal-service.service';
+import { ApiService } from 'src/app/services/api.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 
-
 @Component({
-  selector: 'app-top-nav',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './top-nav.component.html'
+    selector: 'app-top-nav',
+    standalone: true,
+    imports: [CommonModule],
+    templateUrl: './top-nav.component.html',
 })
 export class TopNavComponent {
   today:any;
@@ -23,10 +23,10 @@ export class TopNavComponent {
   dropdownOpen: boolean = false;
   selectedTheme:string = 'light-theme';
 
-  constructor(private router: Router,private date:DatePipe,private ModalService:ModalServiceService,private service:ServicesService,private udService: UserDataService){}
+  constructor(private router: Router,private date:DatePipe,private modalService:ModalService,private apiService:ApiService,private behaviorSubjectService: UserDataService){}
 
   ngOnInit() {
-    this.service.getEmployeeDetails().subscribe((data:any)=>{
+    this.apiService.getEmployeeDetails().subscribe((data:any)=>{
       console.log(data);
       this.userDetails = data;
 
@@ -58,14 +58,13 @@ export class TopNavComponent {
     return !!((event.target as HTMLElement).closest('.dropdown'));
   }
 
-  darkTheme() {
-    if(this.selectedTheme=='light-theme'){
-      this.selectedTheme = 'dark-theme';
-      this.udService.setTheme('dark-theme');
+    darkTheme() {
+        if (this.selectedTheme == 'light-theme') {
+            this.selectedTheme = 'dark-theme';
+            this.behaviorSubjectService.setTheme('dark-theme');
+        } else {
+            this.selectedTheme = 'light-theme';
+            this.behaviorSubjectService.setTheme('light-theme');
+        }
     }
-    else{
-      this.selectedTheme = 'light-theme';
-      this.udService.setTheme('light-theme');
-    }
-  }
 }

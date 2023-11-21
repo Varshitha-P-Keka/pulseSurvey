@@ -1,77 +1,76 @@
 import { Injectable } from '@angular/core';
+
 import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
+export class ModalService {
+    templates: any;
+    templateToUpdate: any;
+    templateToDelete: any;
+    updateSurvey: any;
+    surveyToClose: any;
+    image: any;
 
-export class ModalServiceService {
-  constructor() { }
-  templates:any;
-  templateToUpdate:any;
-  templateToDelete:any;
-  updateSurvey:any;
-  surveyToClose:any;
-  image:any
+    private surveyUpdated = new Subject<any>();
+    surveyUpdated$ = this.surveyUpdated.asObservable();
 
-  private surveyUpdated = new Subject<any>();
-  surveyUpdated$ = this.surveyUpdated.asObservable();
+    private closeSurvey = new Subject<any>();
+    closeSurveyObs$ = this.closeSurvey.asObservable();
 
-  private closeSurvey = new Subject<any>();
-  closeSurveyObs$ = this.closeSurvey.asObservable();
-  
-  private openSmallModalSource = new Subject<{ survey: any; type: string; }>();
-  openSmallModal$ = this.openSmallModalSource.asObservable();
+    private openSmallModalSource = new Subject<{ survey: any; type: string }>();
+    openSmallModal$ = this.openSmallModalSource.asObservable();
 
-  private launchNewSurvey = new Subject<any>();
-  launchNewSurvey$ = this.launchNewSurvey.asObservable();
+    private launchNewSurvey = new Subject<any>();
+    launchNewSurvey$ = this.launchNewSurvey.asObservable();
 
-  private updateTemplate = new Subject<any>();
-  updateTemplate$ = this.updateTemplate.asObservable();
+    private updateTemplate = new Subject<any>();
+    updateTemplate$ = this.updateTemplate.asObservable();
 
-  triggerOpenSmallModal(survey: any, type: string) {
-    this.openSmallModalSource.next({ survey, type });
-  }
+    triggerOpenSmallModal(survey: any, type: string) {
+        this.openSmallModalSource.next({ survey, type });
+    }
 
-  setupdateTemplate(template:any){
-    this.templateToUpdate = template;
-  }
+    setupdateTemplate(template: any) {
+        this.templateToUpdate = template;
+    }
 
-  setImage(image:any) {
-    this.image = image;
-  }
-  
-  getImage() {
-    return this.image;
-  }
+    setImage(image: any) {
+        this.image = image;
+    }
 
-  getUpdateTemplate(){
-    return this.templateToUpdate
-  }
+    getImage() {
+        return this.image;
+    }
 
-  setupdateSurvey(survey:any) {
-    this.updateSurvey = survey;
-    this.surveyUpdated.next(survey);
-  }
+    getUpdateTemplate() {
+        return this.templateToUpdate;
+    }
 
-  setdeleteTemplate(template:any){
-    this.templateToDelete = template;
-  }
+    setupdateSurvey(survey: any) {
+        this.updateSurvey = survey;
+        this.surveyUpdated.next(survey);
+    }
 
-  getDeleteTemplate(){
-    return this.templateToDelete;
-  }
+    setdeleteTemplate(template: any) {
+        this.templateToDelete = template;
+    }
 
-  triggerLaunchNewSurvey(data:any){
-    this.launchNewSurvey.next(data);
-  }
+    getDeleteTemplate() {
+        return this.templateToDelete;
+    }
 
-  triggerUpdateTemplate(data:any){
-    this.updateTemplate.next(data);
-  }
+    triggerLaunchNewSurvey(data: any) {
+        this.launchNewSurvey.next(data);
+    }
 
-  setCloseSurvey(survey:any) {
-    this.surveyToClose = survey;
-    this.closeSurvey.next(survey);
-  }
+    triggerUpdateTemplate(data: any) {
+        this.updateTemplate.next(data);
+    }
+
+    setCloseSurvey(survey: any) {
+        this.surveyToClose = survey;
+        this.closeSurvey.next(survey);
+    }
 }

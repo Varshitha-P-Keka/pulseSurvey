@@ -1,66 +1,67 @@
 import { Injectable } from '@angular/core';
+
 import { BehaviorSubject } from 'rxjs';
-import { loggeduser } from '../modals/modal';
+
+import { Loggeduser } from '../modals/loggedUser';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class UserDataService {
+    constructor() {}
 
-  constructor() { }
+    private userCredentials = new BehaviorSubject<{}>({});
+    private userSurveyId = new BehaviorSubject<number>(0);
+    private userSurveyQuestions = new BehaviorSubject<boolean>(false);
+    private viewSurveyId = new BehaviorSubject<number>(0);
+    private viewClosedSurveyId = new BehaviorSubject<{}>({});
+    private applicationTheme = new BehaviorSubject<string>('');
 
-  private userCredentials = new BehaviorSubject<{}>({});
-  private userSurveyId =new BehaviorSubject<number>(0);
-  private userSurveyQuestions = new BehaviorSubject<boolean>(false);
-  private viewSurveyId = new BehaviorSubject<number>(0);
-  private viewClosedSurveyId = new BehaviorSubject<{}>({});
-  private applicationTheme = new BehaviorSubject<string>('');
+    setCredentials(userData: Loggeduser) {
+        this.userCredentials.next(userData);
+    }
 
-  setCredentials(userData:loggeduser) {
-    this.userCredentials.next(userData);
-  }
+    getCredentials() {
+        return this.userCredentials;
+    }
 
-  getCredentials(){
-    return this.userCredentials;
-  }
+    setSurveyId(id: number) {
+        this.userSurveyId.next(id);
+    }
 
-  setSurveyId(id:number){
-    this.userSurveyId.next(id);
-  }
+    getSurveyId() {
+        return this.userSurveyId;
+    }
 
-  getSurveyId(){
-    return this.userSurveyId;
-  }
+    setSurveyQuestionsConfirmation(flag: boolean) {
+        this.userSurveyQuestions.next(flag);
+    }
 
-  setSurveyQuestionsConfirmation(flag:boolean){
-    this.userSurveyQuestions.next(flag);
-  }
+    getSurveyQuestionsConfirmation() {
+        return this.userSurveyQuestions;
+    }
 
-  getSurveyQuestionsConfirmation(){
-    return this.userSurveyQuestions;
-  }
+    setViewSurveyId(id: number) {
+        this.viewSurveyId.next(id);
+    }
 
-  setViewSurveyId(id:number){
-    this.viewSurveyId.next(id);
-  }
+    getViewSurveyId() {
+        return this.viewSurveyId;
+    }
 
-  getViewSurveyId(){
-    return this.viewSurveyId;
-  }
+    setViewClosedSurveyId(data: {}) {
+        this.viewClosedSurveyId.next(data);
+    }
 
-  setViewClosedSurveyId(data:{}){
-    this.viewClosedSurveyId.next(data);
-  }
+    getViewClosedSurveyId() {
+        return this.viewClosedSurveyId;
+    }
 
-  getViewClosedSurveyId(){
-    return this.viewClosedSurveyId;
-  }
+    setTheme(theme: string) {
+        this.applicationTheme.next(theme);
+    }
 
-  setTheme(theme:string){
-    this.applicationTheme.next(theme);
-  }
-
-  getTheme(){
-    return this.applicationTheme;
-  }
+    getTheme() {
+        return this.applicationTheme;
+    }
 }

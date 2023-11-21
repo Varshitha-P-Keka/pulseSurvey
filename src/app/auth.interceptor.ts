@@ -9,9 +9,12 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  constructor(){
+    console.log('heyyy in auth')
+  }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Add authentication headers to the request
     const token = localStorage.getItem('token');
+
     if (token) {
       const modifiedReq = req.clone({
         setHeaders: {

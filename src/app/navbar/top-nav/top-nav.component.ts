@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 // import { loggeduser } from 'src/app/modals/modal';
-import { ServicesService } from 'src/app/services/services.service';
+// import { ServicesService } from 'src/app/services/services.service';
 import { ModalService } from 'src/app/services/modal-service.service';
 import { ApiService } from 'src/app/services/api.service';
 import { UserDataService } from 'src/app/services/user-data.service';

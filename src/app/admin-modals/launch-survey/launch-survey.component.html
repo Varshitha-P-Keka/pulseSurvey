@@ -1,7 +1,7 @@
 <ng-template #launchNewSurvey>
     <div class="modal-header">
         <h5 class="modal-title">Launch a new survey</h5>
-        <i class="ki ki-close" (click)="hideModal(launchSurveyModalRef)"></i>
+        <i class="ki ki-close" (click)="launchSurveyModalRef.hide()"></i>
     </div>
     <div class="modal-body">
         <div class="dropdown dropdown-custom dropdown-custom-md" dropdown #dropdown>
@@ -32,14 +32,14 @@
         </div>
     </div>
     <div class="modal-footer p-20">
-        <button class="btn cancel-button" (click)="hideModal(launchSurveyModalRef)">Cancel</button>
+        <button class="btn cancel-button" (click)="launchSurveyModalRef.hide()">Cancel</button>
         <button class="btn launch-button" (click)="openLaunchSurveyModal(fullTemplate)">Launch</button>
     </div>
 </ng-template>
 <ng-template #fullTemplate>
     <div class="modal-header">
         <h5 class="modal-title">Launch survey</h5>
-        <i class="ki ki-close" (click)="hideModal(fullModalRef)"></i>
+        <i class="ki ki-close" (click)="hide()"></i>
     </div>
     <div class="modal-sub-header">
         <div class="stepper-wizard">
@@ -86,7 +86,7 @@
                             class="error-message">
                             <div *ngIf="basicFieldsForm.get('surveyDescription')?.errors?.['required']">Description is
                                 required</div>
-                        </div>
+                            </div>
                     </div>
                     <div>
                         <label>The survey expires on</label>

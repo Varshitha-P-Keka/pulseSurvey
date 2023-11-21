@@ -1,5 +1,5 @@
 export class NewTemplateData {
-    templateId: number;
+    templateId: string;
     templateTitle: string;
     templateDescription: string;
     createdOn: string;
@@ -7,7 +7,7 @@ export class NewTemplateData {
     launchedBy: string;
     templateQuestions: object;
 
-    constructor(templateId: number, templateTitle: string, templateDescription: string, createdOn: string, updatedOn: string, launchedBy: string, templateQuestions: object) {
+    constructor(templateId: string, templateTitle: string, templateDescription: string, createdOn: string, updatedOn: string, launchedBy: string, templateQuestions: object) {
         this.templateId = templateId;
         this.templateTitle = templateTitle;
         this.templateDescription = templateDescription;

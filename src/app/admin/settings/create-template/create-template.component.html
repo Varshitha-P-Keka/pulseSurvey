@@ -22,7 +22,7 @@
         </div>
     </div>
     <div>
-        <button class="btn btn-primary" *ngIf="activeStep === 1" (click)="onSave()">Save & Continue</button>
+        <button class="btn btn-primary" *ngIf="activeStep === 1" [disabled]="basicFieldsForm.invalid" (click)="onSave()">Save & Continue</button>
         <div *ngIf="activeStep === 2" class="d-flex justify-content-between w-150">
             <button class="btn btn-secondary">Back</button>
             <button class="btn btn-primary" (click)="addTemplateQuestions()" >Launch</button>
@@ -32,14 +32,22 @@
 <div class="modal-body">
     <div *ngIf="activeStep === 1">
         <div class="form-group">
-            <form [formGroup]="basicFieldsForm" >
+            <form [formGroup]="basicFieldsForm">
                 <div>
-                    <label> Title of this survey </label>
+                    <label> Title of the template </label>
                     <input type="text" class="form-control input-sm w-50" formControlName="templateTitle"/>
+                    <div *ngIf="basicFieldsForm.get('templateTitle')?.invalid && basicFieldsForm.get('templateTitle')?.touched" class="error-message">
+                        <div *ngIf="basicFieldsForm.get('templateTitle')?.errors?.['required']"> Template title is required </div>
+                    </div>
                 </div>
                 <div>
                     <label>Description</label>
                     <input type="text" class="form-control input-sm w-50" formControlName="templateDescription"/>
+                    <div *ngIf="basicFieldsForm.get('templateDescription')?.invalid && basicFieldsForm.get('templateDescription')?.touched"
+                    class="error-message">
+                    <div *ngIf="basicFieldsForm.get('templateDescription')?.errors?.['required']">Description is
+                        required</div>
+                    </div>                    
                 </div>
             </form>
         </div>

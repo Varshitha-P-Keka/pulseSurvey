@@ -1,27 +1,18 @@
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-
-import { Loggeduser } from 'src/app/modals/loggedUser';
+import { Router, RouterModule,RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-left-nav',
     standalone: true,
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule,RouterLink],
     templateUrl: './left-nav.component.html',
 })
-export class LeftNavComponent {
-    activeItem: any;
 
-    constructor(private router: Router) {}
+export class LeftNavComponent{
+    openSurveyUrl:string = '/pulseSurvey/home/openSurveys';
+    completedSurveyUrl:string = '/pulseSurvey/home/completedSurveys';
+    
+    constructor(public router: Router) {}
 
-    toMe() {
-        this.activeItem = 'me';
-        this.router.navigate(['/pulseSurvey/home/openSurveys']);
-    }
-
-    toAdmin() {
-        this.activeItem = 'admin';
-        this.router.navigate(['/pulseSurvey/home/admin/surveys/active']);
-    }
 }

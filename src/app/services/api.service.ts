@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { Employee } from '../modals/Employee';
+import { Employee } from '../modals/employee';
 import { VerifyEmployee } from '../modals/verifyEmployee';
 
 @Injectable({
@@ -16,9 +16,7 @@ export class ApiService {
     private surveyUpdatedSource = new BehaviorSubject<any>(null);
     surveyUpdated$ = this.surveyUpdatedSource.asObservable();
 
-    constructor(private http: HttpClient) {
-        this.token = JSON.parse(<string>localStorage.getItem('token')).token;
-    }
+    constructor(private http: HttpClient) {}
 
     getVerifyEmployee(empData: VerifyEmployee) {
         const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
@@ -26,6 +24,7 @@ export class ApiService {
     }
 
     getEmployeeDetails() {
+        this.token = JSON.parse(<string>localStorage.getItem('token')).token;
         const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
         return this.http.get(`${this.baseUrl}employee/employeedetails`, { headers });
     }
@@ -46,8 +45,8 @@ export class ApiService {
     templateDeleted$ = this.templateDeleted.asObservable();
 
     setNewEmployee(empData: Employee) {
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-        return this.http.post(`${this.baseUrl}employee/register`, empData, { headers });
+        // const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+        return this.http.post(`${this.baseUrl}employee/register`, empData);
     }
 
     getTemplates() {

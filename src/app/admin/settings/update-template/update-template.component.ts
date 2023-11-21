@@ -5,6 +5,7 @@ import {FormGroup,ReactiveFormsModule,FormBuilder,FormArray,} from '@angular/for
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
+import { Guid } from 'guid-typescript';
 
 import { ServicesService } from 'src/app/services/services.service';
 import { ModalServiceService } from 'src/app/services/modal-service.service';
@@ -144,10 +145,13 @@ export class UpdateTemplateComponent {
   addTemplateQuestions() {
     const templateQuestionFormsArray = this.formResponses.map((response) => response.templateQuestionForm.value);
     const templateId = this.ModalService.getUpdateTemplate().templateId;
+    let qid = Guid.create();
+    let guidValue: string = Reflect.get(qid, 'value');
     const customtemplateQuestionFormsArray = templateQuestionFormsArray.map (
-      (formValue) =>new TemplateQuestion(0,templateId,formValue.surveyQuestionName,formValue.surveyQuestionDescription,formValue.radiobutton,formValue.options.map((option: any, index: any) => new Option(index + 1, option)))
+      (formValue) =>new TemplateQuestion(guidValue,templateId,formValue.surveyQuestionName,formValue.surveyQuestionDescription,formValue.radiobutton,formValue.options.map((option: any, index: any) => new Option(index + 1, option)))
     );
     const templateData = new TemplateData(this.basicFieldsForm.value.templateId,this.basicFieldsForm.value.templateTitle as string,this.basicFieldsForm.value.templateDescription as string,customtemplateQuestionFormsArray);
+    console.log(templateData);
     this.service.updateTemplate(templateData);
     this.bsModalRef.hide();
   }

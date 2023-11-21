@@ -1,14 +1,14 @@
 import { Option } from "./optionsModal";
 
 export class TemplateQuestion {
-    templateQuestionId: number;
+    templateQuestionId: string;
     templateId: number;
     questionText: string;
     description: string;
     questionType: string;
     options: Option [];
   
-    constructor(id: number, templateId: number, text: string, description: string, type: string, options: Option[]) {
+    constructor(id: string, templateId: number, text: string, description: string, type: string, options: Option[]) {
       this.templateQuestionId = id;
       this.templateId = templateId;
       this.questionText = text;

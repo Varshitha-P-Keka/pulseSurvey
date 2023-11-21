@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule,DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { FormGroup,ReactiveFormsModule,FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup,ReactiveFormsModule,FormBuilder, FormArray, Validators } from '@angular/forms';
 
 import { ServicesService } from 'src/app/services/services.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { Guid } from 'guid-typescript';
 
 import { ModalServiceService } from 'src/app/services/modal-service.service';
 import { newTemplateData } from '../../../modals/newTemplateData';
@@ -41,8 +42,8 @@ export class CreateTemplateComponent implements OnInit {
 
   ngOnInit(): void {
     this.basicFieldsForm = this.formBuilder.group({
-      templateTitle: [''],
-      templateDescription: ['']
+      templateTitle: ['',Validators.required],
+      templateDescription: ['',Validators.required]
     });
 
     this.templateQuestionsForm = this.formBuilder.group({
@@ -102,10 +103,15 @@ export class CreateTemplateComponent implements OnInit {
 
   addTemplateQuestions() {
     const formattedDate = new Date().toISOString();
+    let qid = Guid.create();
+    let guidValue: string = Reflect.get(qid, 'value');
+    let qqid = Guid.create();
+      // let guidValue = qid.value;
+      let guidvalue: string = Reflect.get(qid, 'value');
     const customtemplateQuestionFormsArray = this.formResponses.map(response => 
-      new TemplateQuestion(0,response.templateQuestionForm.value.surveyQuestionName,response.templateQuestionForm.value.surveyQuestionDescription,response.templateQuestionForm.value.radiobutton,response.templateQuestionForm.value.inputFields.map((option: any, index: any) => ({optionId: index + 1,optionText: option,})))
+      new TemplateQuestion(guidValue,response.templateQuestionForm.value.surveyQuestionName,response.templateQuestionForm.value.surveyQuestionDescription,response.templateQuestionForm.value.radiobutton,response.templateQuestionForm.value.inputFields.map((option: any, index: any) => ({optionId: index + 1,optionText: option,})))
     );
-    const TemplateData  = new newTemplateData(0,this.basicFieldsForm.value.templateTitle,this.basicFieldsForm.value.templateDescription,formattedDate,formattedDate,"Sahiti",customtemplateQuestionFormsArray)
+    const TemplateData  = new newTemplateData(guidvalue,this.basicFieldsForm.value.templateTitle,this.basicFieldsForm.value.templateDescription,formattedDate,formattedDate,"Sahiti",customtemplateQuestionFormsArray)
     this.service.addNewTemplate(TemplateData);
     this.bsModalRef.hide();
   }  

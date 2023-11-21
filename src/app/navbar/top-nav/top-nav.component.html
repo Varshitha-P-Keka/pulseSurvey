@@ -13,9 +13,28 @@
             <i class="ki ki-sun" (click)="darkTheme()"></i>
             <p>{{userDetails.employeeName}}</p>
             <div class="profile-picture-container">
-                <div>
-                    <img [src]="userDetails.profilePicture" class="profile-picture" src="" alt="dp">
+
+                <div class="dropdown" dropdown [class.show]="dropdownOpen" >
+                    <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true"
+                        aria-expanded="false" (click)="toggleDropdown()">
+                        
+                            <img [src]="userDetails.profilePicture" class="profile-picture" src="" alt="dp">
+                        
+                    </a>
+                    <ul class="ddd-menu" *ngIf="dropdownOpen">
+                        <li>
+                            <a (click)="toLogout()">Logout</a>
+                        </li>
+                    </ul>
                 </div>
+
+
+
+
+
+                <!-- <a>
+                    <img [src]="userDetails.profilePicture" class="profile-picture" src="" alt="dp">
+                </a> -->
             </div>
         </div>
     </div>

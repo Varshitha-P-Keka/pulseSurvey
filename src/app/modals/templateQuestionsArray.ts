@@ -1,6 +1,6 @@
 export class TemplateQuestion {
     constructor(
-      public templateQuestionId: number,
+      public templateQuestionId: string,
       public questionText: string,
       public description: string,
       public questionType: string,

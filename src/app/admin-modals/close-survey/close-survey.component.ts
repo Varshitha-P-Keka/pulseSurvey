@@ -23,6 +23,7 @@ export class CloseSurveyComponent implements OnInit {
   ngOnInit(): void {
     this.ModalService.surveyUpdated$.subscribe((survey) => {
       this.survey = survey;
+      console.log('Survey to closeee',this.survey)
     });
   }
 

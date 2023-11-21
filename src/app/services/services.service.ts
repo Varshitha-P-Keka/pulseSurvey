@@ -26,7 +26,6 @@ export class ServicesService {
     if (tokenString) {
       let tokenObject = JSON.parse(tokenString);
       this.empToken = tokenObject;
-      // console.log('hihihih',this.empToken.token);
     }
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.empToken['token']}`);
     return this.http.get('https://localhost:7015/api/employee/employeedetails', { headers });
@@ -64,20 +63,22 @@ export class ServicesService {
   }
 
   addNewTemplate(template:any) {
-    this.http.post('https://localhost:7015/api/template',template ).subscribe((response) => {this.templateAdded.next(true)});
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.empToken['token']}`);
+    this.http.post('https://localhost:7015/api/template',template,{headers} ).subscribe((response) => {this.templateAdded.next(true)});
   }
   
   getTemplateQuestions(id:any) {
     return this.http.get(`https://localhost:7015/api/templatequestion/${id}`);
   }
 
-  closeSurvey(surveyId:any){
-    return this.http.put(`https://localhost:7015/api/survey/closesurvey/${surveyId}`, null).subscribe((response) => {this.surveyUpdatedSource.next(true)});
+  closeSurvey(surveyId:any) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.empToken['token']}`);
+    return this.http.put(`https://localhost:7015/api/survey/closesurvey/${surveyId}`, null,{headers}).subscribe((response) => {this.surveyUpdatedSource.next(true)});
   }
 
   getViewSurveyById(id: any) {
     return this.http.get(`https://localhost:7015/api/survey/viewsurvey/${id}`);
-}
+  }
 
   updateSurvey(newSurveyData:any){
     return this.http.put('https://localhost:7015/api/Survey/updatesurvey',newSurveyData ).subscribe((response) => {this.surveyEdited.next(true)});
@@ -85,15 +86,9 @@ export class ServicesService {
 
   getClosedSurveys() {
     return this.http.get('https://localhost:7015/api/survey/closedsurveys');
-}
+  }
 
   sendSurveyQuestions(data:any){  
-    let tokenString = localStorage.getItem('token');
-    if (tokenString) {
-      let tokenObject = JSON.parse(tokenString);
-      this.empToken = tokenObject;
-    }
-    console.log(data)
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.empToken['token']}`);
     this.http.post('https://localhost:7015/api/survey',data,{headers} ).subscribe((response) => {this.surveyAdded.next(true);});
   }
@@ -107,19 +102,14 @@ export class ServicesService {
     }
 
     getSurveyId() {
-        return this.surveyIdResponse;
+      return this.surveyIdResponse;
     }
 
     getactiveSurveys() {
-        return this.http.get(`https://localhost:7015/api/survey/activesurveys`);
+      return this.http.get(`https://localhost:7015/api/survey/activesurveys`);
     }
 
   getOpenSurveysData() {
-    let tokenString = localStorage.getItem('token');
-    if (tokenString) {
-      let tokenObject = JSON.parse(tokenString);
-      this.empToken = tokenObject;
-    }
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.empToken['token']}`);
       return this.http.get(`https://localhost:7015/api/survey/opensurveys`, { headers });
   }

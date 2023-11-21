@@ -66,24 +66,37 @@ export class RegisterEmployeeComponent {
             }
           }});
     }
-
+    
     onFileSelected(event: Event) {
-        const inputElement = event.target as HTMLInputElement;
-        if (inputElement.files && inputElement.files.length > 0) {
-          const selectedFile = inputElement.files[0];
-          const fileReader = new FileReader();
-          fileReader.onload = (e: ProgressEvent<FileReader>) => {
-            const dataURL = e.target?.result?.toString();
-            if (dataURL) {
-              this.selectedFile = dataURL;
-              this.ModalService.setImage(this.selectedFile);
-            } else {
-              console.error('Error reading file');
-            }
+      const element = event.target as HTMLInputElement;
+      const files = element.files![0];
+      if (files) {
+          const reader = new FileReader();
+          reader.onload = (event: any) => {
+              this.selectedFile = event.target.result;
+              // this.signUpForm.patchValue({ profilePicture: event.target.result });
           };
-          fileReader.readAsDataURL(selectedFile);
-        }
-      }   
+          reader.readAsDataURL(files);
+      }
+  }
+    // onFileSelected(event: Event) {
+    //     const inputElement = event.target as HTMLInputElement;
+    //     if (inputElement.files && inputElement.files.length > 0) {
+    //       const selectedFile = inputElement.files[0];
+    //       const fileReader = new FileReader();
+    //       fileReader.onload = (e: ProgressEvent<FileReader>) => {
+    //         const dataURL = e.target?.result?.toString();
+    //         if (dataURL) {
+    //           this.selectedFile = dataURL;
+    //           this.ModalService.setImage(this.selectedFile);
+    //         } else {
+    //           console.error('Error reading file');
+    //         }
+    //       };
+    //       fileReader.readAsDataURL(selectedFile);
+    //     }
+    //   }   
+
     
   
   

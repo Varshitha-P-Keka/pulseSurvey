@@ -1,13 +1,12 @@
 export class newTemplateData {
-    templateId: number
+    templateId: string
     templateTitle: string
     templateDescription:string
     createdOn: string
     updatedOn:string
-    launchedBy:string
     templateQuestions:object
     constructor(
-    templateId: number,
+    templateId: string,
     templateTitle: string,
     templateDescription:string,
     createdOn: string,
@@ -20,7 +19,6 @@ export class newTemplateData {
     this.templateDescription = templateDescription;
     this.createdOn = createdOn,
     this.updatedOn = updatedOn,
-    this.launchedBy = launchedBy,
     this.templateQuestions =templateQuestions
     }
 }

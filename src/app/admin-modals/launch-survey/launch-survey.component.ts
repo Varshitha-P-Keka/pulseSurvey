@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { CommonModule,DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {FormGroup,ReactiveFormsModule,FormBuilder,FormArray,FormsModule, Validators} from '@angular/forms';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -52,15 +52,11 @@ export class LaunchSurveyComponent implements OnInit {
   @ViewChild('launchNewSurvey', { static: true }) 
   launchNewSurvey!: TemplateRef<any>;
   guid: any;
+  closeButton:any
 
   constructor(private router: Router,private modalService: BsModalService,private ModalService: ModalServiceService,private service: ServicesService,private formBuilder: FormBuilder,private datePipe: DatePipe) {}
 
   ngOnInit(): void {
-    
-    let qid = Guid.create();
-      // let guidValue = qid.value;
-      let guidValue: string = Reflect.get(qid, 'value');
-      console.log(guidValue);
     this.basicFieldsForm = this.formBuilder.group ({
       surveyId: [''],
       surveyName: ['', [Validators.required]],
@@ -87,10 +83,25 @@ export class LaunchSurveyComponent implements OnInit {
       this.onLaunchSurveyClick();
     });  
   }
+
+  // hideModal(modalRef: BsModalRef<any>) {
+  //   console.log('closing', modalRef);
+    
+  //   let closeButton = document.querySelector('.ki-close');
+  //   console.log(closeButton);
+    
+  //   if (closeButton) {
+  //     // Adjust the event listener removal by providing an inline function
+  //     closeButton.removeEventListener('click', (evt: Event) => this.hideModal(modalRef));
+  //   }
+    
+  //   modalRef.hide();
+  //   closeButton = null;
+  //   this.router.navigate(['/pulseSurvey/home/Admin/surveys/active']);
+  // }
   
-  hideModal(modalRef: BsModalRef) {
-    modalRef.hide();
-  }
+  
+  
 
   generateOptionFormControl(optionId: number, optionText: string) {
     return this.formBuilder.group ({
@@ -109,14 +120,13 @@ export class LaunchSurveyComponent implements OnInit {
       );
     });
     let qid = Guid.create();
-      let surveyId: string = Reflect.get(qid, 'value');
-    
+      let surveyId: string = Reflect.get(qid, 'value');   
 
     const surveyData = new SurveyData(surveyId,this.basicFieldsForm.value.surveyName,this.basicFieldsForm.value.surveyDescription,this.formatDate(new Date()),this.formatDate(this.basicFieldsForm.value.surveyExpiry),1,customSurveyQuestionFormsArray);
     console.log(surveyData);
     this.service.sendSurveyQuestions(surveyData);
-    this.hideModal(this.fullModalRef);
-    this.hideModal(this.launchSurveyModalRef);
+    this.launchSurveyModalRef.hide();
+    this.fullModalRef.hide();
     this.router.navigate(['/pulseSurvey/home/Admin/surveys/active']);    
   }  
 
@@ -126,6 +136,12 @@ export class LaunchSurveyComponent implements OnInit {
       control.markAsTouched();
     }
   }  
+
+  hide() {
+    this.fullModalRef.hide();
+    this.launchSurveyModalRef.hide();
+    this.router.navigate(['/pulseSurvey/home/Admin/surveys/active']);
+  }
 
   addInputField(index: number) {
     const currentResponse = this.formResponses[index];

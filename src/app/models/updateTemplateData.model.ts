@@ -1,4 +1,4 @@
-import { TemplateQuestion } from './updateTemplateQuestions';
+import { TemplateQuestion } from './updateTemplateQuestions.model';
 
 export class TemplateData {
     templateId: number;

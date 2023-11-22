@@ -41,9 +41,7 @@ export class CompletedSurveysComponent {
                 this.filteredSurveys = data;
                 this.combinedFilterArray = data;
             },
-            error: (e) => {
-                console.log(e);
-            },
+            error: (e) => {},
         });
     }
 
@@ -61,7 +59,6 @@ export class CompletedSurveysComponent {
 
     combinedSelectFilter(id: number, setBeginDate?: any, setEndDate?: any) {
         this.selectedFilterId = id;
-        console.log('Fliter Text', this.inputTextFilter);
         let today = new Date();
         let beginDate = new Date(today);
         let endDate = new Date(today);

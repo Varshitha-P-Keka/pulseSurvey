@@ -21,7 +21,7 @@ export class ViewSurveyComponent {
     surveyQuestionsId: number[] = [];
     question: any;
 
-    constructor(private behaviorSubjectService: UserDataService, private apiService: ApiService, private modalService: BsModalService) {}
+    constructor(private behaviorSubjectService: UserDataService, private apiService: ApiService, private bsModalService: BsModalService) {}
 
     ngOnInit() {
         this.behaviorSubjectService
@@ -42,16 +42,14 @@ export class ViewSurveyComponent {
                     for (this.question of this.currentSurvey.surveyQuestionsSummary) {
                         this.surveyQuestionsId.push(this.question.surveyQuestionId);
                     }
-                    console.log(data);
                 },
                 error: (e) => {
-                    console.log(e);
                 },
             });
     }
 
     openQuestionDetails(id: number) {
         this.behaviorSubjectService.setViewClosedSurveyId({ id: id, surveyQuestionsId: this.surveyQuestionsId });
-        this.modalRef = this.modalService.show(RightModalQuestionDetailsComponent, { class: 'right-modal right-modal-900' });
+        this.modalRef = this.bsModalService.show(RightModalQuestionDetailsComponent, { class: 'right-modal right-modal-900' });
     }
 }

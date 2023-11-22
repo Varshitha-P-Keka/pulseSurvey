@@ -1,5 +1,5 @@
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 import { ApiService } from 'src/app/services/api.service';
-import { updateSurveyData } from '../../modals/updateSurveyModal';
+import { updateSurveyData } from '../../models/updateSurvey.model';
 import { ModalService } from 'src/app/services/modal-service.service';
 
 @Component({
@@ -18,7 +18,7 @@ import { ModalService } from 'src/app/services/modal-service.service';
     providers: [BsModalService, BsDatepickerConfig],
     templateUrl: './update-survey.component.html',
 })
-export class UpdateSurveyComponent implements OnInit {
+export class UpdateSurveyComponent {
     surveyToUpdate: any;
     updateSurveyForm!: FormGroup;
     ModalRef!: BsModalRef | undefined;

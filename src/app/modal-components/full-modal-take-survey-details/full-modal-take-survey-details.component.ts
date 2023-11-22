@@ -29,9 +29,7 @@ export class FullModalTakeSurveyDetailsComponent {
             next: (data) => {
                 this.surveyId = data;
             },
-            error: (e) => {
-                console.log(e);
-            },
+            error: (e) => {},
         });
 
         if (this.surveyId) {
@@ -39,9 +37,7 @@ export class FullModalTakeSurveyDetailsComponent {
                 next: (data) => {
                     this.surveyDetails = data;
                 },
-                error: (e) => {
-                    console.log(e);
-                },
+                error: (e) => {},
             });
         }
     }

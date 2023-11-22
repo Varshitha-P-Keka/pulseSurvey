@@ -10,8 +10,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ApiService } from 'src/app/services/api.service';
 import { UserDataService } from 'src/app/services/user-data.service';
-import { SurveyQuestionAddResponse } from 'src/app/modals/surveyQuestionAddReponse';
-import { Loggeduser } from 'src/app/modals/loggedUser';
+import { surveyQuestionResponse } from 'src/app/models/surveyQuestionResponse.model';
+import { SurveyQuestionAddResponse } from 'src/app/models/surveyQuestionAddReponse.model';
+import { SurveyQuestionResponseArray } from 'src/app/models/surveyQuestionResponseArray.model';
 
 @Component({
     selector: 'app-survey-questions',
@@ -21,7 +22,7 @@ import { Loggeduser } from 'src/app/modals/loggedUser';
 })
 export class SurveyQuestionsComponent {
     @Input() surveyId: number = 0;
-    userDetails: Loggeduser = { name: '', emailaddress: '', employeeId: '', role: '', profilePicture: '' };
+    ratingBar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     surveyQuestionsArray: any;
     selectedOption: number = 0;
     userResponse: string = '';
@@ -31,16 +32,15 @@ export class SurveyQuestionsComponent {
     subscription: any;
     updateSelectAndRatingArray: any = [];
 
-    constructor(private apiService: ApiService, private behaviorubjectService: UserDataService, private bsModelRef: BsModalRef, private router: Router) {}
+    constructor(private apiService: ApiService, private behaviorSubjectService: UserDataService, private bsModelRef: BsModalRef, private router: Router) {}
 
     ngOnInit() {
-        this.userDetails = JSON.parse(<string>localStorage.getItem('currentUser'));
-        this.subscription = this.behaviorubjectService
+        this.subscription = this.behaviorSubjectService
             .getSurveyQuestionsConfirmation()
             .pipe(
                 switchMap((data) => {
                     if (data) {
-                        return this.apiService.postQuestionResponses({ surveyId: this.surveyId, responses: this.surveyQuestionResponseArray });
+                        return this.apiService.postQuestionResponses(this.reponseObj());
                     } else {
                         return EMPTY;
                     }
@@ -51,28 +51,27 @@ export class SurveyQuestionsComponent {
                     this.bsModelRef.hide();
                     this.router.navigate(['/pulseSurvey/home/completedSurveys']);
                 },
-                error: (e) => {
-                    console.log(e);
-                },
+                error: (e) => {},
             });
         this.getSurveyQuestions();
+    }
+
+    reponseObj() {
+        return new surveyQuestionResponse(this.surveyId, this.surveyQuestionResponseArray);
     }
 
     getSurveyQuestions() {
         this.apiService.getSurveyQuestionsById(this.surveyId).subscribe({
             next: (data) => {
                 this.surveyQuestionsArray = data;
-                console.log('survey-questions-component', data);
                 this.assignSurveyQuestionResponseArray(this.surveyQuestionsArray);
             },
-            error: (e) => {
-                console.log(e);
-            },
+            error: (e) => {},
         });
     }
 
     ngOnDestroy() {
-        this.behaviorubjectService.setSurveyQuestionsConfirmation(false);
+        this.behaviorSubjectService.setSurveyQuestionsConfirmation(false);
         this.subscription.unsubscribe();
     }
 
@@ -81,40 +80,42 @@ export class SurveyQuestionsComponent {
         for (let i = 0; i < surveyQuestionsArray.length; ++i) {
             let qid = Guid.create();
             let guidValue: string = Reflect.get(qid, 'value');
-            this.surveyQuestionResponseArray.push({ questionResponseId: guidValue, surveyQuestionId: this.surveyQuestionsArray[i].surveyQuestionId, response: '' });
-            switch (surveyQuestionsArray[i].questionType) {
-                case 'Rating':
-                    this.updateSelectAndRatingArray.push({ selectedRating: 0 });
-                    break;
-                case 'Select one from list':
-                    this.updateSelectAndRatingArray.push({ selectedOption: 'Select' });
-                    break;
-                case 'Text':
-                    this.updateSelectAndRatingArray.push({ type: '' });
-            }
+            this.surveyQuestionResponseArray.push(new SurveyQuestionResponseArray(guidValue, this.surveyQuestionsArray[i].surveyQuestionId, ''));
+            this.createSurveyQuestionResponseArray(surveyQuestionsArray[i].questionType);
         }
         this.responseArrayFlag = this.surveyQuestionResponseArray.length == surveyQuestionsArray.length;
     }
 
-    updateComment(event: any) {
-        let userResponseObject = this.surveyQuestionResponseArray.find((obj) => obj.surveyQuestionId == event.target.id);
-        if (userResponseObject?.surveyQuestionId == event.target.id) {
-            userResponseObject!.response = event.target.value;
+    createSurveyQuestionResponseArray(question: any) {
+        switch (question) {
+            case 'Rating':
+                this.updateSelectAndRatingArray.push({ selectedRating: 0 });
+                break;
+            case 'SelectOneFromList':
+                this.updateSelectAndRatingArray.push({ selectedOption: 'Select' });
+                break;
+            case 'Text':
+                this.updateSelectAndRatingArray.push({ type: '' });
         }
     }
 
+    updateComment(event: any) {
+        this.updateSelectedOption(event.target.id, event.target.value);
+    }
+
     updateRating(id: number, rating: number, ratingArrayIndex: number) {
-        let ratingObject = this.surveyQuestionResponseArray.find((obj) => obj.surveyQuestionId === id);
-        if (ratingObject?.surveyQuestionId == id) {
-            ratingObject.response = rating.toString();
-        }
+        this.updateSelectedOption(id, rating);
         this.updateSelectAndRatingArray[ratingArrayIndex].selectedRating = rating;
     }
 
     optionSelected(id: number, event: any) {
-        let optionObject = this.surveyQuestionResponseArray.find((obj) => obj.surveyQuestionId === id);
-        if (optionObject?.surveyQuestionId == id) {
-            optionObject.response = event.toString();
+        this.updateSelectedOption(id, event);
+    }
+
+    updateSelectedOption(id: number, rating: any) {
+        let selectedObject = this.surveyQuestionResponseArray.find((obj) => obj.surveyQuestionId == id);
+        if (selectedObject?.surveyQuestionId == id) {
+            selectedObject.response = rating.toString();
         }
     }
 }

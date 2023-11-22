@@ -53,9 +53,7 @@ export class RightModalQuestionDetailsComponent {
                         this.currentSurvey = data;
                     }
                 },
-                error: (e) => {
-                    console.log(e);
-                },
+                error: (e) => {},
             });
     }
 
@@ -85,15 +83,12 @@ export class RightModalQuestionDetailsComponent {
                         case 'Rating':
                             this.detailedCurrentSurveyArray = this.detailedSurvey.employees;
                             break;
-                        case 'Select one from list':
+                        case 'SelectOneFromList':
                             this.detailedCurrentSurveyArray = this.detailedSurvey;
                             break;
                     }
-                    console.log('Detailed', data);
                 },
-                error: (e) => {
-                    console.log(e);
-                },
+                error: (e) => {},
             });
         }
     }

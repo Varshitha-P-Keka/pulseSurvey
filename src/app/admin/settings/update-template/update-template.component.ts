@@ -4,14 +4,14 @@ import { FormGroup, ReactiveFormsModule, FormBuilder, FormArray } from '@angular
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
-import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Guid } from 'guid-typescript';
 
 import { ApiService } from 'src/app/services/api.service';
 import { ModalService } from 'src/app/services/modal-service.service';
-import { TemplateQuestion } from 'src/app/modals/updateTemplateQuestions';
-import { TemplateData } from 'src/app/modals/updateTemplateData';
-import { Option } from 'src/app/modals/optionsModal';
+import { TemplateQuestion } from 'src/app/models/updateTemplateQuestions.model';
+import { TemplateData } from 'src/app/models/updateTemplateData.model';
+import { Option } from 'src/app/models/option.model';
 
 enum ActiveStep {
     BasicFields = 1,
@@ -54,19 +54,26 @@ export class UpdateTemplateComponent {
         });
     }
 
-  addTemplateQuestions() {
-    const templateQuestionFormsArray = this.formResponses.map((response) => response.templateQuestionForm.value);
-    const templateId = this.modalService.getUpdateTemplate().templateId;
-    let qid = Guid.create();
-    let guidValue: string = Reflect.get(qid, 'value');
-    const customtemplateQuestionFormsArray = templateQuestionFormsArray.map (
-      (formValue) =>new TemplateQuestion(guidValue,templateId,formValue.surveyQuestionName,formValue.surveyQuestionDescription,formValue.radiobutton,formValue.options.map((option: any, index: any) => new Option(index + 1, option)))
-    );
-    const templateData = new TemplateData(this.basicFieldsForm.value.templateId,this.basicFieldsForm.value.templateTitle as string,this.basicFieldsForm.value.templateDescription as string,customtemplateQuestionFormsArray);
-    console.log(templateData);
-    this.apiService.updateTemplate(templateData);
-    this.bsModalRef.hide();
-  }
+    addTemplateQuestions() {
+        const templateQuestionFormsArray = this.formResponses.map((response) => response.templateQuestionForm.value);
+        const templateId = this.modalService.getUpdateTemplate().templateId;
+        let createTemplateQuestionId = Guid.create();
+        let templateQuestionId: string = Reflect.get(createTemplateQuestionId, 'value');
+        const customtemplateQuestionFormsArray = templateQuestionFormsArray.map(
+            (formValue) =>
+                new TemplateQuestion(
+                    templateQuestionId,
+                    templateId,
+                    formValue.surveyQuestionName,
+                    formValue.surveyQuestionDescription,
+                    formValue.radiobutton,
+                    formValue.options.map((option: any, index: any) => new Option(index + 1, option))
+                )
+        );
+        const templateData = new TemplateData(this.basicFieldsForm.value.templateId, this.basicFieldsForm.value.templateTitle as string, this.basicFieldsForm.value.templateDescription as string, customtemplateQuestionFormsArray);
+        this.apiService.updateTemplate(templateData);
+        this.bsModalRef.hide();
+    }
     private initializeTemplateQuestionsForm(): void {
         this.templateQuestionsForm = this.formBuilder.group({
             surveyQuestionName: [''],
@@ -153,25 +160,6 @@ export class UpdateTemplateComponent {
             questionName: '',
         });
     }
-
-    // addTemplateQuestions() {
-    //     const templateQuestionFormsArray = this.formResponses.map((response) => response.templateQuestionForm.value);
-    //     const templateId = this.modalService.getUpdateTemplate().templateId;
-    //     const customtemplateQuestionFormsArray = templateQuestionFormsArray.map(
-    //         (formValue) =>
-    //             new TemplateQuestion(
-    //                 0,
-    //                 templateId,
-    //                 formValue.surveyQuestionName,
-    //                 formValue.surveyQuestionDescription,
-    //                 formValue.radiobutton,
-    //                 formValue.options.map((option: any, index: any) => new Option(index + 1, option))
-    //             )
-    //     );
-    //     const templateData = new TemplateData(this.basicFieldsForm.value.templateId, this.basicFieldsForm.value.templateTitle as string, this.basicFieldsForm.value.templateDescription as string, customtemplateQuestionFormsArray);
-    //     this.apiService.updateTemplate(templateData);
-    //     this.bsModalRef.hide();
-    // }
 
     updateActiveStep(step: number) {
         this.activeStep = step;

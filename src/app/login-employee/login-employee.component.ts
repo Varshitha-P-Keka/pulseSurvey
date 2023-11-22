@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 
 import * as shajs from 'sha.js';
 
-import { Loggeduser } from '../modals/loggedUser';
+import { Loggeduser } from '../models/loggedUser.model';
 import { ApiService } from '../services/api.service';
 import { UserDataService } from '../services/user-data.service';
 
@@ -16,7 +16,7 @@ import { UserDataService } from '../services/user-data.service';
     templateUrl: './login-employee.component.html',
 })
 export class LoginEmployeeComponent {
-    currentUser: Loggeduser = { employeeId: '', role: '', emailaddress: '', name: '', profilePicture: '' };
+    currentUser: Loggeduser = new Loggeduser('', '', '', '', '');
     loginForm!: FormGroup;
     data: any;
 
@@ -31,17 +31,14 @@ export class LoginEmployeeComponent {
 
     onSubmit() {
         this.loginForm.value.password = shajs('sha256').update(this.loginForm.value.password).digest('hex');
-        console.log(this.loginForm.value);
         this.apiService.getVerifyEmployee(this.loginForm.value).subscribe({
             next: (data) => {
                 this.data = data;
-                console.log(this.data);
                 localStorage.setItem('token', JSON.stringify(this.data));
                 let tokenString = localStorage.getItem('token');
 
                 if (tokenString) {
                     let tokenObject = JSON.parse(tokenString);
-                    console.log(tokenObject);
                 }
 
                 this.apiService.getEmployeeDetails().subscribe((Response) => {
@@ -51,7 +48,6 @@ export class LoginEmployeeComponent {
                 });
             },
             error: (e) => {
-                console.error('Error occurred:', e);
                 if (e.status === 400) {
                     alert('Wrong credentials');
                 }

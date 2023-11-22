@@ -9,5 +9,4 @@ import { RouterOutlet, RouterModule, RouterLinkActive } from '@angular/router';
     templateUrl: './surveys.component.html',
 })
 export class SurveysComponent {
-    showActiveTab: boolean = true;
 }

@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="currentSurvey.questionType == 'Select one from list'">
+            <div *ngIf="currentSurvey.questionType == 'SelectOneFromList'">
                 <div class="my-10" *ngFor="let optionPercentage of currentSurvey.optionPercentages">
                     <p>{{ optionPercentage.optionText }}</p>
                     <div class="d-flex align-items-center">
@@ -68,8 +68,8 @@
                 <table class="table standard-table" *ngIf="detailedCurrentSurveyArray">
                     <thead>
                         <tr>
-                            <th class="fw-bold">Names</th>
-                            <th class="fw-bold">Responses</th>
+                            <th>Names</th>
+                            <th>Responses</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,7 +100,7 @@
                     </ng-container >
                 </div>
             </div>
-            <div class="d-flex" *ngIf="detailedSurvey.questionType == 'Select one from list'">
+            <div class="d-flex" *ngIf="detailedSurvey.questionType == 'SelectOneFromList'">
                 <div *ngFor="let details of this.detailedCurrentSurveyArray.employees; index as i">
                     <table class="detailed-table table standard-table" *ngIf="details.length">
                         <thead>

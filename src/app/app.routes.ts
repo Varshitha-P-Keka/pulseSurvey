@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 
-import { MeSurveysComponent } from './me-profile/me-surveys/me-surveys.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { SurveysComponent } from './admin/surveys/surveys.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { VerificationComponent } from './verification/verification.component';
+import { MeSurveysComponent } from './me-profile/me-surveys/me-surveys.component';
 import { LoginEmployeeComponent } from './login-employee/login-employee.component';
 import { OpenSurveysComponent } from './me-profile/open-surveys/open-surveys.component';
 import { RegisterEmployeeComponent } from './register-employee/register-employee.component';

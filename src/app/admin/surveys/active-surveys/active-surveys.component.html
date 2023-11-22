@@ -5,7 +5,7 @@
             <p class="pulse-survey-description ">Here you can view and manage the pulse surveys that are active.
             </p>
         </div>
-        <button class="btn btn-primary bb" (click)="toLaunchNewSurvey()" routerLink="/pulseSurvey/home/admin/surveys/active/launchNewSurvey">Launch new survey</button>
+        <button class="btn btn-primary bb" (click)="toLaunchNewSurvey()" [routerLink]="['launchNewSurvey']">Launch new survey</button>
     </div>
     <table class="table standard-table two-line-table survey-table">
         <thead>
@@ -37,7 +37,7 @@
                     <div class="dropdown" dropdown [class.show]="survey.dropdownOpen" >
                         <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true"
                             aria-expanded="false" (click)="toggleDropdown(survey)">
-                            <i class="ki ki-ellipses-solid"></i>
+                            <span><i class="ki ki-ellipses-solid"></i></span>
                         </a>
                         <ul class="dd-menu" *ngIf="survey.dropdownOpen">
                             <li >

@@ -20,9 +20,7 @@ export class DetailsComponent {
             next: (data) => {
                 this.surveyDetails = data;
             },
-            error: (e) => {
-                console.log(e);
-            },
+            error: (e) => {},
         });
     }
 }

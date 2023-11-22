@@ -12,11 +12,11 @@
                 <div class="mt-20 p-20 survey-input-container">
                     <div [id]="question.surveyQuestionId" class=" d-flex rating-container">
                         <p class="rating-label-circle">Provide your rating:</p>
-                        <span *ngFor="let j of [1,2,3,4,5,6,7,8,9,10]" class="ml-10 rating-circle" [ngClass]= "{'rating-circle-fill': updateSelectAndRatingArray[i].selectedRating >= j}" (click)="updateRating(question.surveyQuestionId,j,i)"></span>
+                        <span *ngFor="let rating of ratingBar" class="ml-10 rating-circle" [ngClass]= "{'rating-circle-fill': updateSelectAndRatingArray[i].selectedRating >= rating}" (click)="updateRating(question.surveyQuestionId,rating,i)"></span>
                     </div>
                 </div>
             </ng-container>
-            <ng-container *ngIf="question.questionType=='Select one from list'">
+            <ng-container *ngIf="question.questionType=='SelectOneFromList'">
                 <div class="mt-20 p-20 survey-input-container">
                     <ng-select [id]="question.surveyQuestionId" [(ngModel)]="updateSelectAndRatingArray[i].selectedOption" [searchable]="false" (change)="optionSelected(question.surveyQuestionId, $event)" >
                         <ng-option [id]="option.optionId" *ngFor="let option of question.options" [value]="option.optionId">{{option.optionText}}</ng-option>

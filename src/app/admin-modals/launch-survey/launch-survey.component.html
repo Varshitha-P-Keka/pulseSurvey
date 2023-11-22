@@ -135,11 +135,11 @@
                                                     <input type="radio" formControlName="radiobutton"id="Commentonly_{{i}}" value="Text">
                                                     <label for="Commentonly_{{i}}" class="radio-button-labels">Comment only</label>
 
-                                                    <input type="radio" formControlName="radiobutton" id="option3_{{i}}" value="Select one from list">
+                                                    <input type="radio" formControlName="radiobutton" id="option3_{{i}}" value="SelectOneFromList">
                                                     <label for="option3_{{i}}" class="radio-button-labels">Select one from list</label>
                                                 </div>
                                             </div>
-                                            <a *ngIf="formResponses[i]?.surveyQuestionForm.get('radiobutton')?.value === 'Select one from list'" class="more-options-link" (click)="addInputField(i)">+ Add More options</a>
+                                            <a *ngIf="formResponses[i]?.surveyQuestionForm.get('radiobutton')?.value === 'SelectOneFromList'" class="more-options-link" (click)="addInputField(i)">+ Add More options</a>
                                             <div class="d-flex ">
                                                 <div formArrayName="inputFields">
                                                     <div *ngFor="let inputField of response.surveyQuestionForm.get('inputFields')?.controls; let j = index">

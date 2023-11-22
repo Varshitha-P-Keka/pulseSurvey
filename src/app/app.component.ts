@@ -5,16 +5,18 @@ import { RouterModule } from '@angular/router';
 import { VerificationComponent } from './verification/verification.component';
 import { UpdateTemplateComponent } from './admin/settings/update-template/update-template.component';
 import { UserDataService } from './services/user-data.service';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule, VerificationComponent,UpdateTemplateComponent],
+  imports: [CommonModule, RouterModule, VerificationComponent,UpdateTemplateComponent,NgHttpLoaderModule],
   templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'pulseSurvey';
-
+  public LoaderComponent = LoaderComponent;
   constructor(private behaviorSubjectService: UserDataService, private renderer: Renderer2){
   }
 

@@ -4,7 +4,6 @@ import { Component, Input } from '@angular/core';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
-import { Loggeduser } from 'src/app/modals/loggedUser';
 import { ApiService } from 'src/app/services/api.service';
 import { UserDataService } from 'src/app/services/user-data.service';
 import { FullModalTakeSurveyDetailsComponent } from 'src/app/modal-components/full-modal-take-survey-details/full-modal-take-survey-details.component';
@@ -16,7 +15,6 @@ import { FullModalTakeSurveyDetailsComponent } from 'src/app/modal-components/fu
     templateUrl: './open-surveys.component.html',
 })
 export class OpenSurveysComponent {
-    @Input() userDetails: Loggeduser = { name: '', emailaddress: '', employeeId: '', role: '', profilePicture: '' };
     surveyDetails: any;
     currentDate: any;
     bsModalRef: BsModalRef | undefined;
@@ -26,13 +24,11 @@ export class OpenSurveysComponent {
 
     ngOnInit() {
         this.currentDate = new Date();
-        this.userDetails = JSON.parse(<string>localStorage.getItem('currentUser'));
         this.apiService.getOpenSurveysData().subscribe({
             next: (data) => {
                 this.surveyDetails = data;
             },
             error: (e) => {
-                console.log(e);
             },
         });
     }

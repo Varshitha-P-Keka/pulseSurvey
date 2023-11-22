@@ -51,9 +51,7 @@ export class ClosedSurveysComponent {
                 this.filteredSurveys = data;
                 this.combinedFilterArray = data;
             },
-            error: (e) => {
-                console.log(e);
-            },
+            error: (e) => {},
         });
 
         this.showClosedSurveys();
@@ -110,6 +108,17 @@ export class ClosedSurveysComponent {
 
     toggleDropdown(survey: any) {
         survey.dropdownOpen = !survey.dropdownOpen;
+        document.addEventListener('click', this.onClick.bind(this));
+    }
+
+    onClick(event: Event) {
+        if (!this.isClickedInside(event)) {
+            this.filteredSurveys.forEach((survey: any) => (survey.dropdownOpen = false));
+        }
+    }
+
+    isClickedInside(event: Event): boolean {
+        return !!(event.target as HTMLElement).closest('.dropdown');
     }
 
     reLaunchSurvey(survey: any) {
@@ -123,9 +132,7 @@ export class ClosedSurveysComponent {
             next: (data) => {
                 this.closedSurveys = data;
             },
-            error: (e) => {
-                console.log(e);
-            },
+            error: (e) => {},
         });
     }
 

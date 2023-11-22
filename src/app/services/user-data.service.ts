@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { Loggeduser } from '../modals/loggedUser';
+import { Loggeduser } from '../models/loggedUser.model';
 
 @Injectable({
     providedIn: 'root',

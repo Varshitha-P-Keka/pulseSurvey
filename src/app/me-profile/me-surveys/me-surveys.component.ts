@@ -6,8 +6,7 @@ import { RouterOutlet, Router, RouterLink } from '@angular/router';
   selector: 'app-me-surveys',
   standalone: true,
   imports: [CommonModule, RouterOutlet, RouterLink],
-  templateUrl: './me-surveys.component.html',
-  styleUrls: ['./me-surveys.component.scss']
+  templateUrl: './me-surveys.component.html'
 })
 export class MeSurveysComponent {
 

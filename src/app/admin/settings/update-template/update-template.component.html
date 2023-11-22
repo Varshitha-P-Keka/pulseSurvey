@@ -5,7 +5,7 @@
 </div> 
 <div class="modal-sub-header">
     <div class="stepper-wizard w-480px justify-content-between">
-        <div class="step" [ngClass]="{ 'active': activeStep === 1 }" (click)="updateActiveStep(1)">
+        <div class="step" [ngClass]="{ 'active': activeStep === currentStep.basicFields }">
             <div class="step-number">
                 <span>1</span>
             </div>
@@ -13,7 +13,7 @@
                 <span>BASIC FIELDS</span>
             </label>
         </div>
-        <div class="step" [ngClass]="{ 'active': activeStep === 2 }" (click)="updateActiveStep(2)">
+        <div class="step" [ngClass]="{ 'active': activeStep === currentStep.surveyQuestions }">
             <div class="step-number">
                 <span>2</span>
             </div>
@@ -23,15 +23,15 @@
         </div>
     </div>
     <div>
-        <button class="btn btn-primary" *ngIf="activeStep === 1" (click)="onSave()">Save & Continue</button>
-        <div *ngIf="activeStep === 2" class="d-flex justify-content-between w-150">
-            <button class="btn btn-secondary">Back</button>
+        <button class="btn btn-primary" *ngIf="activeStep === currentStep.basicFields" (click)="onSave()">Save & Continue</button>
+        <div *ngIf="activeStep === currentStep.surveyQuestions" class="d-flex justify-content-between w-150">
+            <button class="btn btn-secondary" (click)="updateActiveStep(currentStep.basicFields)">Back</button>
             <button class="btn btn-primary" (click)="addTemplateQuestions()" >Launch</button>
         </div>            
     </div>
 </div>
-<div class="modal-body">
-    <div *ngIf="activeStep === 1">
+<div class="modal-body full-modal-body-container">
+    <div *ngIf="activeStep === currentStep.basicFields">
         <div class="form-group">
             <form [formGroup]="basicFieldsForm" >
                 <div>
@@ -45,7 +45,7 @@
             </form>
         </div>
     </div> 
-    <div *ngIf="activeStep === 2">
+    <div *ngIf="activeStep === currentStep.surveyQuestions">
         <div *ngFor="let response of formResponses; let i = index" class="d-flex w-75">
             <accordion [closeOthers]="true" class="w-100">
                 <ng-container>

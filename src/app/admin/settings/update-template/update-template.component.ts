@@ -14,8 +14,8 @@ import { TemplateData } from 'src/app/models/updateTemplateData.model';
 import { Option } from 'src/app/models/option.model';
 
 enum ActiveStep {
-    BasicFields = 1,
-    SurveyQuestions = 2,
+    basicFields = 1,
+    surveyQuestions = 2,
 }
 
 @Component({
@@ -27,7 +27,8 @@ enum ActiveStep {
 })
 export class UpdateTemplateComponent {
     showDescription: boolean = false;
-    activeStep: ActiveStep = ActiveStep.BasicFields;
+    currentStep = ActiveStep;
+    activeStep = this.currentStep.basicFields;
     questionName: any;
     maxInputFieldsErrorMsg: any;
     formResponses: any[] = [];
@@ -112,7 +113,7 @@ export class UpdateTemplateComponent {
     }
 
     onSave() {
-        this.updateActiveStep(2);
+        this.updateActiveStep(this.currentStep.surveyQuestions);
         let templateId = this.templateToUpdate.templateId;
         this.apiService.getTemplateQuestions(templateId).subscribe((templateQuestions: any) => {
             templateQuestions.forEach((question: any) => {

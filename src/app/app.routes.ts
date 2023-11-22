@@ -14,6 +14,7 @@ import { ClosedSurveysComponent } from './admin/surveys/closed-surveys/closed-su
 import { ActiveSurveysComponent } from './admin/surveys/active-surveys/active-surveys.component';
 import { CompletedSurveysComponent } from './me-profile/completed-surveys/completed-surveys.component';
 import { ViewSurveyComponent } from './admin/surveys/closed-surveys/view-survey/view-survey.component';
+import { AdminGuardService } from './services/admin-guard.service';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'pulseSurvey', pathMatch: 'full' },
@@ -38,7 +39,7 @@ export const routes: Routes = [
                     },
                     {
                         path: 'admin',
-                        component: AdminComponent,
+                        component: AdminComponent, canActivate:[AdminGuardService],
                         children: [
                             { path: '', redirectTo: 'surveys', pathMatch: 'full' },
                             {

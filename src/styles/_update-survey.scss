@@ -1,5 +1,10 @@
-.form-group label, .modal-body p {
+.form-group label {
     color: #616060;
+    font-size:13px;
+}
+
+.form-control.input-sm {
+    margin-bottom: 8px;
 }
 
 .input-calendar .ki-calendar {

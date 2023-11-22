@@ -61,9 +61,7 @@ export class ActiveSurveysComponent {
     }
 
     toLaunchNewSurvey() {
-        this.apiService.getactiveSurveys().subscribe((data) => {
-            this.modalService.triggerLaunchNewSurvey(data);
-        });
+        this.modalService.setTriggerLaunchNewSurvey(1);
     }
 
     showActiveSurveys() {

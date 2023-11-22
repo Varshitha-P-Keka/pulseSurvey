@@ -8,8 +8,6 @@ import { Loggeduser } from '../models/loggedUser.model';
     providedIn: 'root',
 })
 export class UserDataService {
-    constructor() {}
-
     private userCredentials = new BehaviorSubject<{}>({});
     private userSurveyId = new BehaviorSubject<number>(0);
     private userSurveyQuestions = new BehaviorSubject<boolean>(false);

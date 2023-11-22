@@ -76,9 +76,13 @@ export class LaunchSurveyComponent implements OnInit {
             }
         });
 
-        this.modalService.launchNewSurvey$.subscribe((data) => {
-            this.onLaunchSurveyClick();
-        });
+        this.modalService.getTriggerLaunchNewSurvey().subscribe({
+            next: (data:any)=>{
+                if(data)
+                    this.onLaunchSurveyClick();
+            },
+            error:(e:any)=>{}
+          })
     }
 
     generateOptionFormControl(optionId: number, optionText: string) {
@@ -101,9 +105,7 @@ export class LaunchSurveyComponent implements OnInit {
 
         const surveyData = new SurveyData(surveyId, this.basicFieldsForm.value.surveyName, this.basicFieldsForm.value.surveyDescription, this.formatDate(new Date()), this.formatDate(this.basicFieldsForm.value.surveyExpiry), 1, customSurveyQuestionFormsArray);
         this.apiService.sendSurveyQuestions(surveyData);
-        this.launchSurveyModalRef.hide();
-        this.fullModalRef.hide();
-        this.router.navigate(['/pulseSurvey/home/admin/surveys/active']);
+        this.hide();
     }
 
     validateField(field: string) {

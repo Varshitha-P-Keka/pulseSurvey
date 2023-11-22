@@ -7,7 +7,7 @@
                     <span class="sidebar-list-label">Me</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item"  *ngIf="isAdmin">
                 <a class="nav-link" [ngClass]="{ 'active-tab': !(router.url==openSurveyUrl|| router.url==completedSurveyUrl)}" [routerLink]="['admin']">
                     <i class="ki ki-user-duo-fill"></i>
                     <span class="sidebar-list-label">Admin</span>

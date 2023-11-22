@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -22,8 +22,7 @@ export class ModalService {
     private openSmallModalSource = new Subject<{ survey: any; type: string }>();
     openSmallModal$ = this.openSmallModalSource.asObservable();
 
-    private launchNewSurvey = new Subject<any>();
-    launchNewSurvey$ = this.launchNewSurvey.asObservable();
+    private launchNewSurvey = new BehaviorSubject<number>(0);
 
     private updateTemplate = new Subject<any>();
     updateTemplate$ = this.updateTemplate.asObservable();
@@ -61,8 +60,12 @@ export class ModalService {
         return this.templateToDelete;
     }
 
-    triggerLaunchNewSurvey(data: any) {
-        this.launchNewSurvey.next(data);
+    setTriggerLaunchNewSurvey(trigger:number) {
+        this.launchNewSurvey.next(trigger);
+    }
+ 
+    getTriggerLaunchNewSurvey() {
+        return this.launchNewSurvey;
     }
 
     triggerUpdateTemplate(data: any) {

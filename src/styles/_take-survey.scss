@@ -22,6 +22,13 @@
     background-color: white;
 }
 
+.full-modal-body-container{
+    position: absolute;
+    max-height: 670px;
+    overflow-y: scroll;
+    width: 100%;
+}
+
 .modal-btn-continue{
     background-color: rgb(118,97,139) !important;
 }

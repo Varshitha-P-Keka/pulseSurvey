@@ -6,6 +6,13 @@
     padding-left: 30px !important;
 }
 
+.questions-container .modal-body{
+    position: absolute;
+    max-height: 680px;
+    overflow-y: scroll;
+    width: 100%;
+}
+
 .question-area {
     margin-bottom: 17px;
     margin-top: 10px;

@@ -63,5 +63,16 @@ export class SettingsComponent implements OnInit {
 
     toggleDropdown(template: any) {
         template.dropdownOpen = !template.dropdownOpen;
+        document.addEventListener('click', this.onClick.bind(this));
+    }
+
+    onClick(event: Event) {
+        if (!this.isClickedInside(event)) {
+            this.templates.forEach((template: any) => (template.dropdownOpen = false));
+        }
+    }
+
+    isClickedInside(event: Event): boolean {
+        return !!(event.target as HTMLElement).closest('.dropdown');
     }
 }

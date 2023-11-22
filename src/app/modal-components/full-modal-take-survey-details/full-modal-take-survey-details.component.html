@@ -21,7 +21,7 @@
         <button class="btn btn-primary modal-btn-continue ml-16" (click)="confirmationModal()">Submit</button>
     </div>
 </div>
-<div>
+<div class="full-modal-body-container">
     <app-details *ngIf= "tab==='details'" [surveyId]="surveyId"></app-details>
     <app-survey-questions *ngIf= "tab==='surveyQuestions'" [surveyId]="surveyId"></app-survey-questions>
 </div>

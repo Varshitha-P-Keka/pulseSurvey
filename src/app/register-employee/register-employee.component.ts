@@ -33,7 +33,6 @@ export class RegisterEmployeeComponent {
     }
 
     errorToastr() {
-        console.log('error toaster');
         this.toastr.error('Error', 'This is error Toastr');
     }
 
@@ -48,14 +47,12 @@ export class RegisterEmployeeComponent {
         this.registrationForm.value.ProfilePicture = this.selectedFile;
         this.apiService.setNewEmployee(this.registrationForm.value).subscribe({
             next: (data) => {
-                console.log(data);
                 this.router.navigate(['/pulseSurvey/login']);
             },
             error: (e) => {
                 if (e.status === 409) {
                     alert('User Already exists');
                 } else {
-                    console.log(e);
                 }
             },
         });

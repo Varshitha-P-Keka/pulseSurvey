@@ -17,7 +17,8 @@ export class ApiService {
     private surveyUpdatedSource = new BehaviorSubject<any>(null);
     surveyUpdated$ = this.surveyUpdatedSource.asObservable();
 
-    constructor(private http: HttpClient, private spinner: SpinnerVisibilityService) {}
+    constructor(private http: HttpClient, private spinner: SpinnerVisibilityService) {
+    }
 
     getVerifyEmployee(empData: VerifyEmployee) {
         const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
@@ -46,7 +47,6 @@ export class ApiService {
     templateDeleted$ = this.templateDeleted.asObservable();
 
     setNewEmployee(empData: Employee) {
-        // const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
         return this.http.post(`${this.baseUrl}employee/register`, empData);
     }
 

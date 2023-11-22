@@ -10,8 +10,9 @@ import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 import {BsModalService} from 'ngx-bootstrap/modal';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-// import { AuthInterceptor } from './app/auth.interceptor';
+import { AdminGuardService } from './app/services/admin-guard.service';
+import { AdminAuthenticationService } from './app/services/admin-authentication.service';
 
-bootstrapApplication(AppComponent, { providers: [ provideHttpClient(),{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }, provideToastr(), provideAnimations(), provideRouter(routes), DatePipe, BsModalService,ToastrService] }).catch((err) => {
+bootstrapApplication(AppComponent, { providers: [ provideHttpClient(),{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }, AdminGuardService,AdminAuthenticationService,provideToastr(), provideAnimations(), provideRouter(routes), DatePipe, BsModalService,ToastrService] }).catch((err) => {
     return console.error(err);
 });

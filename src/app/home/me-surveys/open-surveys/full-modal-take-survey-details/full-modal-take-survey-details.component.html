@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title">Take Survey</h4>
+    <i class="ki ki-close" (click)="modalHide()" ></i>
+</div>
+<div class="modal-sub-header">
+    <div class="d-flex sub-header-navigator-wrapper justify-content-between">
+        <div class="d-flex">
+            <span class="sub-header-navigator d-flex justify-content-center align-items-center mr-4" [ngClass]="{'sub-header-navigator-active': subheadNavActive}">1</span>
+            <p>Details</p>
+        </div>
+        <div class="d-flex">
+            <span class="sub-header-navigator d-flex justify-content-center align-items-center mr-4" [ngClass]="{'sub-header-navigator-active': !subheadNavActive}">2</span>
+            <p>Survey Questions</p>
+        </div>
+    </div>
+    <div *ngIf="subheadNavActive">
+        <button class="btn btn-primary modal-btn-continue" (click)="openSurveyQuestions()">Continue</button>
+    </div>
+    <div *ngIf="!subheadNavActive">
+        <button class="btn btn-primary modal-btn-continue" (click)="navigateToDetails()">Back</button>
+        <button class="btn btn-primary modal-btn-continue ml-16" (click)="confirmationModal()" [disabled]="isRequired">Submit</button>
+    </div>
+</div>
+<div class="full-modal-body-container">
+    <app-details *ngIf= "tab==='details'" [surveyId]="surveyId"></app-details>
+    <app-survey-questions *ngIf= "tab==='surveyQuestions'" [surveyId]="surveyId"></app-survey-questions>
+</div>

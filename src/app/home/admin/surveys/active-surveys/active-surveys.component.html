@@ -1,0 +1,57 @@
+<div class="active-surveys-container pt-2">
+    <div class="d-flex justify-content-between mb-20">
+        <div>
+            <h2> Active Pulse Surveys </h2>
+            <p class="pulse-survey-description ">Here you can view and manage the pulse surveys that are active.
+            </p>
+        </div>
+        <button class="btn btn-primary bb" (click)="toLaunchNewSurvey()">Launch new survey</button>
+    </div>
+    <table class="table standard-table two-line-table survey-table">
+        <thead>
+            <tr>
+                <th>SURVEY TITLE</th>
+                <th>COMPLETION</th>
+                <th>EXPIRES ON</th>
+                <th>LAUNCHED ON</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let survey of surveys; let i = index">
+                <td>
+                    <p>{{survey.surveyTitle}}</p>
+                    <p class="survey-field">{{survey.surveyDescription}}</p>
+                </td>
+                <td>
+                    <p>{{ survey.completionPercent + '%'}}</p>
+                </td>
+                <td>
+                    <p>{{ survey.expiresOn }}</p>
+                </td>
+                <td>
+                    <p>{{ survey.launchedOn }}</p>
+                    <p class="survey-field">By {{ survey.launchedBy }}</p>
+                </td>
+                <td>
+                    <div class="dropdown" dropdown [class.show]="survey.dropdownOpen">
+                        <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true"
+                            aria-expanded="false" (click)="toggleDropdown(survey)">
+                            <span><i class="ki ki-ellipses-solid"></i></span>
+                        </a>
+                        <ul class="dd-menu" *ngIf="survey.dropdownOpen">
+                            <li>
+                                <a (click)="toUpdateSurvey(survey)">Update</a>
+                            </li>
+                            <li>
+                                <a (click)="toClosedSurveys(survey)">Close survey</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<router-outlet></router-outlet>

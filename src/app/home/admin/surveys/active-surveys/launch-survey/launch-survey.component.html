@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h5 class="modal-title">Launch a new survey</h5>
+    <i class="ki ki-close" (click)="hideModal()"></i>
+</div>
+<div class="moda-
+l-body">
+    <div class="dropdown dropdown-custom dropdown-custom-md" dropdown #dropdown>
+        <button class="d-flex align-items-center w-350 justify-content-between" dropdownToggle>
+            <span class="text-primary">{{selectedItem}}</span>
+            <i class="ki ki-arrow-dropdown"></i>
+        </button>
+        <ul class="dropdown-menu w-350" aria-labelledby="menu" *dropdownMenu>
+            <li>
+                <a class="dropdown-item" (click)="onNewSurveySelect(SelectedItem.New)">
+                    <p class="text-large">Create a new survey</p>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" (click)="$event.stopPropagation(); toggleTemplates()">
+                    <p class="text-large">Create using existing template</p>
+                </a>
+            </li>
+            <ng-container *ngIf="showExisitingTemplates">
+                <li *ngFor="let templateName of existingTemplateNames">
+                    <a class="dropdown-item" (click)="onTemplateSelect(templateName)">
+                        <p class="text-large">{{ templateName }}</p>
+                    </a>
+                </li>
+            </ng-container>
+        </ul>
+        <p class="error-message">{{selectionErrorMsg}}</p>
+    </div>
+</div>
+<div class="modal-footer p-20">
+    <button class="btn cancel-button" (click)="hideModal()">Cancel</button>
+    <button class="btn launch-button" (click)="toLaunchSurveyFullModal()">Launch</button>
+</div>

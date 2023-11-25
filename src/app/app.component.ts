@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { VerificationComponent } from './verification/verification.component';
-import { UpdateTemplateComponent } from './admin/settings/update-template/update-template.component';
-import { UserDataService } from './services/user-data.service';
+import { UpdateTemplateComponent } from './home/admin/settings/update-template/update-template.component';
+import { UserDataService } from './shared/services/user-data.service';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 

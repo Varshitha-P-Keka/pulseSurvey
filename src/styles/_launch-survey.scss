@@ -25,7 +25,20 @@
 }
 
 .question-area {
-    margin-bottom: 17px;
+    margin-bottom: 7px;
+    margin-top: 20px;
+}
+
+.w-97 {
+    width: 97%;
+}
+
+.required-checkbox {
+    margin-top: 30px;
+    label {
+        color: red !important;
+        margin-bottom: 10px;
+    }
 }
 
 .cancel-button {
@@ -34,8 +47,13 @@
 }
 
 .launch-button {
- background-color: #76618B;
- color: white;
+    background-color: #76618B;
+    color: white;
+}
+
+.launch-button:hover {
+    color: white;
+    background-color: #4f415e;
 }
 
 .question-group {

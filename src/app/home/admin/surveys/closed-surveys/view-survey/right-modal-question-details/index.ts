@@ -1,0 +1,1 @@
+export * from './right-modal-question-details.component';

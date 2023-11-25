@@ -1,0 +1,162 @@
+<div class="questions-container">
+    <div class="modal-header">
+        <h5 class="modal-title">Launch survey</h5>
+        <i class="ki ki-close" (click)="hideModal()"></i>
+    </div>
+    <div class="modal-sub-header">
+        <div class="stepper-wizard">
+            <div class="step" [ngClass]="{ 'active': activeStep === currentStep.BasicFields }">
+                <div class="step-number">
+                    <span>1</span>
+                </div>
+                <label class="step-label">
+                    <span>BASIC FIELDS</span>
+                </label>
+            </div>
+            <div class="step" [ngClass]="{ 'active': activeStep === currentStep.SurveyQuestions }">
+                <div class="step-number">
+                    <span>2</span>
+                </div>
+                <label class="step-label">
+                    <span>QUESTOINS IN TEMPLATE </span>
+                </label>
+            </div>
+        </div>
+        <div class="button-group">
+            <button class="btn btn-primary" *ngIf="activeStep === currentStep.BasicFields" (click)="saveBasicFields()"
+                [disabled]="basicFieldsForm.invalid"> Save & Continue </button>
+            <div *ngIf="activeStep === currentStep.SurveyQuestions" class="d-flex justify-content-between w-164">
+                <button class="btn btn-secondary" (click)="updateActiveStep( currentStep.BasicFields)">Back</button>
+                <button class="btn btn-primary" (click)="launchSurvey()" [disabled]="isLaunchDisabled()">Launch</button>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div *ngIf="activeStep === currentStep.BasicFields">
+            <div class="form-group">
+                <form [formGroup]="basicFieldsForm" (ngSubmit)="saveBasicFields()">
+                    <div>
+                        <label> Title of this Survey </label>
+                        <input type="text" class="form-control input-sm w-33" formControlName="surveyName" />
+                        <div *ngIf="basicFieldsForm.get('surveyName')?.invalid && basicFieldsForm.get('surveyName')?.touched"
+                            class="error-message">
+                            <div *ngIf="basicFieldsForm.get('surveyName')?.errors?.['required']">Survey Name is required
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Description</label>
+                        <input type="text" class="form-control input-sm w-33" formControlName="surveyDescription" />
+                        <div *ngIf="basicFieldsForm.get('surveyDescription')?.invalid && basicFieldsForm.get('surveyDescription')?.touched"
+                            class="error-message">
+                            <div *ngIf="basicFieldsForm.get('surveyDescription')?.errors?.['required']">Description is
+                                required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>The survey expires on</label>
+                        <div class="row clear-margin-x">
+                            <div class="col-sm-12 clear-padding-x">
+                                <div class="form-group">
+                                    <label for="DateAssigned">Calendar</label>
+                                    <div class="input-calendar col-sm-12 clear-padding-x">
+                                        <input type="text" class="form-control w-200" id="DateAssigned" bsDatepicker
+                                            [bsConfig]="{ showWeekNumbers: false }" readonly
+                                            formControlName="surveyExpiry">
+                                        <span><i class="ki ki-calendar"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div *ngIf="activeStep === currentStep.SurveyQuestions">
+            <div *ngFor="let response of formResponses; let i = index" class="add-question d-flex w-75">
+                <accordion [closeOthers]="true" class="w-100">
+                    <ng-container>
+                        <div class="d-flex align-items-start mb-10">
+                            <accordion-group [isOpen]="true" class="flex-fill">
+                                <div accordion-heading>
+                                    <div class="d-flex align-items-center flex-fill mb-10 mt-10">
+                                        <p class="text-large text-truncate-1">{{ response.questionName }}</p>
+                                    </div>
+                                    <i class="ki ki-arrow-dropup"></i>
+                                    <i class="ki ki-arrow-dropdown"></i>
+                                </div>
+                                <div class="collapse show mt-10 mb-10" data-parent="#accordion">
+                                    <div class="form-group question-group">
+                                        <form [formGroup]="response.surveyQuestionForm" class="questions-form">
+                                            <textarea class="form-control question-area" rows="2"
+                                                placeholder="Type the question here"
+                                                formControlName="surveyQuestionName"
+                                                (input)="updateQuestionName($event, i)">
+                                            </textarea>
+                                            <div *ngIf="response.surveyQuestionForm.get('surveyQuestionName')?.invalid && response.surveyQuestionForm.get('surveyQuestionName')?.touched">
+                                              <div class="error-message">Survey question name is required</div>
+                                            </div>                                              
+                                            <a class="add-description" (click)="addDescription()">+ Add additional
+                                                Description</a>
+                                            <textarea class="form-control question-area" rows="3"
+                                                placeholder="Provide a Description so that the employees can understand what exactly to respond to this question"
+                                                *ngIf="showDescription"
+                                                formControlName="surveyQuestionDescription">
+                                            </textarea>
+                                            <div class="radio-buttons d-flex justify-content-between w-97">
+                                                <div>
+                                                    <p> How do you want the employees to respond to this question? </p>
+                                                    <div class="options d-flex justify-content-between w-430">
+                                                        <input type="radio" formControlName="radiobutton" id="Rating_{{i}}"
+                                                            value="Rating">
+                                                        <label for="Rating_{{i}}" class="radio-button-labels">Rating</label>
+    
+                                                        <input type="radio" formControlName="radiobutton"
+                                                            id="Commentonly_{{i}}" value="Text">
+                                                        <label for="Commentonly_{{i}}" class="radio-button-labels">Comment
+                                                            only</label>
+    
+                                                        <input type="radio" formControlName="radiobutton" id="option3_{{i}}"
+                                                            value="SelectOneFromList">
+                                                        <label for="option3_{{i}}" class="radio-button-labels">Select one
+                                                            from list</label>
+                                                    </div>
+                                                </div>                                              
+                                                <div class="required-checkbox">
+                                                    <input type="checkbox" [formControl]="response.surveyQuestionForm.get('isRequired')" id="isRequiredCheckBox_{{i}}">
+                                                    <label for="isRequiredCheckBox_{{i}}" class="required-label">*Is Required</label>
+                                                </div>
+                                            </div>
+                                            <a *ngIf="formResponses[i]?.surveyQuestionForm.get('radiobutton')?.value === 'SelectOneFromList'"
+                                                class="more-options-link" (click)="addOption(i)">+ Add More
+                                                options</a>
+                                            <div class="d-flex ">
+                                                <div formArrayName="inputFields">
+                                                    <div
+                                                        *ngFor="let inputField of response.surveyQuestionForm.get('inputFields')?.controls; let j = index">
+                                                        <div class="d-flex">
+                                                            <input type="text" [formControlName]="j"
+                                                                class="form-control w-400 mr-2 mt-3" />
+                                                            <i class="ki ki-close close-icon"
+                                                                (click)="removeOption(j, i)"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="error-message">{{response.errorInpuFieldMsg}}</div>
+                                                
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                            </accordion-group>
+                        </div>
+                    </ng-container>
+                </accordion>
+                <i class="ki ki-delete" (click)="deleteQuestion(i)"></i>
+            </div>
+            <button class="btn btn-link" (click)="addQuestion()">Add Question</button>
+        </div>
+    </div>
+</div>

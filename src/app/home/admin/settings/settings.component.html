@@ -1,0 +1,53 @@
+<div class="settings">
+    <div class="d-flex justify-content-between">
+        <div>
+            <p class="pulse-survey-title">Survey Templates</p>
+            <p class="pulse-survey-description">Here you can configure survey templates that you can use while creating
+                surveys</p>
+        </div>
+        <button class="btn btn-primary bb" (click)=" toCreateNewTemplate()">Create New Survey Template</button>
+    </div>
+    <table class="table standard-table two-line-table survey-table">
+        <thead>
+            <tr>
+                <th>TEMPLATE TITLE</th>
+                <th>CREATED ON</th>
+                <th>LAST UPDATED ON</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let template of templates; let i = index">
+                <td>
+                    <p>{{template.templateTitle}}</p>
+                    <p class="survey-field">{{template.templateDescription}}</p>
+                </td>
+                <td>
+                    <p>{{ template.createdOn}}</p>
+                    <p class="survey-field">By {{ template.launchedBy}}</p>
+                </td>
+                <td>
+                    <p>{{ template.updatedOn }}</p>
+                    <p class="survey-field">By {{ template.launchedBy}}</p>
+                </td>
+                <td>
+                    <div class="dropdown" dropdown [class.show]="template.dropdownOpen">
+                        <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true"
+                            aria-expanded="false" (click)="toggleDropdown(template)">
+                            <span><i class="ki ki-ellipses-solid"></i></span>
+                        </a>
+                        <ul class="dd-menu" *ngIf="template.dropdownOpen">
+                            <li (click)="toUpdateTemplate(template)">
+                                <a>Update Template</a>
+                            </li>
+                            <li (click)="toDeleteTemplate(template)">
+                                <a>delete template</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<router-outlet></router-outlet>

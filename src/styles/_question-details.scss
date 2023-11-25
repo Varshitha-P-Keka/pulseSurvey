@@ -1,42 +1,43 @@
-.select-survey-question{
-    width:150px;
+.select-survey-question {
+  width: 150px;
 }
 
-.percentage-container{
-    height:10px;
-    width:300px;
-    background-color:rgb(236,234,238);
-    border-radius:10px;
+.percentage-container {
+  height: 10px;
+  width: 300px;
+  background-color: rgb(236, 234, 238);
+  border-radius: 10px;
 
-    .percentage-value{
-        height:100%;
-        border-radius:10px;
-        background-color:rgb(118, 97, 139);
+  .percentage-value {
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgb(118, 97, 139);
+  }
+}
+
+.navigate-question-buttons {
+  height: 25px;
+
+  button {
+    background-color: rgb(164, 170, 178);
+    border-radius: 4px;
+    border: none;
+
+    .ki-arrow-dropdown-right,
+    .ki-arrow-dropdown-left {
+      color: white;
     }
+  }
 }
 
-.navigate-question-buttons{
-    height:25px;
-
-    button{
-        background-color: rgb(164,170,178);
-        border-radius:4px;
-        border:none;
-
-        .ki-arrow-dropdown-right, .ki-arrow-dropdown-left{
-            color:white;
-        }
-    }
-}
-
-.switch-detailed-analytical-btn{
-    height:40px;
+.switch-detailed-analytical-btn {
+  height: 40px;
 }
 
 .detailed-rating-table {
-    margin-bottom:20px !important;
+  margin-bottom: 20px !important;
 }
 
 .detailed-table {
-    max-width:200px;
+  max-width: 200px;
 }

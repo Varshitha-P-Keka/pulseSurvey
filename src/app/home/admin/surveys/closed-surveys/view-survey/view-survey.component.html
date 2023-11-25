@@ -1,0 +1,60 @@
+<div class="m-20" *ngIf = currentSurvey>
+    <div class="p-20 view-survey-header">
+        <h2>{{currentSurvey.surveyTitle}}</h2>
+        <div class="d-flex mt-10 view-survey-details justify-content-between">
+            <div>
+                <p class="color-grey">STATUS</p>
+                <p class="font-weight-normal">{{currentSurvey.status}}</p>
+            </div>
+            <div>
+                <p class="color-grey">EXPIRED ON</p>
+                <p class="font-weight-normal">{{currentSurvey.expiredOn | date: 'mediumDate'}}</p>
+            </div>
+            <div>
+                <p class="color-grey">LAUNCHED ON</p>
+                <p class="font-weight-normal">{{currentSurvey.launchedOn | date: 'mediumDate'}}</p>
+            </div>
+            <div>
+                <p class="color-grey">LAUNCHED BY</p>
+                <p class="font-weight-normal">{{currentSurvey.launchedBy}}</p>
+            </div>
+            <div>
+                <p class="color-grey">COMPLETION</p>
+                <p class="font-weight-normal">{{currentSurvey.completionPercent}}%</p>
+            </div>
+        </div>
+    </div>
+    <div class="mt-10 p-20 view-survey-item" *ngFor="let question of currentSurvey.surveyQuestionsSummary, index as i">
+        <p class="font-weight-normal">{{i+1}}. {{question.questionText}}</p>
+        <div class="color-grey d-flex">
+            <p>Response Type: </p>
+            <p class="pl-4">{{question.questionType}}</p>
+        </div>
+        <div *ngIf="question.questionType=='Text'">
+            <p class="p-12"></p>
+        </div> 
+        <div *ngIf="question.questionType=='Rating'">
+            <div class="my-10">
+                <p>Average Rating</p>
+                <div class="d-flex align-items-center">
+                    <div class="percentage-container">
+                        <div class="percentage-value" [style.width.%]="question.averageRating * 10"></div>
+                    </div>
+                    <p class="ml-10">{{question.averageRating }}/ 10</p>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="question.questionType=='SelectOneFromList'">
+            <div class="my-10" *ngFor="let optionPercentage of question.optionPercentages">
+                <p>{{optionPercentage.optionText}}</p>
+                <div class="d-flex align-items-center">
+                    <div class="percentage-container">
+                        <div class="percentage-value" [style.width.%]="optionPercentage.percentage"></div>
+                    </div>
+                    <p class="ml-10">{{optionPercentage.percentage}}%</p>
+                </div>
+            </div>
+        </div>
+        <a class="details-link" (click)="openQuestionDetails(question.surveyQuestionId)">See more details</a>
+    </div>
+</div>

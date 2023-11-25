@@ -1,0 +1,68 @@
+<div class="pt-1" >
+    <h2>Closed Pulse Surveys</h2>
+    <p class="mb-20">Here you can view and manage the pulse surveys that are closed.</p>
+
+    <div class="d-flex filter-container">
+        <div>
+            <div class="select-filter-picker">
+                <ng-select #selectDropdown [searchable]="false" placeholder="Launched Between" (change)="filterDropDown($event.id)" [items]="filterOptions" bindLabel="name" bindValue="id" [clearable]="true" [(ngModel)]="selectedFilterId"></ng-select>
+            </div>
+            <div class="date-range-picker input-calendar w-300 form-group">
+                <input #dateRangeCalendar type="text" class="selected-filters form-control" bsDaterangepicker placement="right" [bsConfig]="{ showWeekNumbers: false, isAnimated: false, rangeInputFormat: 'D MMM YYYY' }" [(ngModel)]="selectedDate" (ngModelChange)="onDateChange($event)" />
+            </div>
+        </div>
+        <div class="search-filter-text d-flex">
+            <label class="position-relative"><i class="ki ki-search position-absolute"></i></label>
+            <input class="h-100 pl-32" type="search" placeholder="Search" (input)="filterOnInput($event.target)" [(ngModel)]="inputTextFilter"/>
+        </div>
+        <div class="filter-reset-btn d-flex">
+            <label class="position-relative"><i class="ki ki-refresh position-absolute"></i></label>
+            <input class="filter-reset-btn" type="reset" (click)="reset()"/>
+        </div>
+    </div>
+    <table class="table standard-table two-line-table">
+        <thead>
+            <tr>
+                <th>SURVEY TITLE</th>
+                <th>LAUNCHED ON</th>
+                <th>CLOSED ON</th>
+                <th>COMPLETION</th>
+                <th>ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let survey of filteredSurveys">
+                <td>
+                    <p class="font-weight-normal">{{ survey.surveyTitle }}</p>
+                    <p class="table-color-secondary">{{ survey.surveyDescription }}</p>
+                </td>
+                <td>
+                    <p class="font-weight-normal">{{ survey.launchedOn | date : 'mediumDate' }}</p>
+                    <p class="table-color-secondary">by {{ survey.launchedBy }}</p>
+                </td>
+                <td>
+                    <p class="font-weight-normal">{{ survey.expiresOn | date : 'mediumDate' }}</p>
+                    <p class="table-color-secondary">by {{ survey.launchedBy }}</p>
+                </td>
+                <td>
+                    <p class="font-weight-normal">{{ survey.completionPercent }}</p>
+                </td>
+                <td>
+                    <div class="dropdown" dropdown [class.show]="survey.dropdownOpen">
+                        <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true" aria-expanded="false" (click)="toggleDropdown(survey)">
+                            <span><i class="ki ki-ellipses-solid"></i></span>
+                        </a>
+                        <ul class="dd-menu" *ngIf="survey.dropdownOpen">
+                            <li (click)="toReLaunchSurvey(survey)">
+                                <a>Re-launch Survey</a>
+                            </li>
+                            <li (click)="toViewSurvey(survey)">
+                                <a>View</a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

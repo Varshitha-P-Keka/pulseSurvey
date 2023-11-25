@@ -1,20 +1,8 @@
 import { Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { AdminComponent } from './admin/admin.component';
-import { SurveysComponent } from './admin/surveys/surveys.component';
-import { SettingsComponent } from './admin/settings/settings.component';
-import { VerificationComponent } from './verification/verification.component';
-import { MeSurveysComponent } from './me-profile/me-surveys/me-surveys.component';
-import { LoginEmployeeComponent } from './login-employee/login-employee.component';
-import { OpenSurveysComponent } from './me-profile/open-surveys/open-surveys.component';
-import { RegisterEmployeeComponent } from './register-employee/register-employee.component';
-import { LaunchSurveyComponent } from './admin-modals/launch-survey/launch-survey.component';
-import { ClosedSurveysComponent } from './admin/surveys/closed-surveys/closed-surveys.component';
-import { ActiveSurveysComponent } from './admin/surveys/active-surveys/active-surveys.component';
-import { CompletedSurveysComponent } from './me-profile/completed-surveys/completed-surveys.component';
-import { ViewSurveyComponent } from './admin/surveys/closed-surveys/view-survey/view-survey.component';
-import { AdminGuardService } from './services/admin-guard.service';
+import { HomeComponent, AdminComponent, SurveysComponent, SettingsComponent, MeSurveysComponent, OpenSurveysComponent, LaunchSurveyComponent, ClosedSurveysComponent, ActiveSurveysComponent, CompletedSurveysComponent, ViewSurveyComponent } from './home'
+import { VerificationComponent, LoginEmployeeComponent, RegisterEmployeeComponent } from './verification'
+import { AdminGuardService } from './shared/services/admin-guard.service';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'pulseSurvey', pathMatch: 'full' },

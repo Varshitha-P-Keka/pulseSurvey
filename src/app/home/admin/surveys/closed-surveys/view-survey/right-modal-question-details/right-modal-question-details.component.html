@@ -1,0 +1,118 @@
+<div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <i class="ki ki-close" (click)="modalHide()"></i>
+</div>
+<div class="modal-body">
+    <div class="d-flex align-items-center">
+        <div class="select-survey-question">
+            <ng-select [searchable]="false" [(ngModel)]="selectedQuestion" (change)="onQuestionChange($event)">
+                <ng-option *ngFor="let id of questionOptions; index as i" [value]="id">Question {{ i + 1 }}</ng-option>
+            </ng-select>
+        </div>
+        <div class="d-flex ml-20">
+            <div class="navigate-question-buttons">
+                <button class="h-100" (click)="previousQuestion()">
+                    <i class="ki ki-arrow-dropdown-left"></i>
+                </button>
+                <button class="ml-20 h-100" (click)="nextQuestion()">
+                    <i class="ki ki-arrow-dropdown-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="currentSurvey">
+        <h4 class="mt-20">{{ currentSurvey.questionText }}</h4>
+        <div class="d-flex">
+            <p>Response Type:</p>
+            <p class="ml-10">{{ currentSurvey.questionType }}</p>
+        </div>
+        <div class="btn-group btn-group-secondary my-20 switch-detailed-analytical-btn">
+            <button class="btn btn-link h-100" [ngClass]="{ active: toggleTab == Tabs.Analytical }" (click)="toggle(Tabs.Analytical)">Analytical</button>
+            <button class="btn btn-link h-100" [ngClass]="{ active: toggleTab == Tabs.Detailed }" (click)="toggle(Tabs.Detailed)">Detailed</button>
+        </div>
+        <div *ngIf="toggleTab == Tabs.Analytical">
+            <div *ngIf="currentSurvey.questionType == QuestionType.Comment">
+                <p class="p-12"></p>
+            </div>
+            <div *ngIf="currentSurvey.questionType == QuestionType.Rating">
+                <div class="my-10">
+                    <p>Average Rating</p>
+                    <div class="d-flex align-items-center">
+                        <div class="percentage-container">
+                            <div class="percentage-value" [style.width.%]="currentSurvey.averageRating * 10"></div>
+                        </div>
+                        <p class="ml-10">{{ currentSurvey.averageRating }}/ 10</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="currentSurvey.questionType == QuestionType.Dropdown">
+                <div class="my-10" *ngFor="let optionPercentage of currentSurvey.optionPercentages">
+                    <p>{{ optionPercentage.optionText }}</p>
+                    <div class="d-flex align-items-center">
+                        <div class="percentage-container">
+                            <div class="percentage-value" [style.width.%]="optionPercentage.percentage"></div>
+                        </div>
+                        <p class="ml-10">{{ optionPercentage.percentage }}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf = "detailedSurvey">
+        <div *ngIf="toggleTab == Tabs.Detailed">
+            <div *ngIf="detailedSurvey.questionType == QuestionType.Comment">
+                <table class="table standard-table" *ngIf="detailedCurrentSurveyArray">
+                    <thead>
+                        <tr>
+                            <th>Names</th>
+                            <th>Responses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let responses of detailedCurrentSurveyArray">
+                            <td>{{ responses.employeeName }}</td>
+                            <td>{{ responses.response }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="detailedSurvey.questionType == QuestionType.Rating">
+                <div *ngFor="let rating of detailedCurrentSurveyArray; index as i">
+                    <ng-container *ngIf="detailedCurrentSurveyArray">
+                        <table class="table standard-table detailed-rating-table" *ngIf = rating.length>
+                                <thead >
+                                    <tr>
+                                        <th>Rating {{i+1}}</th>
+                                    </tr>
+                                </thead>
+                                <ng-container *ngIf = rating.length>
+                                    <tbody *ngFor = "let names of rating">
+                                        <tr>
+                                            <td>{{names.employeeName}}</td>
+                                        </tr>
+                                    </tbody>
+                                </ng-container>
+                        </table>
+                    </ng-container >
+                </div>
+            </div>
+            <div class="d-flex" *ngIf="detailedSurvey.questionType == QuestionType.Dropdown">
+                <div *ngFor="let details of this.detailedCurrentSurveyArray.employees; index as i">
+                    <table class="detailed-table table standard-table" *ngIf="details.length">
+                        <thead>
+                            <tr>
+                                <th>{{detailedCurrentSurveyArray.options[i]}}</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let option of details">
+                            <tr>
+                                <td>{{option.employeeName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

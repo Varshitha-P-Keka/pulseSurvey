@@ -8,7 +8,7 @@ import { SpinnerVisibilityService } from 'ng-http-loader';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import {BsDatepickerModule,BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
-import { ApiService,Option, SurveyData,SurveyQuestion, ModalService,ActiveStep,SelectedItem } from '../../../../../../shared';
+import { ApiService,Option, SurveyData,SurveyQuestion, ModalService,ActiveStep,SelectedItem,QuestionType } from '../../../../../../shared';
 
 @Component({
   selector: 'app-launch-survey-full-modal',
@@ -25,6 +25,8 @@ export class LaunchSurveyFullModalComponent implements OnInit {
   SelectedItem: SelectedItem = SelectedItem.New;
   currentStep = ActiveStep;
   activeStep = this.currentStep.BasicFields;
+  questionType:QuestionType = QuestionType.Dropdown;
+  QuestionType = QuestionType;
   questionName: string = '';
   errorInpuFieldMsg: string = '';
   templateId: string = '';
@@ -33,13 +35,18 @@ export class LaunchSurveyFullModalComponent implements OnInit {
   optionIdCounter:number = 1;
   isButtonDisabled:boolean = true;
   options: any[] = [];
+  maxOptions:number = 5;
   basicFieldsForm!: FormGroup;
   surveyQuestionsForm!: FormGroup;
-  ModalRef!: BsModalRef | undefined;
+  modalRef!: BsModalRef | undefined;
   templateQuestions: any[] = [];
-  errorQName:string = '';
+  bsConfig: Partial<BsDatepickerConfig> = {};
 
   ngOnInit(): void {
+    this.bsConfig = {
+      showWeekNumbers: false,
+      minDate: new Date(),
+    };
     this.initializeBasicFieldsForm();
     this.initializeSurveyQuestionsForm();
     this.subscribeToEvents();
@@ -52,7 +59,7 @@ export class LaunchSurveyFullModalComponent implements OnInit {
       surveyDescription: ['', [Validators.required]],
       surveyExpiry: ['', [Validators.required]],
     });
-  }
+  }  
 
   private initializeSurveyQuestionsForm():void {
     this.surveyQuestionsForm = this.formBuilder.group({
@@ -60,8 +67,7 @@ export class LaunchSurveyFullModalComponent implements OnInit {
       surveyQuestionDescription: [''],
       radiobutton: ['', [Validators.required]],
       inputFields: this.formBuilder.array([]),
-      isRequired: [false,[Validators.required]]
-    
+      isRequired: [false,[Validators.required]]    
     });
   }
 
@@ -89,8 +95,7 @@ export class LaunchSurveyFullModalComponent implements OnInit {
     this.apiService.getTemplates().subscribe((data: any) => {
       this.spinner.hide();
       this.exisitngTemplates = data;
-      const selectedTemplate = this.exisitngTemplates.find(
-        (template: { templateTitle: string }) =>
+      const selectedTemplate = this.exisitngTemplates.find((template: { templateTitle: string }) =>
           template.templateTitle === this.selectedItem
       );
       if (selectedTemplate) {
@@ -103,9 +108,7 @@ export class LaunchSurveyFullModalComponent implements OnInit {
   }
 
   checkValidity(control: any | null): void {
-    if (control) {
-      control.markAsTouched();
-    }
+    if (control) control.markAsTouched();    
   }  
 
   generateOptionFormControl(optionId: number, optionText: string):FormGroup {
@@ -129,33 +132,20 @@ export class LaunchSurveyFullModalComponent implements OnInit {
 
     const customSurveyQuestionFormsArray = this.formResponses.map(response => {
       const options = response.surveyQuestionForm.value.inputFields.map((option:Option, index:number) => ({optionId: index + 1,optionText: option}));
-      return new SurveyQuestion(
-        surveyIds.surveyQuestionId,
-        response.surveyQuestionForm.value.surveyQuestionName,
-        response.surveyQuestionForm.value.surveyQuestionDescription,
-        response.surveyQuestionForm.value.radiobutton,
-        options,
-        response.surveyQuestionForm.value.isRequired,
-      );
+      return new SurveyQuestion(surveyIds.surveyQuestionId, response.surveyQuestionForm.value.surveyQuestionName, response.surveyQuestionForm.value.surveyQuestionDescription, response.surveyQuestionForm.value.radiobutton, options, response.surveyQuestionForm.value.isRequired);
     });
 
-    const surveyData = new SurveyData(
-      surveyIds.surveyId,
-      this.basicFieldsForm.value.surveyName,
-      this.basicFieldsForm.value.surveyDescription,
-      this.formatDate(new Date()),
-      this.formatDate(this.basicFieldsForm.value.surveyExpiry),
-      customSurveyQuestionFormsArray
-    );
-  
+    const surveyData = new SurveyData(surveyIds.surveyId, this.basicFieldsForm.value.surveyName, this.basicFieldsForm.value.surveyDescription, this.formatDate(new Date()), this.formatDate(this.basicFieldsForm.value.surveyExpiry), customSurveyQuestionFormsArray);
     this.apiService.sendSurveyQuestions(surveyData);
     this.hideModal();
   }
 
-  addOption(index: number):void {
+  addOption(index: number): void {
     const currentResponse = this.formResponses[index];
     const inputFields = currentResponse.surveyQuestionForm.get('inputFields') as FormArray;
-    if (inputFields.length < 5) {
+    const maxOptions = 5;
+
+    if (inputFields.length < maxOptions) {
       inputFields.push(this.formBuilder.control(''));
       currentResponse.errorInpuFieldMsg = '';
       this.options.push({ optionId: this.optionIdCounter++, optionValue: '' });
@@ -218,9 +208,7 @@ export class LaunchSurveyFullModalComponent implements OnInit {
 
   getTemplateIdByName(selectedItem: string): string | null {
     for (const template of this.exisitngTemplates) {
-      if (template.templateTitle === selectedItem) {
-        return template.templateId;
-      }
+      if (template.templateTitle === selectedItem) return template.templateId;      
     }
     return null;
   }  
@@ -249,9 +237,7 @@ export class LaunchSurveyFullModalComponent implements OnInit {
         radiobutton: question.questionType,
       });
   
-      if (question.options && question.options.length) {
-        this.updateInputFields(newSurveyQuestionForm, question.options);
-      }
+      if (question.options && question.options.length) this.updateInputFields(newSurveyQuestionForm, question.options);      
   
       this.formResponses.push({
         surveyQuestionForm: newSurveyQuestionForm,
@@ -268,9 +254,8 @@ export class LaunchSurveyFullModalComponent implements OnInit {
     });
   }  
 
-  private formatDate(date: Date):string {
-    let fdate = this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss.SSS');
-    return fdate + 'Z';
+  private formatDate(date: Date): string {
+    return this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss.SSS') + 'Z';
   }
 
   toBasicFields() {

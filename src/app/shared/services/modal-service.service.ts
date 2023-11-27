@@ -59,10 +59,6 @@ export class ModalService {
         return this.templateToDelete;
     }
 
-    triggerUpdateTemplate(data: any) {
-        this.updateTemplate.next(data);
-    }
-
     setCloseSurvey(survey: any) {
         this.surveyToClose = survey;
         this.closeSurvey.next(survey);

@@ -19,6 +19,10 @@ export class DetailsComponent {
     surveyDetails: any | undefined;
 
     ngOnInit():void {
+        this.fetchSurveyDetails();
+    }
+    
+    private fetchSurveyDetails() {
         this.apiService.getSurveyDetailsById(this.surveyId).subscribe({
             next: (data) => {
                 this.spinner.hide();

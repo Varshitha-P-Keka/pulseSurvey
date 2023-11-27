@@ -21,6 +21,7 @@ export class LoginEmployeeComponent {
     constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private behaviorSubjectService: UserDataService, private spinner: SpinnerVisibilityService) {}
     currentUser: Loggeduser = new Loggeduser('', '', '', '', '');
     loginForm!: FormGroup;
+    credentialsError:string = '';
 
     ngOnInit() {
         this.initialzeLoginForm();
@@ -44,7 +45,7 @@ export class LoginEmployeeComponent {
             this.fetchEmployeeDetailsAndNavigate();
           },
           error: (e) => {
-            if (e.status === 400) alert('Wrong credentials');            
+            if (e.status === 400) this.credentialsError = 'Wrong Credentials';            
           },
         });
     }

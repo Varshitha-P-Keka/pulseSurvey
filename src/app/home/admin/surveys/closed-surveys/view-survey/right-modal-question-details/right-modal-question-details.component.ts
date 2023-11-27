@@ -19,7 +19,7 @@ import { ApiService, UserDataService, QuestionType, Tabs } from '../../../../../
 
 export class RightModalQuestionDetailsComponent {
     currentSurvey: any;
-    toggleTab: string = 'analytical';
+    toggleTab: string = 'Analytical';
     detailedCurrentSurveyArray: any;
     detailedSurvey: any;
     questionType:QuestionType = QuestionType.Rating;

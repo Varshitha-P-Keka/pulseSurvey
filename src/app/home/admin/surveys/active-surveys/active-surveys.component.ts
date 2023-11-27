@@ -7,6 +7,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { ApiService,ModalService } from '../../../../shared';
 import { UpdateSurveyComponent,CloseSurveyComponent,LaunchSurveyComponent } from '../active-surveys';
+import { merge } from 'rxjs';
 
 @Component({
     selector: 'app-active-surveys',
@@ -29,20 +30,16 @@ export class ActiveSurveysComponent {
     }
 
     private onClick(event: Event):void {
-        if (!this.isClickedInside(event)) {
-            this.surveys.forEach((survey: any) => (survey.dropdownOpen = false));
-        }
+        if (!this.isClickedInside(event)) this.surveys.forEach((survey: any) => (survey.dropdownOpen = false));
     }
 
     private isClickedInside(event: Event): boolean {
         return !!(event.target as HTMLElement).closest('.dropdown');
     }
 
-    private subscribeToSurveyEvents():void {
-        this.apiService.surveyUpdated$.subscribe(() => this.showActiveSurveys());
-        this.apiService.surveyEdited$.subscribe(() => this.showActiveSurveys());
-        this.apiService.surveyAdded$.subscribe(() => this.showActiveSurveys());
-    }
+    private subscribeToSurveyEvents(): void {
+        merge(this.apiService.surveyUpdated$, this.apiService.surveyEdited$, this.apiService.surveyAdded$).subscribe(() => this.showActiveSurveys());
+      }
 
     toggleDropdown(survey: any):void {
         survey.dropdownOpen = !survey.dropdownOpen;

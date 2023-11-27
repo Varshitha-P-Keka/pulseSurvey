@@ -13,6 +13,14 @@
     width: 100%;
 }
 
+.dropdown .dropdown-menu .dropdown-item:hover {
+    background-color: var(--secondary-background-color) !important;
+}
+
+.panel-group .panel .accordion-toggle>div {
+    background-color: var(--secondary-background-color);
+}
+
 .modal.show .modal-dialog {
     transform: none;
     display: flex;

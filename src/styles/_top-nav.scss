@@ -15,7 +15,12 @@
 
     .ki-sun {
         color: white;
+        cursor: pointer;
     }
+}
+
+.topnav.nav {
+    box-shadow: none;
 }
 
 .profile-picture {
@@ -25,7 +30,7 @@
     object-fit: cover;
 }
 
-.ddd-menu {
+.select-dropdown {
     position: absolute;
     right: 37px;
     list-style-type: none;
@@ -33,7 +38,7 @@
     padding-left: 0px;
     padding-bottom: 8px;
     width: 113px;
-    background-color: #ffffff;
+    background-color: var(--secondary-background-color);
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25); 
     li {
       padding: 15px 8px 10px 15px;
@@ -41,12 +46,12 @@
 }
 
 a:not([href]):not([tabindex]) {
-    color: black;
+    color: var(--primary-color-text);
 }
 
-.ddd-menu:hover {
-    background-color: #e0dfdf;
-    color: black;
+.select-dropdown:hover {
+    background-color: var(--primary-background-color);
+    color:  var(--primary-color-text);
 } 
   
 .survey-field {
@@ -56,10 +61,10 @@ a:not([href]):not([tabindex]) {
   
 .dropdown-menu.show {
     display: block;
-    margin-left: 24px;
+    margin-left: 10px;
 }
   
-.ddd-menu a {
+.select-dropdown a {
     display: block;
     width: 100%;
     height: 100%;

@@ -15,7 +15,7 @@
                         <p class="rating-label-circle">Provide your rating:</p>
                         <span *ngFor="let rating of ratingBar" class="ml-10 rating-circle" [ngClass]= "{'rating-circle-fill': updateSelectAndRatingArray[i].selectedRating >= rating}" (click)="updateRating(question.surveyQuestionId,rating,i)"></span>
                     </div>
-                    <p  class="danger-text" *ngIf="question.isRequired">is Required*</p>
+                    <p class="danger-text" *ngIf="question.isRequired">is Required*</p>
                 </div>
             </ng-container>
             <ng-container *ngIf="question.questionType==QuestionType.Dropdown">
@@ -23,7 +23,7 @@
                     <ng-select [id]="question.surveyQuestionId" [(ngModel)]="updateSelectAndRatingArray[i].selectedOption" [searchable]="false" (change)="optionSelected(question.surveyQuestionId, $event)" >
                         <ng-option [id]="option.optionId" *ngFor="let option of question.options" [value]="option.optionId">{{option.optionText}}</ng-option>
                     </ng-select>
-                    <p  class="danger-text" *ngIf="question.isRequired">is Required*</p>
+                    <p class="danger-text" *ngIf="question.isRequired">is Required*</p>
                 </div>
             </ng-container>
         </div>

@@ -35,9 +35,8 @@
                 </td>
                 <td>
                     <div class="dropdown" dropdown [class.show]="survey.dropdownOpen">
-                        <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true"
-                            aria-expanded="false" (click)="toggleDropdown(survey)">
-                            <span><i class="ki ki-ellipses-solid"></i></span>
+                        <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true" aria-expanded="false" (click)="toggleDropdown(survey)">
+                            <i class="ki ki-ellipses-solid"></i>
                         </a>
                         <ul class="dd-menu" *ngIf="survey.dropdownOpen">
                             <li>

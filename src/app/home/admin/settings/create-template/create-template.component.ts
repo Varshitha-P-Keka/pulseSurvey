@@ -7,7 +7,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Guid } from 'guid-typescript';
 
-import { NewTemplateData, TemplateQuestion, Option, ActiveStep, ApiService } from '../../../../shared';
+import { NewTemplateData, TemplateQuestion, Option, ActiveStep, ApiService, QuestionType } from '../../../../shared';
 
 @Component({
     selector: 'app-create-template',
@@ -22,6 +22,8 @@ export class CreateTemplateComponent implements OnInit {
     showDescription: boolean = false;
     currentStep = ActiveStep;
     activeStep = this.currentStep.BasicFields;
+    questionType:QuestionType = QuestionType.Dropdown;
+    QuestionType = QuestionType;
     questionName: string = '';
     maxInputFieldsErrorMsg: string = '';
     templateId: string = '';
@@ -137,22 +139,17 @@ export class CreateTemplateComponent implements OnInit {
           inputFields.push(this.formBuilder.control(''));
           this.options.push({ optionId: this.optionIdCounter++, optionValue: '' });
         }      
-        currentResponse.maxInputFieldsErrorMsg = inputFields.length < 5 ? '' : 'Maximum of 5 options allowed';
+        currentResponse.maxInputFieldsErrorMsg = inputFields.length < 5 ? '' : 'Max 5 options';
     }
 
     isLaunchDisabled(): boolean {
         let hasError = false;
-        if (this.basicFieldsForm.invalid) {
-          hasError = true;
-        } else {
-          hasError = this.formResponses.some(response => response.templateQuestionForm.invalid);
-        }
+        if (this.basicFieldsForm.invalid) hasError = true;
+        else hasError = this.formResponses.some(response => response.templateQuestionForm.invalid);
         const noRadioButtonSelected = this.formResponses.some(response => !response.templateQuestionForm.value.radiobutton);
         const noQuestions = this.formResponses.length === 0;
-      
         return hasError || noRadioButtonSelected || noQuestions;
-    }
-      
+    }      
 
     deleteQuestion(index: number):void {
         this.formResponses.splice(index, 1);

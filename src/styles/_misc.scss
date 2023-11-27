@@ -1,99 +1,116 @@
 * {
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --primary-color: #76618B;
-    --primary-color-light:rgb(118, 97, 139);
+  --primary-color: #76618b;
+  --primary-color-light: rgb(118, 97, 139);
 }
 
 .w-164 {
-    width: 164px;
+  width: 164px;
 }
 
-.light-theme{
-    --primary-nav-background: #FFFFFF;
-    --primary-background-color: #fff;
-    --secondary-background-color: #f3f4f7;
-    --primary-color-text: #222;
-    --secondary-color-text: #777;
+.light-theme {
+  --primary-nav-background: #ffffff;
+  --primary-background-color: #fff;
+  --secondary-background-color: #f3f4f7;
+  --primary-color-text: #222;
+  --secondary-color-text: #777;
+  --primary-link-text: #76618b;
 }
 
-.dark-theme{
-    --primary-nav-background: #2F394C;
-    --primary-background-color: #273143;
-    --secondary-background-color: #1B2531;
-    --primary-color-text: #E4E6E9;
-    --secondary-color-text: #A2A9B4;
-}
-
-.btn-group.btn-group-secondary .btn-link.btn.active, .btn-link {
-    color: white !important;
-}
-
-.btn-primary:hover {
-    background-color: #6e5883 !important;
-}
-
-.form-control {
-    border-color: #c9ccd3 !important;
-}
-
-
-body {
-    height:100vh;
-    margin-top: 0;
-    font-family:'Segoe UI';
-}
-
-.sub-topnav.nav .active a::after {
-    border-color: #76618B !important;
-}
-
-.bottom  {
-    position: absolute;
-    z-index: 999999;
+.dark-theme {
+  --primary-nav-background: #2f394c;
+  --primary-background-color: #273143;
+  --secondary-background-color: #1b2531;
+  --primary-color-text: #e4e6e9;
+  --secondary-color-text: #a2a9b4;
+  --primary-link-text: #ffffff;
 }
 
 .bs-datepicker {
-    top:13px;
-    left: 57px;
+  box-shadow: none;
 }
 
-.bs-datepicker .bs-datepicker-body .selected, .bs-datepicker .bs-datepicker-head {
-    background-color: #76618B !important;
+.bs-datepicker-container {
+  background-color: var(--primary-background-color);
+  box-shadow: none;
+}
+
+.table tr:hover {
+  background-color: var(--secondary-background-color) !important;
+}
+
+.btn-group.btn-group-secondary .btn-link.btn.active,
+.btn-link {
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: #6e5883 !important;
+}
+
+.form-control {
+  border-color: #c9ccd3 !important;
+}
+
+body {
+  height: 100vh;
+  margin-top: 0;
+  font-family: "Segoe UI";
+}
+
+.sub-topnav.nav .active a::after {
+  border-color: #76618b !important;
+}
+
+.bottom {
+  position: absolute;
+  z-index: 999999;
+}
+
+.bs-datepicker {
+  top: 13px;
+  left: 57px;
+}
+
+.bs-datepicker .bs-datepicker-body .selected,
+.bs-datepicker .bs-datepicker-head {
+  background-color: #76618b !important;
 }
 
 .step-label span {
-    width: 128px;
-    display: flex;
+  width: 128px;
+  display: flex;
 }
 
- .btn-primary,.stepper-wizard .step.active .step-number{
-    background-color: #76618B!important;
-    border-color: #76618B !important;
+.btn-primary,
+.stepper-wizard .step.active .step-number {
+  background-color: #76618b !important;
+  border-color: #76618b !important;
 }
 
-.btn.btn-link, .stepper-wizard .step .step-number {
-    color: #76618B !important;
-    border-color: #76618B !important;
+.btn.btn-link,
+.stepper-wizard .step .step-number {
+  color: #76618b !important;
+  border-color: #76618b !important;
 }
 .select-filter-picker {
-
-    .ng-select .ng-select-container{
-        border:none;
-        border-right: 1px solid #ccc;
-        border-radius: 0 !important;
-        border-top-left-radius: 3px !important;
-    }
+  .ng-select .ng-select-container {
+    border: none;
+    border-right: 1px solid #ccc;
+    border-radius: 0 !important;
+    border-top-left-radius: 3px !important;
+  }
 }
 
-.table-color-secondary{
-    color: #9da0a3;
+.table-color-secondary {
+  color: #9da0a3;
 }
 
-.dropdown-custom.dropdown-custom-md>button {
-    margin: 22px;
+.dropdown-custom.dropdown-custom-md > button {
+  margin: 7px;
 }

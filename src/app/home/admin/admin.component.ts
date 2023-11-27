@@ -11,7 +11,6 @@ import { Router, RouterModule, RouterOutlet, RouterLinkActive } from '@angular/r
 
 export class AdminComponent {
     constructor(public router: Router) {}
-
     navigateTo() {
         this.router.navigate(['/pulseSurvey/home/admin/surveys/active']);
     }

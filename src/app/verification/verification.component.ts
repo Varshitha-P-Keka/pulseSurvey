@@ -1,21 +1,21 @@
-import { Router } from '@angular/router';
+import { Router, RouterModule, RouterOutlet, RouterLinkActive } from '@angular/router';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-verification',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, RouterOutlet, RouterLinkActive, RouterModule],
     templateUrl: './verification.component.html',
 })
 export class VerificationComponent {
     constructor(private router: Router) {}
 
-    loginForm() {
+    loginForm():void {
         this.router.navigate(['/pulseSurvey/login']);
     }
 
-    registerForm() {
+    registerForm():void {
         this.router.navigate(['/pulseSurvey/register']);
     }
 }

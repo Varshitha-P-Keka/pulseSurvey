@@ -22,8 +22,7 @@
         </div>
     </div>
     <div>
-        <button class="btn btn-primary" *ngIf="activeStep === currentStep.BasicFields" (click)="saveBasicFields()">Save &
-            Continue</button>
+        <button class="btn btn-primary" *ngIf="activeStep === currentStep.BasicFields" (click)="saveBasicFields()">Save & Continue</button>
         <div *ngIf="activeStep === currentStep.SurveyQuestions" class="d-flex justify-content-between w-164">
             <button class="btn btn-secondary" (click)="updateActiveStep(currentStep.BasicFields)">Back</button>
             <button class="btn btn-primary" (click)="updateTemplate()">Launch</button>
@@ -61,33 +60,29 @@
                             <div class="collapse show mt-10 mb-10" data-parent="#accordion">
                                 <div class="form-group question-group">
                                     <form [formGroup]="response.templateQuestionForm">
-                                        <textarea class="form-control question-area" rows="2"
-                                            placeholder="Type the question here"
-                                            formControlName="surveyQuestionName" (input)="updateQuestionName($event, i)"></textarea>
-                                        <a class="add-description" (click)="addDescription()">+ Add additional
-                                            Description</a>
-                                        <textarea class="form-control question-area" rows="3"
-                                            placeholder="Provide a Description so that the employees can understand what exactly to respond to this question"
-                                            *ngIf="showDescription"
-                                            formControlName="surveyQuestionDescription"></textarea>
-                                        <div class="radio-buttons">
-                                            <p> How do you want the employees to respond to this question? </p>
-                                            <div class="d-flex justify-content-between w-430">
-                                                <input type="radio" formControlName="radiobutton" id="Rating_{{i}}"
-                                                    value="Rating">
-                                                <label for="Rating_{{i}}" class="radio-button-labels">Rating</label>
-                                                <input type="radio" formControlName="radiobutton" id="Commentonly_{{i}}"
-                                                    value="Text">
-                                                <label for="Commentonly_{{i}}" class="radio-button-labels">Comment
-                                                    only</label>
-                                                <input type="radio" formControlName="radiobutton" id="option3_{{i}}"
-                                                    value="SelectOneFromList">
-                                                <label for="option3_{{i}}" class="radio-button-labels">Select one from
-                                                    list</label>
+                                        <textarea class="form-control question-area" rows="2" placeholder="Type the question here" formControlName="surveyQuestionName" (input)="updateQuestionName($event, i)"></textarea>
+                                        <a class="add-description" (click)="addDescription()">+ Add additional Description</a>
+                                        <textarea class="form-control question-area" rows="3" placeholder="Provide a Description so that the employees can understand what exactly to respond to this question" *ngIf="showDescription" formControlName="surveyQuestionDescription"></textarea>
+                                        <div class="radio-buttons d-flex justify-content-between w-97">
+                                            <div>
+                                                <p> How do you want the employees to respond to this question? </p>
+                                                <div class="d-flex justify-content-between w-430">
+                                                    <input type="radio" formControlName="radiobutton" id="Rating_{{i}}" value="Rating">
+                                                    <label for="Rating_{{i}}" class="radio-button-labels">Rating</label>
+
+                                                    <input type="radio" formControlName="radiobutton" id="Commentonly_{{i}}" value="Text">
+                                                    <label for="Commentonly_{{i}}" class="radio-button-labels">Comment only</label>
+
+                                                    <input type="radio" formControlName="radiobutton" id="option3_{{i}}" value="SelectOneFromList">
+                                                    <label for="option3_{{i}}" class="radio-button-labels">Select one from list</label>
+                                                </div>
+                                            </div>
+                                            <div class="required-checkbox">
+                                                <input type="checkbox" [formControl]="response.templateQuestionForm.get('isRequired')" id="isRequiredCheckBox_{{i}}">
+                                                <label for="isRequiredCheckBox_{{i}}" class="required-label">*Is Required</label>
                                             </div>
                                         </div>
-                                        <a *ngIf="formResponses[i]?.templateQuestionForm.get('radiobutton')?.value === 'SelectOneFromList'"
-                                            (click)="addOption(i)">+ Add More options</a>
+                                        <a *ngIf="formResponses[i]?.templateQuestionForm.get('radiobutton')?.value === QuestionType.Dropdown" (click)="addOption(i)">+ Add More options</a>
                                         <div class="d-flex">
                                             <div formArrayName="options">
                                                 <div

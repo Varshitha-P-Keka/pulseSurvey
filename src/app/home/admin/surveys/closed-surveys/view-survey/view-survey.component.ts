@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { switchMap, EMPTY, take } from 'rxjs';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
-import { ApiService, UserDataService} from '../../../../../shared';
+import { ApiService, UserDataService, QuestionType} from '../../../../../shared';
 import { RightModalQuestionDetailsComponent } from './right-modal-question-details/right-modal-question-details.component';
 
 @Component({
@@ -17,9 +17,12 @@ import { RightModalQuestionDetailsComponent } from './right-modal-question-detai
 export class ViewSurveyComponent {
     modalRef: BsModalRef | undefined;
     currentSurvey: any;
+    questionType:QuestionType = QuestionType.Comment;
+    QuestionType = QuestionType
     currentSurveyId: number = 0;
     surveyQuestionsId: number[] = [];
     question: any;
+
 
     constructor(private behaviorSubjectService: UserDataService, private apiService: ApiService, private bsModalService: BsModalService) {}
 

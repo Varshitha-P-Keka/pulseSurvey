@@ -22,6 +22,10 @@ export class OpenSurveysComponent {
     constructor(private apiService: ApiService, private modalService: BsModalService, private behaviorSubjectService: UserDataService, private spinner: SpinnerVisibilityService) {}
 
     ngOnInit():void {
+        this.showOpenSurveys();
+    }
+
+    private showOpenSurveys():void {
         this.apiService.getOpenSurveysData().subscribe({
             next: (data) => {
                 this.spinner.hide();

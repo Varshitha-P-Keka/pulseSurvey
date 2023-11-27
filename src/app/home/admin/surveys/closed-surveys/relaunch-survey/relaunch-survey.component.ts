@@ -26,13 +26,15 @@ export class RelaunchSurveyComponent implements OnInit {
     updateSurveyForm!: FormGroup;
     date: any;
     surveyUpdated$ = this.surveyUpdatedSource.asObservable();
-    bsConfig: Partial<BsDatepickerConfig> = {
-        showWeekNumbers: false,
-    };
     ModalRef!: BsModalRef | undefined;
     survey: any;
+    bsConfig: Partial<BsDatepickerConfig> = {};
 
     ngOnInit(): void {
+      this.bsConfig = {
+        showWeekNumbers: false,
+        minDate: new Date(), 
+      };
         this.initializeUpdateSurveyForm();
         this.subscribeToEvents();      
     }

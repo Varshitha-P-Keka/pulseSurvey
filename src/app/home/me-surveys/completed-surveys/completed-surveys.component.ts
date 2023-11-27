@@ -38,15 +38,7 @@ export class CompletedSurveysComponent {
     constructor(private apiService: ApiService, private spinner: SpinnerVisibilityService) {}
 
     ngOnInit():void {
-        this.apiService.getCompletedSurveys().subscribe({
-            next: (data) => {
-                this.spinner.hide();
-                this.completedSurveys = data;
-                this.filteredSurveys = data;
-                this.combinedFilterArray = data;
-            },
-            error: (e) => {},
-        });
+        this.showCompletedSurveys();        
     }
 
     filterOnInput(event: any):void {
@@ -58,6 +50,18 @@ export class CompletedSurveysComponent {
     filterDropDown(id: number):void {
         if (id == 4) this.dateRangCalendar.nativeElement.click();
          else this.combinedSelectFilter(id);
+    }
+
+    private showCompletedSurveys(){
+        this.apiService.getCompletedSurveys().subscribe({
+            next: (data) => {
+                this.spinner.hide();
+                this.completedSurveys = data;
+                this.filteredSurveys = data;
+                this.combinedFilterArray = data;
+            },
+            error: (e) => {},
+        });
     }
 
     combinedSelectFilter(id: number, setBeginDate?: any, setEndDate?: any):void {

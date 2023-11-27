@@ -1,4 +1,4 @@
 export enum Tabs {
-    Analytical = 'analytical',
-    Detailed = 'detailed'
+    Analytical = 'Analytical',
+    Detailed = 'Detailed'
 }

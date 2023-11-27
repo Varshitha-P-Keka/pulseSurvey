@@ -56,9 +56,8 @@ export class UpdateSurveyComponent {
         this.hideModal();
     }
 
-    private formatDate(date: Date):string {
-        let fdate = this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss.SSS');
-        return fdate + 'Z';
+    private formatDate(date: Date): string {
+        return this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss.SSS') + 'Z';
     }
 
     hideModal():void {

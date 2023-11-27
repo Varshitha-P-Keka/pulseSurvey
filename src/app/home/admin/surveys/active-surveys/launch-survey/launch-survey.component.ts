@@ -22,7 +22,6 @@ export class LaunchSurveyComponent implements OnInit {
   showExisitingTemplates:boolean = false;
   selectedItem: SelectedItem = SelectedItem.Default;
   SelectedItem = SelectedItem;
-  selectionErrorMsg: string = '';
   existingTemplateNames: any[]=[];
   exisitngTemplates: any[]=[];
   ModalRef!: BsModalRef | undefined;
@@ -44,11 +43,6 @@ export class LaunchSurveyComponent implements OnInit {
 
   toLaunchSurveyFullModal(): void {
     this.bsModalService.show(LaunchSurveyFullModalComponent, { class: 'full-modal' });
-    if (this.selectedItem === SelectedItem.Default) {
-      this.selectionErrorMsg = 'Please select a valid option';
-      return;
-    }
-    this.selectionErrorMsg = '';
     this.modalService.setSelectedItem(this.selectedItem);
   }  
 
@@ -62,7 +56,7 @@ export class LaunchSurveyComponent implements OnInit {
   }
 
   onLaunchSurveyClick(): void {
-    this.selectedItem = SelectedItem.New;
+    this.selectedItem = SelectedItem.Default;
     this.apiService.getTemplates().subscribe((data: any) => {
       this.spinner.hide();
       this.exisitngTemplates = data;

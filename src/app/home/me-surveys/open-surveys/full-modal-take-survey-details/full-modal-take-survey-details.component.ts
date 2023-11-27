@@ -25,26 +25,32 @@ export class FullModalTakeSurveyDetailsComponent {
     constructor(public bsModalRef: BsModalRef, private behaviorSubjectService: UserDataService, private apiService: ApiService, private modalService: BsModalService, private spinner: SpinnerVisibilityService) {}
 
     ngOnInit():void {
+        this.subscribeToEvents();
+        this.fetchSurveyDetails();
+    }
+
+    private subscribeToEvents() {
         this.behaviorSubjectService.getSurveyId().subscribe({
             next: (data) => {
                 this.surveyId = data;
             },
             error: (e) => {},
         });
-
         this.behaviorSubjectService.getRequiredArray().subscribe({
             next: (data:any)=>{
-                    for(let i=0;i<data.length;++i)
-                    if(data[i].isRequired){
-                        this.isRequired = true;
-                        break;
-                    }
-                     else{
-                         this.isRequired = false;
-                     }
+                for(let i=0;i<data.length;++i)
+                if(data[i].isRequired){
+                    this.isRequired = true;
+                    break;
+                }
+                else{
+                    this.isRequired = false;
+                }
             }
         })
+    }
 
+    private fetchSurveyDetails() {
         if (this.surveyId) {
             this.apiService.getSurveyDetailsById(this.surveyId).subscribe({
                 next: (data) => {

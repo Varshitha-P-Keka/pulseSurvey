@@ -62,10 +62,7 @@ export class SurveyQuestionsComponent {
   }
 
   reponseObj() {
-    return new surveyQuestionResponse(
-      this.surveyId,
-      this.surveyQuestionResponseArray
-    );
+    return new surveyQuestionResponse( this.surveyId, this.surveyQuestionResponseArray);
   }
 
   private getSurveyQuestions(): void {

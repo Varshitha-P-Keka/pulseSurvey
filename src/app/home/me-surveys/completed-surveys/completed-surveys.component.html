@@ -4,22 +4,15 @@
     <div class="d-flex filter-container">
         <div>
             <div class="select-filter-picker">
-                <ng-select #selectDropdown [searchable]="false" placeholder="Launched Between"
-                    (change)="filterDropDown($event.id)" [items]="filterOptions" bindLabel="name" bindValue="id"
-                    [clearable]="true" [(ngModel)]="selectedFilterId">
-                </ng-select>
+                <ng-select #selectDropdown [searchable]="false" placeholder="Launched Between" (change)="filterDropDown($event.id)" [items]="filterOptions" bindLabel="name" bindValue="id" [clearable]="true" [(ngModel)]="selectedFilterId"></ng-select>
             </div>
             <div class="date-range-picker input-calendar w-300 form-group">
-                <input #dateRangeCalendar type="text" class="selected-filters form-control" bsDaterangepicker
-                    placement="right"
-                    [bsConfig]="{ showWeekNumbers: false, isAnimated: false, rangeInputFormat: 'D MMM YYYY' }"
-                    [(ngModel)]="selectedDate" (ngModelChange)="onDateChange($event)" />
+                <input #dateRangeCalendar type="text" class="selected-filters form-control" bsDaterangepicker placement="right" [bsConfig]="{ showWeekNumbers: false, isAnimated: false, rangeInputFormat: 'D MMM YYYY' }" [(ngModel)]="selectedDate" (ngModelChange)="onDateChange($event)" />
             </div>
         </div>
         <div class="search-filter-text d-flex">
             <label class="position-relative"><i class="ki ki-search position-absolute"></i></label>
-            <input class="h-100 pl-32" type="search" placeholder="Search" (input)="filterOnInput($event.target)"
-                [(ngModel)]="inputTextFilter" />
+            <input class="h-100 pl-32" type="search" placeholder="Search" (input)="filterOnInput($event.target)" [(ngModel)]="inputTextFilter" />
         </div>
         <div class="filter-reset-btn d-flex">
             <label class="position-relative"><i class="ki ki-refresh position-absolute"></i></label>

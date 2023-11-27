@@ -50,14 +50,14 @@
                 <td>
                     <div class="dropdown" dropdown [class.show]="survey.dropdownOpen">
                         <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true" aria-expanded="false" (click)="toggleDropdown(survey)">
-                            <span><i class="ki ki-ellipses-solid"></i></span>
+                            <i class="ki ki-ellipses-solid"></i>
                         </a>
                         <ul class="dd-menu" *ngIf="survey.dropdownOpen">
-                            <li (click)="toReLaunchSurvey(survey)">
-                                <a>Re-launch Survey</a>
+                            <li>
+                                <a (click)="toReLaunchSurvey(survey)">Re-launch Survey</a>
                             </li>
-                            <li (click)="toViewSurvey(survey)">
-                                <a>View</a>
+                            <li>
+                                <a (click)="toViewSurvey(survey)">View</a>
                             </li>
                         </ul>
                     </div>

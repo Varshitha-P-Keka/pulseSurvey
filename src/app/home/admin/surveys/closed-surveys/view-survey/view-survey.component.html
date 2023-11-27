@@ -30,10 +30,10 @@
             <p>Response Type: </p>
             <p class="pl-4">{{question.questionType}}</p>
         </div>
-        <div *ngIf="question.questionType=='Text'">
+        <div *ngIf="question.questionType== QuestionType.Comment">
             <p class="p-12"></p>
         </div> 
-        <div *ngIf="question.questionType=='Rating'">
+        <div *ngIf="question.questionType==QuestionType.Rating">
             <div class="my-10">
                 <p>Average Rating</p>
                 <div class="d-flex align-items-center">
@@ -44,7 +44,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="question.questionType=='SelectOneFromList'">
+        <div *ngIf="question.questionType==QuestionType.Dropdown">
             <div class="my-10" *ngFor="let optionPercentage of question.optionPercentages">
                 <p>{{optionPercentage.optionText}}</p>
                 <div class="d-flex align-items-center">

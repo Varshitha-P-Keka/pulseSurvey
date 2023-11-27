@@ -17,7 +17,7 @@ export class UserDataService {
     private applicationTheme = new BehaviorSubject<string>('');
     private isRequiredSurveyQuestions = new BehaviorSubject<{}[]> ([]);
 
-    setRequiredArray(isRequired: {}[]){
+    setRequiredArray(isRequired: {}[]) {
         this.isRequiredSurveyQuestions.next(isRequired);
     }
 

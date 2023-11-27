@@ -8,7 +8,7 @@ import { SpinnerVisibilityService } from 'ng-http-loader';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
-import { ApiService, ModalService, TemplateData, Option, ActiveStep, updateTemplateQuestion } from '../../../../shared';
+import { ApiService, ModalService, TemplateData, Option, ActiveStep, updateTemplateQuestion, QuestionType } from '../../../../shared';
 
 @Component({
     selector: 'app-update-template',
@@ -23,6 +23,8 @@ export class UpdateTemplateComponent {
     currentStep = ActiveStep;
     activeStep = this.currentStep.BasicFields;
     questionName: string = '';
+    questionType:QuestionType = QuestionType.Dropdown;
+    QuestionType = QuestionType;
     maxInputFieldsErrorMsg:  string = '';
     formResponses: any[] = [];
     options: any[] = [];
@@ -74,6 +76,7 @@ export class UpdateTemplateComponent {
             surveyQuestionDescription: [''],
             radiobutton: [''],
             options: this.formBuilder.array([]),
+            isRequired: [false] 
         });
     }
 
@@ -96,6 +99,7 @@ export class UpdateTemplateComponent {
             surveyQuestionDescription: [''],
             radiobutton: [''],
             options: this.formBuilder.array([]),
+            isRequired: [false] 
         });
     }
 
@@ -125,6 +129,7 @@ export class UpdateTemplateComponent {
                         optionId: option.optionId,
                         optionValue: option.optionText,
                     })),
+                    isRequired: question.isRequired
                 });
 
                 if (question.options && question.options.length) {

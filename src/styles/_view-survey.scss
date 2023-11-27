@@ -1,6 +1,6 @@
 .view-survey-header {
     border: 1px solid rgb(212, 215, 220);
-    background-color: white;
+    background-color: var(--primary-background-color);
 
     .view-survey-details {
         width: 60%;
@@ -13,8 +13,12 @@
 }
 
 .view-survey-item {
-    background-color: white;
+    background-color: var(--primary-background-color);
     border: 1px solid rgb(212, 215, 220);
+}
+
+.btn-group .btn.btn-link:not(.active):hover {
+    background-color: var(--primary-background-color)!important;
 }
 
 .details-link {
